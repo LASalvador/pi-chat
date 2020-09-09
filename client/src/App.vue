@@ -1,14 +1,15 @@
 <template>
   <div id="app">
-    <h1>Hello world</h1>
+    <Layout/>
   </div>
 </template>
 
 <script>
-
+import { Layout } from './components/Layout/Layout'
 export default {
   name: 'App',
   components: {
+    Layout
   }
 }
 </script>
