@@ -5,11 +5,11 @@
 </template>
 
 <script>
-import { Layout } from './components/Layout/Layout'
+import layout from '@/components/Layout/Layout.vue'
 export default {
   name: 'App',
   components: {
-    Layout
+    layout
   }
 }
 </script>
