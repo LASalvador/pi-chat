@@ -14,7 +14,6 @@ create table usuario(
 	cpf_usuario varchar(20) not null,
 	id_tipo_usuario bigint unsigned not null,
 	data_criado date,
-	data_atualizado date,
 	primary key (id_usuario),
 	unique key uni_cpf (cpf_usuario),
 	foreign key fk_tipo_usuario (id_tipo_usuario) references tipo_usuario (id_tipo_usuario)
