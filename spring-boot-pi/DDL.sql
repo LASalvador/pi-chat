@@ -1,9 +1,6 @@
 create schema chatbd;
 use chatbd;
 
-create user 'user'@'localhost' identified by 'pass321';
-grant select, insert, delete, update, on chatbd.* to user@'localhost';
-
 create table tipo_usuario(
 	id_tipo_usuario bigint unsigned not null auto_increment,
 	nome_tipo_usuario varchar(30) not null,
