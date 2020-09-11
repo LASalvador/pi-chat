@@ -1,5 +1,5 @@
 # pi-chat
-[![Gitpod Code-Server-Side](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/lrsonnewend/pi-chat/spring-boot-pi)
+[![Gitpod Code-Server-Side](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/LASalvador/pi-chat/spring-boot-pi)
 
 Esse projeto é resultado de um trabalho acadêmico realizar na Faculdade de tecnologia de São José dos Campos - Professor Jassen Vidal. 
 
