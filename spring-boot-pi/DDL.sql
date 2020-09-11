@@ -29,8 +29,8 @@ create table arquivos(
 
 create table conversa(
 	id_conversa bigint unsigned not null auto_increment,
-	data_criado date,
-	data_atualizado date,
+	data_inicio date,
+	data_ultima_conversa date,
 	primary key (id_conversa)
 );
 
