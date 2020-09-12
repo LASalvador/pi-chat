@@ -46,10 +46,9 @@ create table mensagem(
 );
 
 create table usuario_conversa(
-	id_usuario_conversa bigint unsigned not null auto_increment,
 	id_usuario bigint unsigned not null,
 	id_conversa bigint unsigned not null,
-    primary key (id_usuario_conversa),
+    primary key (id_usuario, id_conversa),
 	foreign key fk_id_conversa (id_conversa) references conversa (id_conversa),
 	foreign key fk_id_usuario (id_usuario) references usuario (id_usuario)
 );

@@ -1,6 +1,7 @@
 package br.com.fatec.springbootpi.entity;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -11,7 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -29,12 +31,26 @@ public class Usuario {
     @Column(name = "cpf_usuario")
     private String cpfUsuario;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "usuario_conversa",
+    joinColumns = { @JoinColumn(name = "id_usuario") },
+    inverseJoinColumns = { @JoinColumn(name = "id_conversa") })
+    private Set<Conversa> conversas;
+
+    /* @ManyToOne(fetch = FetchType.EAGER)
     @JoinTable(name = "usuario_tipo_usuario", 
         joinColumns = { 
             @JoinColumn(name = "id_usuario") }, inverseJoinColumns = { @JoinColumn(name = "id_tipo_usuario") 
-        })
-    private Set<TipoUsuario> tiposUsuarios;
+        }) */
+    
+    /* @ManyToOne
+    @JoinTable(name="tipo_usuario",
+                   joinColumns={@JoinColumn(name="perfil_id",
+                    referencedColumnName="id")},
+                   inverseJoinColumns={@JoinColumn(name="usuario_id",
+                     referencedColumnName="id")}) */
+                     
+    private TipoUsuario tiposUsuarios;
 
     @Column(name = "data_criado")
     private Date dataCriado;
@@ -55,8 +71,12 @@ public class Usuario {
         return nomeUsuario;
     }
 
-    public Set<TipoUsuario> getTiposUsuarios() {
+    public TipoUsuario getTiposUsuarios() {
         return tiposUsuarios;
+    }
+
+    public Set<Conversa> getConversas() {
+        return conversas;
     }
 
     public void setIdUsuario(Long idUsuario) {
@@ -75,8 +95,11 @@ public class Usuario {
         this.nomeUsuario = nomeUsuario;
     }
 
-    public void setTiposUsuarios(Set<TipoUsuario> tiposUsuarios) {
+    public void setTiposUsuarios(TipoUsuario tiposUsuarios) {
         this.tiposUsuarios = tiposUsuarios;
     }
 
+    public void setConversas(Set<Conversa> conversas) {
+        this.conversas = conversas;
+    }
 }

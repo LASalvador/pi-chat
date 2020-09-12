@@ -1,0 +1,42 @@
+package br.com.fatec.springbootpi.security;
+
+import java.util.Date;
+import java.util.HashSet;
+
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import br.com.fatec.springbootpi.entity.TipoUsuario;
+import br.com.fatec.springbootpi.entity.Usuario;
+import br.com.fatec.springbootpi.repository.TipoUsuarioRepository;
+import br.com.fatec.springbootpi.repository.UsuarioRepository;
+
+
+@Service("servioService")
+public class ServicoServiceImpl implements ServicoService{
+    @Autowired
+    private UsuarioRepository userRepo;
+    private TipoUsuarioRepository tipoUserRepo;
+    
+    @Override
+    @Transactional
+    public Usuario criarUsuario(String nomeUsuario, String cpfUsuario, String tipoUsuario, Date dataCriado) {
+        Usuario usuario = new Usuario();
+        
+        TipoUsuario tipoUser = new TipoUsuario();
+        
+        tipoUser.setNome(tipoUsuario);
+        tipoUserRepo.save(tipoUser);
+
+        usuario.setNomeUsuario(nomeUsuario);
+        usuario.setCpfUsuario(cpfUsuario);
+        usuario.setDataCriado(dataCriado);
+        usuario.setTiposUsuarios(tipoUsuario);
+        usuario.getTiposUsuarios().add(tipoUser);
+        userRepo.save(usuario);
+
+        return usuario;
+    }       
+}
