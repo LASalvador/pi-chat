@@ -2,8 +2,9 @@ create database chatbd;
 use chatbd;
 
 create user 'usuario'@'localhost' identified by 'pass312';
+GRANT ALL PRIVILEGES ON * . * TO 'usuario'@'localhost';
+FLUSH PRIVILEGES;
 
-grant select, insert, delete, update on chatbd.* to user@'localhost';
 
 create table tipo_usuario(
 	id_tipo_usuario bigint unsigned not null auto_increment,
