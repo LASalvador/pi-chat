@@ -1,7 +1,7 @@
 create database chatbd;
 use chatbd;
 
-create user 'usuario'@'localhost' identified by 'pass312';
+create user 'usuario'@'localhost' identified by 'pass321';
 GRANT ALL PRIVILEGES ON * . * TO 'usuario'@'localhost';
 FLUSH PRIVILEGES;
 
