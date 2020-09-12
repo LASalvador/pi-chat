@@ -1,7 +1,7 @@
-create schema chatbd;
+create database chatbd;
 use chatbd;
 
-create user 'user'@'localhost' identified by 'pass312';
+create user 'usuario'@'localhost' identified by 'pass312';
 
 grant select, insert, delete, update on chatbd.* to user@'localhost';
 
