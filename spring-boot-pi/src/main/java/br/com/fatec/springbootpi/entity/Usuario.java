@@ -30,24 +30,12 @@ public class Usuario {
     @Column(name = "cpf_usuario")
     private String cpfUsuario;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    /* @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "usuario_conversa",
     joinColumns = { @JoinColumn(name = "id_usuario") },
     inverseJoinColumns = { @JoinColumn(name = "id_conversa") })
-    private Set<Conversa> conversas;
+    private Set<Conversa> conversas; */
 
-    /* @ManyToOne(fetch = FetchType.EAGER)
-    @JoinTable(name = "usuario_tipo_usuario", 
-        joinColumns = { 
-            @JoinColumn(name = "id_usuario") }, inverseJoinColumns = { @JoinColumn(name = "id_tipo_usuario") 
-        }) */
-    
-    /* @ManyToOne
-    @JoinTable(name="tipo_usuario",
-                   joinColumns={@JoinColumn(name="perfil_id",
-                    referencedColumnName="id")},
-                   inverseJoinColumns={@JoinColumn(name="usuario_id",
-                     referencedColumnName="id")}) */
     @ManyToOne
     @JoinColumn(name="id_tipo_usuario")
     private TipoUsuario tiposUsuarios;
@@ -75,9 +63,9 @@ public class Usuario {
         return tiposUsuarios;
     }
 
-    public Set<Conversa> getConversas() {
+    /* public Set<Conversa> getConversas() {
         return conversas;
-    }
+    } */
 
     public void setIdUsuario(Long idUsuario) {
         this.idUsuario = idUsuario;
@@ -99,7 +87,7 @@ public class Usuario {
         this.tiposUsuarios = tiposUsuarios;
     }
 
-    public void setConversas(Set<Conversa> conversas) {
+    /* public void setConversas(Set<Conversa> conversas) {
         this.conversas = conversas;
-    }
+    } */
 }
