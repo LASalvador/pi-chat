@@ -1,7 +1,6 @@
 package br.com.fatec.springbootpi.security;
 
 import java.util.Date;
-import java.util.HashSet;
 
 import javax.transaction.Transactional;
 
@@ -16,8 +15,11 @@ import br.com.fatec.springbootpi.repository.UsuarioRepository;
 
 @Service("servioService")
 public class ServicoServiceImpl implements ServicoService{
+    
     @Autowired
     private UsuarioRepository userRepo;
+
+    @Autowired
     private TipoUsuarioRepository tipoUserRepo;
     
     @Override
@@ -25,16 +27,21 @@ public class ServicoServiceImpl implements ServicoService{
     public Usuario criarUsuario(String nomeUsuario, String cpfUsuario, String tipoUsuario, Date dataCriado) {
         Usuario usuario = new Usuario();
         
-        TipoUsuario tipoUser = new TipoUsuario();
-        
-        tipoUser.setNome(tipoUsuario);
-        tipoUserRepo.save(tipoUser);
+        TipoUsuario tipoUser = tipoUserRepo.findByNome(tipoUsuario);
+                
+        if(tipoUser == null){
+            tipoUser = new TipoUsuario();
+            
+            tipoUser.setNome(tipoUsuario);
+
+            tipoUserRepo.save(tipoUser);
+        }
 
         usuario.setNomeUsuario(nomeUsuario);
         usuario.setCpfUsuario(cpfUsuario);
         usuario.setDataCriado(dataCriado);
-        usuario.setTiposUsuarios(tipoUsuario);
-        usuario.getTiposUsuarios().add(tipoUser);
+        usuario.setTiposUsuarios(tipoUser);
+    
         userRepo.save(usuario);
 
         return usuario;

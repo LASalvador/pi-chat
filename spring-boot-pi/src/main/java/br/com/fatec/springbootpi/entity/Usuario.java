@@ -1,7 +1,6 @@
 package br.com.fatec.springbootpi.entity;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -49,7 +48,8 @@ public class Usuario {
                     referencedColumnName="id")},
                    inverseJoinColumns={@JoinColumn(name="usuario_id",
                      referencedColumnName="id")}) */
-                     
+    @ManyToOne
+    @JoinColumn(name="id_tipo_usuario")
     private TipoUsuario tiposUsuarios;
 
     @Column(name = "data_criado")

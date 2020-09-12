@@ -7,11 +7,8 @@ import java.util.Date;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
-
-import br.com.fatec.springbootpi.*;
 import br.com.fatec.springbootpi.entity.Usuario;
 import br.com.fatec.springbootpi.security.ServicoService;
 

@@ -38,7 +38,7 @@
 					<artifactId>junit-vintage-engine</artifactId>
 				</exclusion>
 			</exclusions>
-		</dependency>
+        </dependency>
 		
 		<dependency>
 		 	<groupId>mysql</groupId>

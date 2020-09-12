@@ -12,8 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.ManyToAny;
-
 @Entity
 @Table(name = "conversa")
 public class Conversa {
@@ -29,7 +27,7 @@ public class Conversa {
     @Column(name = "data_ultima_conversa")
     private Date dataUltimaConversa;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "autorizacoes")
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "conversas")
     private Set<Usuario> usuarios;
 
 
@@ -64,5 +62,4 @@ public class Conversa {
     public Set<Usuario> getUsuarios() {
         return usuarios;
     }
-    
 }

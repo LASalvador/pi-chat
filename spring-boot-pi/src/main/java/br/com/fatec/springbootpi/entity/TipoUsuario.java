@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -15,25 +14,24 @@ public class TipoUsuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_tipo_usuario")
-    private Long id;
+    private Long idTipoUsuario;
 
     @Column(name = "nome_tipo_usuario")
     private String nome;
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdTipoUsuario(Long idTipoUsuario) {
+        this.idTipoUsuario = idTipoUsuario;
     }
 
     public void setNome(String nome) {
         this.nome = nome;
     }
 
-    public Long getId() {
-        return id;
+    public Long getIdTipoUsuario() {
+        return idTipoUsuario;
     }
 
     public String getNome() {
         return nome;
     }
-
 }
