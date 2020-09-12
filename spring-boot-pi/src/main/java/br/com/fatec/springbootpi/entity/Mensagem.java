@@ -7,7 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -25,11 +26,11 @@ public class Mensagem {
     @Column(name = "data_criado")
     private Date dataCriado;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name="id_usuario")
     private Usuario usuarios;
 
-    @OneToOne
+    @OneToMany
     @JoinColumn(name="id_conversa")
     private Conversa conversas;
 }
