@@ -30,7 +30,7 @@ public class Mensagem {
     @JoinColumn(name="id_usuario")
     private Usuario usuarios;
 
-    /* @OneToMany
+    @ManyToOne
     @JoinColumn(name="id_conversa")
-    private Conversa conversas; */
+    private Conversa conversas;
 }

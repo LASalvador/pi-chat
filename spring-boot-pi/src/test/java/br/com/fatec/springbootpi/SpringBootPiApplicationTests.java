@@ -27,8 +27,8 @@ class SpringBootPiApplicationTests {
     @Test
     void testaServicoCriaUsuario(){
         Date x = new Date();
-        Usuario usuario = segService.criarUsuario("ademir", "666.666.666-6", "ROLE_ALUNO", x);
-        assertNotNull(usuario);
+        Usuario usuario = segService.criarUsuario("ronaldo", "222.222.000-12", "ROLE_ALUNO", x);
+        assertNotNull(usuario.getIdUsuario());
     }
 
 

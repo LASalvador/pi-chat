@@ -1,4 +1,4 @@
-/* package br.com.fatec.springbootpi.entity;
+package br.com.fatec.springbootpi.entity;
 
 import java.util.Date;
 import java.util.Set;
@@ -62,4 +62,4 @@ public class Conversa {
     public Set<Usuario> getUsuarios() {
         return usuarios;
     }
-} */
+}
