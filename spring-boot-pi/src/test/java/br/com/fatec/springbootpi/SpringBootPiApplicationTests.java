@@ -1,5 +1,6 @@
 package br.com.fatec.springbootpi;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.Date;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 import br.com.fatec.springbootpi.entity.Usuario;
+import br.com.fatec.springbootpi.repository.UsuarioRepository;
 import br.com.fatec.springbootpi.security.ServicoService;
 
 @SpringBootTest
@@ -20,16 +22,23 @@ class SpringBootPiApplicationTests {
     @Autowired
     private ServicoService segService;
 
+    @Autowired
+    private UsuarioRepository userRepo;
+
 	/* @Test
 	void contextLoads() {
     } */
     
+    // @Test
+    // void testaServicoCriaUsuario(){
+    //     Date x = new Date();
+    //     Usuario usuario = segService.criarUsuario("PORPETA", "162.222.010-13", "ROLE_ALUNO", x);
+    //     assertNotNull(usuario.getIdUsuario());
+    // }
+
     @Test
-    void testaServicoCriaUsuario(){
-        Date x = new Date();
-        Usuario usuario = segService.criarUsuario("ronaldo", "222.222.000-12", "ROLE_ALUNO", x);
-        assertNotNull(usuario.getIdUsuario());
+    void testaUsuarioNomeAndCpf(){
+        Usuario user = userRepo.findByNomeUsuarioAndCpfUsuario("PORPETA", "162.222.010-13");
+        assertNotNull(user);
     }
-
-
 }

@@ -18,10 +18,10 @@ public class Conversa {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_covnersa")
+    @Column(name = "id_conversa")
     private Long idConversa;
 
-    @Column(name = "data_iniciada")
+    @Column(name = "data_inicio")
     private Date dataInicial;
 
     @Column(name = "data_ultima_conversa")

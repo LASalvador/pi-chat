@@ -63,9 +63,9 @@ public class Usuario {
         return tiposUsuarios;
     }
 
-    /* public Set<Conversa> getConversas() {
+    public Set<Conversa> getConversas() {
         return conversas;
-    } */
+    }
 
     public void setIdUsuario(Long idUsuario) {
         this.idUsuario = idUsuario;
@@ -87,7 +87,7 @@ public class Usuario {
         this.tiposUsuarios = tiposUsuarios;
     }
 
-    /* public void setConversas(Set<Conversa> conversas) {
+    public void setConversas(Set<Conversa> conversas) {
         this.conversas = conversas;
-    } */
+    }
 }
