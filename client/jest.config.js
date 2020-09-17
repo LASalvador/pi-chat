@@ -1,17 +1,17 @@
 module.exports = {
   preset: '@vue/cli-plugin-unit-jest',
-  "moduleNameMapper": {
-    "^@/(.*)$": "<rootDir>/src/$1"
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/src/$1'
   },
-  "moduleFileExtensions": [
-    "js",
-    "json",
+  moduleFileExtensions: [
+    'js',
+    'json',
     // tell Jest to handle `*.vue` files
-    "vue"
+    'vue'
   ],
-  "transform": {
+  transform: {
     // process `*.vue` files with `vue-jest`
-    ".*\\.(vue)$": "vue-jest"
+    '.*\\.(vue)$': 'vue-jest'
   },
-  resolver:null,
+  resolver: null
 }

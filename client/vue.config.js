@@ -1,17 +1,20 @@
-const path = require("path");
-
-const vueSrc = "./src";
-
 module.exports = {
   configureWebpack: {
     resolve: {
       alias: {
-        "@": path.resolve(__dirname, vueSrc)
+        '@': '/home/lucas/Projects/pi-chat/client/src'
       },
-      extensions: ['.js', '.vue', '.json']
+      extensions: [
+        '.js',
+        '.vue',
+        '.json'
+      ]
     },
     output: {
       libraryExport: 'default'
     }
-  }
+  },
+  transpileDependencies: [
+    'vuetify'
+  ]
 }
