@@ -12,7 +12,6 @@ create table tipo_usuario(
 	primary key (id_tipo_usuario)
 );
 
-
 create table usuario(
 	id_usuario bigint unsigned not null auto_increment,
 	nome_usuario varchar(30) not null,
@@ -57,3 +56,5 @@ create table usuario_conversa(
 	foreign key fk_id_conversa (id_conversa) references conversa (id_conversa),
 	foreign key fk_id_usuario (id_usuario) references usuario (id_usuario)
 );
+
+/* INSERTS */

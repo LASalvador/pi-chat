@@ -12,7 +12,6 @@ import br.com.fatec.springbootpi.entity.Usuario;
 import br.com.fatec.springbootpi.repository.TipoUsuarioRepository;
 import br.com.fatec.springbootpi.repository.UsuarioRepository;
 
-
 @Service("servioService")
 public class ServicoServiceImpl implements ServicoService{
     
@@ -45,5 +44,20 @@ public class ServicoServiceImpl implements ServicoService{
         userRepo.save(usuario);
 
         return usuario;
-    }       
+    }
+
+    @Override
+    public TipoUsuario criarTipoUsuario(String nomeTipoUsuario) {
+        TipoUsuario tipoUsuario = new TipoUsuario();
+        tipoUsuario.setNome(nomeTipoUsuario);
+
+        // Validação
+        if (tipoUsuario == null){
+            System.out.println("TipoUsuario já existente!");
+        }
+    
+        tipoUserRepo.save(tipoUsuario);
+
+        return tipoUsuario;
+    }
 }

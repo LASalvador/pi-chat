@@ -14,6 +14,7 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.fatec.springbootpi.entity.Conversa;
+import br.com.fatec.springbootpi.entity.TipoUsuario;
 import br.com.fatec.springbootpi.entity.Usuario;
 import br.com.fatec.springbootpi.repository.ConversaRepository;
 import br.com.fatec.springbootpi.repository.UsuarioRepository;
@@ -50,12 +51,16 @@ class SpringBootPiApplicationTests {
    //     assertNotNull(user);
    // }
 
-    @Test
-    void testeUsuarioConversa(){
-        
-       // Usuario usuario = convRepo.
-        List<Usuario> usuarios = convRepo.buscarUsuariosDaConversa((long) 1);
-        assertFalse(usuarios.isEmpty());
-    }
+    // @Test
+    // void testeUsuarioConversa(){
+    //    // Usuario usuario = convRepo.
+    //     List<Usuario> usuarios = convRepo.buscarUsuariosDaConversa((long) 1);
+    //     assertFalse(usuarios.isEmpty());
+    // }
 
+    @Test
+    void criaTipoUsuario(){
+        TipoUsuario userType = segService.criarTipoUsuario("ROLE_PORPETONCIO");
+        assertNotNull(userType.getIdTipoUsuario());
+    }
 }
