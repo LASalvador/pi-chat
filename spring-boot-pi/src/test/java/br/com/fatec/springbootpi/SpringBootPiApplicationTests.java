@@ -21,7 +21,7 @@ import br.com.fatec.springbootpi.repository.UsuarioRepository;
 import br.com.fatec.springbootpi.security.ServicoService;
 
 @SpringBootTest
-//@Transactional
+@Transactional
 //@Rollback
 class SpringBootPiApplicationTests {
 
