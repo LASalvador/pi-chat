@@ -57,4 +57,9 @@ create table usuario_conversa(
 	foreign key fk_id_usuario (id_usuario) references usuario (id_usuario)
 );
 
+insert into tipo_usuario (nome_tipo_usuario) values ('ROLE_ADMIN');
+insert into tipo_usuario (nome_tipo_usuario) values ('ROLE_USUARIO');
+
+insert into usuario (nome_usuario, cpf_usuario, id_tipo_usuario, data_criado) values ('Usuario1', '111.111.111-12',1,date(now()));
+insert into usuario (nome_usuario, cpf_usuario, id_tipo_usuario, data_criado) values ('Usuario2', '987.654.321-54',2,date(now()));
 /* INSERTS */
