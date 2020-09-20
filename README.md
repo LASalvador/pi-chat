@@ -21,6 +21,18 @@ Os requisitos do trabalho estão dividos em requisitos funcionais, descrevem fun
 * Lista de transmissão para envio de mensagens em massa
 * Api para integração com outros sistemas
 
+## Entregas
+### Backend
+  **Sprint 1**
+   - Consultas Sql com JPA
+   - Criação de entidades e seus relacionamentos
+   - Estruturação e modelagem do banco de dados
+   - Criação das rotas
+  
+### FrontEnd
+   **Sprint 1**
+   - Criação de projeto vue 
+   - Criação do componente do chat
 
 ## Tecnologias Utilizadas
 * [Vue js](https://vuejs.org/)
