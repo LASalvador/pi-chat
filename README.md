@@ -1,4 +1,6 @@
 # pi-chat
+[![Gitpod Code-Server-Side](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/LASalvador/pi-chat/tree/development/spring-boot-pi)
+
 Esse projeto é resultado de um trabalho acadêmico realizar na Faculdade de tecnologia de São José dos Campos - Professor Jassen Vidal. 
 
 ## Requisitos 
@@ -22,17 +24,9 @@ Os requisitos do trabalho estão dividos em requisitos funcionais, descrevem fun
 * Api para integração com outros sistemas
 
 ## Entregas
-### Backend
-  **Sprint 1**
-   - Consultas Sql com JPA
-   - Criação de entidades e seus relacionamentos
-   - Estruturação e modelagem do banco de dados
-   - Criação das rotas
-  
-### FrontEnd
-   **Sprint 1**
-   - Criação de projeto vue 
-   - Criação do componente do chat
+
+- [Relatorio Sprint 1](https://github.com/LASalvador/pi-chat/blob/development/relatorios-sprint/sprint1.md#entrega-1-2009)
+
 
 ## Tecnologias Utilizadas
 * [Vue js](https://vuejs.org/)
