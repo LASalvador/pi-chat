@@ -23,6 +23,10 @@ Os requisitos do trabalho estão dividos em requisitos funcionais, descrevem fun
 * Lista de transmissão para envio de mensagens em massa
 * Api para integração com outros sistemas
 
+## Entregas
+
+- [Relatorio Sprint 1](https://github.com/LASalvador/pi-chat/blob/development/relatorios-sprint/sprint1.md#entrega-1-2009)
+
 
 ## Tecnologias Utilizadas
 * [Vue js](https://vuejs.org/)
