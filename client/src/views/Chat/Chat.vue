@@ -17,6 +17,8 @@
             <v-container>
               <v-row
                 no-gutters
+                align="center"
+                justify="center"
               >
                 <v-col
                   cols="12"
@@ -52,13 +54,16 @@
                     />
                   </v-card>
                 </v-col>
-                <v-col cols="12">
+                <v-col cols="10">
                   <v-textarea
                     no-resize
                     clearable
-                    rows="2"
+                    rows="1"
                     label="Digite uma mensagem"
                   />
+                </v-col>
+                <v-col cols="2">
+                  <v-btn> Enviar</v-btn>
                 </v-col>
               </v-row>
             </v-container>
