@@ -20,8 +20,7 @@ import io.swagger.annotations.ApiResponse;
 
 @RestController
 @RequestMapping(value = "/usuario")
-@CrossOrigin
-@Path("/usuario")
+@CrossOrigin(origins = "*")
 @Api(value = "Usuário")
 public class UsuarioController {
 
@@ -29,9 +28,7 @@ public class UsuarioController {
     private ServicoService segService;
 
     @PostMapping
-    @POST
 	@ApiOperation(value = "Inserir um novo usuário")
-	@ApiResponses(value = { @ApiResponse(code = 201, message = "Criado"), @ApiResponse(code = 500, message = "Erro interno no servidor") })
     public ResponseEntity<Usuario> cadastrarNovoUsuario(@RequestBody Usuario usuario, UriComponentsBuilder uriComponentsBuilder){
         Date x = new Date();
     
