@@ -26,8 +26,6 @@ public class SwaggerConfig {
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("br.com.fatec.springbootpi"))
                 .paths(PathSelectors.any())
-                // .paths(regex("/usuario.*"))
-                // .paths(regex("/tipoUsuario.*"))
                 .build()
                 .apiInfo(metaInfo());
     }
@@ -35,12 +33,11 @@ public class SwaggerConfig {
     private ApiInfo metaInfo() {
 
         ApiInfo apiInfo = new ApiInfo(
-                "Produtos API REST",
-                "API REST de cadastro de produtos.",
+                "Rotas da API",
+                "Rotas da API do Projeto Integrador.",
                 "1.0",
                 "Terms of Service",
-                new Contact("Michelli Brito", "https://www.youtube.com/michellibrito",
-                        "michellidibrito@gmail.com"),
+                new Contact("GitHub Projeto (Grupo 2)", "https://github.com/LASalvador/pi-chat/","fatec1b.adm@gmail.com"),
                 "Apache License Version 2.0",
                 "https://www.apache.org/licesen.html", new ArrayList<VendorExtension>()
         );
