@@ -2,6 +2,10 @@ package br.com.fatec.springbootpi.controller;
 
 import java.util.Date;
 
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
@@ -9,16 +13,25 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.fatec.springbootpi.entity.Usuario;
 import br.com.fatec.springbootpi.security.ServicoService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.ApiResponse;
 
 @RestController
 @RequestMapping(value = "/usuario")
 @CrossOrigin
+@Path("/usuario")
+@Api(value = "Usuário")
 public class UsuarioController {
 
     @Autowired
     private ServicoService segService;
 
     @PostMapping
+    @POST
+	@ApiOperation(value = "Inserir um novo usuário")
+	@ApiResponses(value = { @ApiResponse(code = 201, message = "Criado"), @ApiResponse(code = 500, message = "Erro interno no servidor") })
     public ResponseEntity<Usuario> cadastrarNovoUsuario(@RequestBody Usuario usuario, UriComponentsBuilder uriComponentsBuilder){
         Date x = new Date();
     
