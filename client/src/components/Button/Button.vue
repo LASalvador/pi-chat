@@ -2,6 +2,7 @@
     <v-btn
       dark
       color="#005796"
+      @click="$emit('click')"
     >
       <slot></slot>
     </v-btn>
