@@ -1,7 +1,6 @@
 <template>
   <v-textarea
     no-resize
-    clearable
     color="bluePi"
     rows="1"
     label="Digite uma mensagem"
