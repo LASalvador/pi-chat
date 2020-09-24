@@ -12,7 +12,7 @@
           :to="item.url"
         >
           <v-list-item-icon>
-            <v-icon>{{ item.icon }}</v-icon>
+            <v-icon color="bluePi">{{ item.icon }}</v-icon>
           </v-list-item-icon>
 
           <v-list-item-content>
@@ -23,7 +23,7 @@
         <v-divider></v-divider>
         <v-list-item class="px-2">
             <v-list-item-icon>
-              <v-icon>mdi-account</v-icon>
+              <v-icon color="bluePi">mdi-account</v-icon>
             </v-list-item-icon>
             <v-list-item-title>John Leider</v-list-item-title>
 

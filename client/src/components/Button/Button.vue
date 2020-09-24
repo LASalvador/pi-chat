@@ -1,7 +1,7 @@
 <template>
     <v-btn
       dark
-      color="purplePi"
+      color="#005796"
     >
       <slot></slot>
     </v-btn>

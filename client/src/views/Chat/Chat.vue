@@ -53,11 +53,11 @@
 </template>
 
 <script>
-import ChatList from '@/components/ChatList/ChatList.vue'
-import MessageCard from '@/components/MessageCard/MessageCard.vue'
-import MessageHeader from '@/components/MessageHeader/MessageHeader.vue'
-import TextArea from '@/components/TextArea/TextArea.vue'
-import Button from '@/components/Button/Button.vue'
+import ChatList from '../../components/ChatList/ChatList.vue'
+import MessageCard from '../../components/MessageCard/MessageCard.vue'
+import MessageHeader from '../../components/MessageHeader/MessageHeader.vue'
+import TextArea from '../../components/TextArea/TextArea.vue'
+import Button from '../../components/Button/Button.vue'
 
 export default {
   components: {

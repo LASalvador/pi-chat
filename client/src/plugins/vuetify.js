@@ -7,7 +7,7 @@ export default new Vuetify({
   theme: {
     themes: {
       light: {
-        purplePi: '#5d80d6'
+        bluePi: '#005796'
       }
     }
   }

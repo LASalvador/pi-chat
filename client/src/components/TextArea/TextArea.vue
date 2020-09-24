@@ -2,7 +2,7 @@
   <v-textarea
     no-resize
     clearable
-    color="purplePi"
+    color="bluePi"
     rows="1"
     label="Digite uma mensagem"
     :value="value"
