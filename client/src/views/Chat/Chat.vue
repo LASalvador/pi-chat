@@ -30,9 +30,11 @@
                     color="transparent"
                   >
                     <MessageCard
-                      author="Joao"
-                      date="12/09/2020"
-                      content="ola estou com duvida pode me ajudar?"
+                      v-for = "item in messageList"
+                      :author= "item.author"
+                      :date= "item.date"
+                      :content="item.content"
+                      :key="item.content"
                     />
                   </v-card>
                 </v-col>
@@ -43,7 +45,7 @@
                   />
                 </v-col>
                 <v-col cols="2">
-                  <Button> Enviar </Button>
+                  <Button @click="addmessage"> Enviar </Button>
                 </v-col>
               </v-row>
             </v-container>
@@ -83,7 +85,8 @@ export default {
       { author: 'Ricardo', date: 'Jan 17, 2014' },
       { author: 'Maria', date: 'Jan 28, 2014' }
     ],
-    message: ''
+    message: '',
+    messageList: []
   }),
   computed: {
     maxChatListSize: function () {
@@ -91,6 +94,12 @@ export default {
     },
     minChatListSize: function () {
       return window.innerHeight * 0.7
+    }
+  },
+  methods: {
+    addmessage () {
+      this.messageList.push({ author: 'Mayara', content: this.message, date: '23/09/2020' })
+      this.message = ''
     }
   }
 }
