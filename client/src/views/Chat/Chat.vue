@@ -71,19 +71,19 @@ export default {
   },
   data: () => ({
     items: [
-      { author: 'Jose', date: 'Jan 9, 2014' },
-      { author: 'Ricardo', date: 'Jan 17, 2014' },
-      { author: 'Maria', date: 'Jan 28, 2014' },
-      { author: 'Jose', date: 'Jan 9, 2014' },
-      { author: 'Ricardo', date: 'Jan 17, 2014' },
-      { author: 'Maria', date: 'Jan 28, 2014' },
-      { author: 'Jose', date: 'Jan 9, 2014' },
-      { author: 'Ricardo', date: 'Jan 17, 2014' },
-      { author: 'Maria', date: 'Jan 28, 2014' },
-      { author: 'Work', date: 'Jan 28, 2014' },
-      { author: 'Jose', date: 'Jan 9, 2014' },
-      { author: 'Ricardo', date: 'Jan 17, 2014' },
-      { author: 'Maria', date: 'Jan 28, 2014' }
+      { author: 'Jose', date: 'Jan 9, 2014', role: 'Diretor' },
+      { author: 'Ricardo', date: 'Jan 17, 2014', role: 'Diretor' },
+      { author: 'Maria', date: 'Jan 28, 2014', role: 'Diretor' },
+      { author: 'Jose', date: 'Jan 9, 2014', role: 'Diretor' },
+      { author: 'Ricardo', date: 'Jan 17, 2014', role: 'Diretor' },
+      { author: 'Maria', date: 'Jan 28, 2014', role: 'Diretor' },
+      { author: 'Jose', date: 'Jan 9, 2014', role: 'Diretor' },
+      { author: 'Ricardo', date: 'Jan 17, 2014', role: 'Diretor' },
+      { author: 'Maria', date: 'Jan 28, 2014', role: 'Diretor' },
+      { author: 'Work', date: 'Jan 28, 2014', role: 'Diretor' },
+      { author: 'Jose', date: 'Jan 9, 2014', role: 'Diretor' },
+      { author: 'Ricardo', date: 'Jan 17, 2014', role: 'Diretor' },
+      { author: 'Maria', date: 'Jan 28, 2014', role: 'Diretor' }
     ],
     message: '',
     messageList: []
