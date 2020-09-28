@@ -19,6 +19,10 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.ApiResponse;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import br.com.fatec.springbootpi.controller.View;
+
 @RestController
 @RequestMapping(value = "/usuario")
 @CrossOrigin(origins = "*")
@@ -42,6 +46,7 @@ public class UsuarioController {
         return new ResponseEntity<Usuario>(usuario, responseHeaders, HttpStatus.CREATED);
     }
 
+    @JsonView(View.UsuarioResumo.class)
     @GetMapping(value="/{id}")
     @ApiOperation(value = "Buscar todos usuários")
     public Usuario buscarUsuarioPorID(@PathVariable("id") Long Id){
