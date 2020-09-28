@@ -13,5 +13,8 @@ public interface ConversaRepository extends JpaRepository<Conversa, Long> {
     
     @Query("select u from Usuario u inner join u.conversas c where c.idConversa = ?1")
     public List<Usuario> buscarUsuariosDaConversa(Long id);
+
+    @Query("select c from Conversa c inner join c.usuarios u where u.idUsuario = ?1")
+    public List<Conversa> buscarConversaPeloIdDoUsuario(Long id);
     
 }
