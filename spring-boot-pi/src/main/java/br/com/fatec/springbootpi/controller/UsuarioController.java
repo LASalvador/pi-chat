@@ -13,6 +13,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.fatec.springbootpi.entity.Usuario;
 import br.com.fatec.springbootpi.security.ServicoService;
+import br.com.fatec.springbootpi.service.UsuarioService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponses;
@@ -27,6 +28,9 @@ public class UsuarioController {
     @Autowired
     private ServicoService segService;
 
+    @Autowired
+    private UsuarioService usuarioService;
+
     @PostMapping
 	@ApiOperation(value = "Inserir um novo usuário")
     public ResponseEntity<Usuario> cadastrarNovoUsuario(@RequestBody Usuario usuario, UriComponentsBuilder uriComponentsBuilder){
@@ -36,5 +40,12 @@ public class UsuarioController {
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.setLocation(uriComponentsBuilder.path("/usuario/" + usuario.getIdUsuario()).build().toUri());
         return new ResponseEntity<Usuario>(usuario, responseHeaders, HttpStatus.CREATED);
+    }
+
+    @GetMapping(value="/{id}")
+    @ApiOperation(value = "Buscar todos usuários")
+    public Usuario buscarUsuarioPorID(@PathVariable("id") Long Id){
+        return usuarioService.buscarPorId(Id);
+        
     }
 }
