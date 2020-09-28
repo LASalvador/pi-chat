@@ -9,7 +9,9 @@
       :key="item.title"
     >
       <v-list-item-content>
-          <v-list-item-title v-text="item.author"></v-list-item-title>
+          <v-list-item-title >
+            {{item.author}} - <span class="indigo--text text--darken-2">{{item.role}}</span>
+          </v-list-item-title>
           <v-list-item-subtitle v-text="item.date"></v-list-item-subtitle>
         </v-list-item-content>
     </v-list-item>
