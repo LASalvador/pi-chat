@@ -62,4 +62,11 @@ public class UsuarioController {
     public Usuario atualizarUsuario(@PathVariable("id") Long id, @RequestBody Usuario usuario){
         return usuarioService.editarUsuario(id, usuario);
     }
+
+    @ApiOperation(value = "Deletar usuário por id")
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<String> deleteUsuario(@PathVariable("id") Long id){
+        usuarioService.apagarUsuario(id);
+        return ResponseEntity.noContent().build();
+    }
 }

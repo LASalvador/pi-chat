@@ -28,5 +28,9 @@ public class UsuarioService {
         return usuario;
         
     }
+
+    public void apagarUsuario(Long id){
+        userRepo.deleteById(id);
+    }
     
 }

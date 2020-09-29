@@ -6,6 +6,7 @@ Component {
   render() {
     return (
       <View style={styles.container}>
+      <Logo />
       <Text style={styles.texto}>Lista de Funcionarios </Text>
         <SectionList
           sections={[

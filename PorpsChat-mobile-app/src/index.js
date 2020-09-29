@@ -4,6 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import LoginScreen from "./views/LoginScreen";
 import HomeScreen from "./views/HomeScreen";
+import FuncionariosScreen from "./views/FuncionariosScreen";
 
 const Stack = createStackNavigator();
 
@@ -21,6 +22,10 @@ function App() {
   const userScreens = {
     // Home: HomeScreen,
     // Profile: ProfileScreen,
+  };
+
+  const funcionariosscreen{
+   //FuncionariosScreen
   };
 
   return (
