@@ -23,7 +23,7 @@ const LoginScreen = ({ navigation }) => {
       return;
     }
 
-    navigation.navigate("Dashboard");
+    navigation.navigate("Home");
   };
 
   return (
