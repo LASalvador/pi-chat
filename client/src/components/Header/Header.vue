@@ -47,6 +47,7 @@ export default {
       items: [
         { title: 'Conversas', icon: 'mdi-chat', url: 'chat' },
         { title: 'Arquivos', icon: 'mdi-file-document', url: 'arquivos' },
+        { title: 'Atividades', icon: 'mdi-account-edit', url: 'atividades' },
         { title: 'Configurações', icon: 'mdi-cog', url: 'configuracoes' }
       ],
       mini: true
