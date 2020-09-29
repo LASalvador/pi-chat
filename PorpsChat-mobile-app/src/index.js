@@ -25,7 +25,7 @@ function App() {
   };
 
   const funcionariosscreen{
-  
+   //FuncionariosScreen
   };
 
   return (
