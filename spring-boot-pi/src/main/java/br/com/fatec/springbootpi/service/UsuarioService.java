@@ -15,5 +15,18 @@ public class UsuarioService {
     public Usuario buscarPorId(Long id){
         return userRepo.findByIdUsuario(id);
     }
+
+    public Usuario editarUsuario(Long id, Usuario userUpdate){
+        Usuario usuario = userRepo.findByIdUsuario(id);
+        if (usuario != null){
+            usuario.setNomeUsuario(userUpdate.getNomeUsuario());
+            usuario.setCpfUsuario(userUpdate.getCpfUsuario());
+
+            userRepo.save(usuario);
+        }
+
+        return usuario;
+        
+    }
     
 }

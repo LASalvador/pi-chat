@@ -15,6 +15,10 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import br.com.fatec.springbootpi.controller.View;
+
 @Entity
 @Table(name="usuario")
 public class Usuario {
@@ -24,9 +28,11 @@ public class Usuario {
     @Column(name = "id_usuario")
     private Long idUsuario;
 
+    @JsonView(View.UsuarioResumo.class)
     @Column(name = "nome_usuario")
     private String nomeUsuario;
 
+    @JsonView(View.UsuarioResumo.class)
     @Column(name = "cpf_usuario")
     private String cpfUsuario;
 
@@ -36,6 +42,7 @@ public class Usuario {
     inverseJoinColumns = { @JoinColumn(name = "id_conversa") })
     private Set<Conversa> conversas;
 
+    @JsonView(View.UsuarioResumo.class)
     @ManyToOne
     @JoinColumn(name="id_tipo_usuario")
     private TipoUsuario tiposUsuarios;
