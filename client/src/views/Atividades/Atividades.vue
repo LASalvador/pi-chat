@@ -3,37 +3,27 @@
     <v-row>
       <v-col cols="12">
         <h1 class="bluePi--text">Atividades</h1>
-        <v-card height="100%">
-          <v-card-text class="grey lighten-5">
-            <v-row>
-              <v-col v-for="(note, index) in notes" :key="index" cols="12" sm="12" md="3">
-                <v-card
-                  :color="note.style.bg"
-                  :dark="note.style.darken"
-                  height="100%"
-                >
-                  <v-card-title class="headline">{{note.title}}</v-card-title>
-
-                  <v-card-text v-html="note.text.replace('\n','</br>')">
-                  </v-card-text>
-                </v-card>
-              </v-col>
-            </v-row>
-          </v-card-text>
-        </v-card>
+        <v-row>
+          <v-col
+            v-for="(note, index) in notes"
+            :key="index"
+            cols="12"
+            sm="12"
+            md="3"
+          >
+            <NoteCard :note="note" />
+          </v-col>
+        </v-row>
       </v-col>
-      <v-btn
-        v-model="buttonNewNote"
-        dark
+      <Button
         fab
         right
         bottom
         fixed
-        color="pink"
         @click="openNewNote()">
         <v-icon v-if="buttonNewNote">mdi-close</v-icon>
         <v-icon v-else>mdi-plus</v-icon>
-      </v-btn>
+      </Button>
     </v-row>
     <v-dialog
         v-model="buttonNewNote"
@@ -45,7 +35,7 @@
           <v-row>
             <v-toolbar
               dark
-              color="pink">
+              color="bluePi">
               <v-btn
                 icon
                 dark
@@ -67,7 +57,10 @@
           <v-card-text>
             <v-row>
                 <v-col cols="12">
-                  <v-text-field label="titulo" v-model="note.title" required></v-text-field>
+                  <Input
+                    label="titulo"
+                    v-model="note.title"
+                  />
                 </v-col>
                 <v-col cols="12">
                   <v-textarea
@@ -93,8 +86,17 @@
 </template>
 
 <script>
+import NoteCard from '../../components/NoteCard/NoteCard.vue'
+import Button from '../../components/Button/Button.vue'
+import Input from '../../components/Input/Input.vue'
+
 export default {
   name: 'Atividades',
+  components: {
+    NoteCard,
+    Button,
+    Input
+  },
   data: () => ({
     buttonNewNote: false,
     notes: [
