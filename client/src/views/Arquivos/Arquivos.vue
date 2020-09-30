@@ -1,122 +1,155 @@
 <template>
-  <v-card>
-    <v-card-title>
-      <v-text-field
-        v-model="search"
-        append-icon="mdi-magnify"
-        label="Search"
-        single-line
-        hide-details
-      ></v-text-field>
-    </v-card-title>
-    <v-data-table
-      :headers="headers"
-      :items="desserts"
-      :search="search"
-    ></v-data-table>
-  </v-card>
+  <v-container fluid>
+    <v-row>
+      <v-col cols="12">
+        <v-card>
+          <v-card-title>
+            Arquivos
+            <v-spacer></v-spacer>
+            <v-text-field
+              v-model="search"
+              append-icon="mdi-magnify"
+              label="Search"
+              single-line
+              hide-details
+            ></v-text-field>
+          </v-card-title>
+          <v-data-table
+            :headers="headers"
+            :items="desserts"
+            :search="search"
+          ></v-data-table>
+        </v-card>
+      </v-col>
+       <Button
+        fab
+        right
+        bottom
+        fixed
+        @click="openNewFile()">
+        <v-icon v-if="buttonNewFile">mdi-close</v-icon>
+        <v-icon v-else>mdi-plus</v-icon>
+      </Button>
+    </v-row>
+    <v-dialog
+        v-model="buttonNewFile"
+        width="70%"
+        heigth="50%"
+        transition="dialog-bottom-transition"
+      >
+        <v-card tile>
+          <v-row>
+            <v-toolbar
+              dark
+              color="bluePi">
+              <v-btn
+                icon
+                dark
+                @click="buttonNewFile = false">
+                <v-icon>mdi-close</v-icon>
+              </v-btn>
+              <v-toolbar-title>Novo Arquivo</v-toolbar-title>
+              <v-spacer></v-spacer>
+              <v-toolbar-items>
+                <v-btn
+                  dark
+                  text
+                  @click="addFile">
+                  Salvar
+                </v-btn>
+              </v-toolbar-items>
+            </v-toolbar>
+          </v-row>
+          <v-card-text>
+            <v-row>
+                <v-col cols="12">
+                  <Input label='Nome do Arquivo' v-model="file.nomeArquivo"/>
+                </v-col>
+                <v-col cols="12">
+                  <v-file-input
+                    v-model="files"
+                    placeholder="Suba seu arquivo"
+                    label="Arquivo"
+                    prepend-icon="mdi-paperclip"
+                  >
+                    <template v-slot:selection="{ text }">
+                      <v-chip
+                        small
+                        label
+                        color="primary"
+                      >
+                        {{ text }}
+                      </v-chip>
+                    </template>
+                  </v-file-input>
+                </v-col>
+              </v-row>
+          </v-card-text>
+
+        </v-card>
+      </v-dialog>
+  </v-container>
 </template>
 
 <script>
+import Input from '../../components/Input/Input.vue'
+import Button from '../../components/Button/Button.vue'
+
 export default {
+  components: {
+    Input,
+    Button
+  },
   data () {
     return {
       search: '',
+      buttonNewFile: false,
       headers: [
         {
-          text: 'Dessert (100g serving)',
+          text: 'Nome do Arquivo',
           align: 'start',
-          filterable: false,
-          value: 'name'
+          value: 'nomeArquivo'
         },
-        { text: 'Calories', value: 'calories' },
-        { text: 'Fat (g)', value: 'fat' },
-        { text: 'Carbs (g)', value: 'carbs' },
-        { text: 'Protein (g)', value: 'protein' },
-        { text: 'Iron (%)', value: 'iron' }
+        {
+          text: 'Data de Criação',
+          value: 'dataCriacao',
+          sortable: false
+        }
       ],
       desserts: [
         {
-          name: 'Frozen Yogurt',
-          calories: 159,
-          fat: 6.0,
-          carbs: 24,
-          protein: 4.0,
-          iron: '1%'
+          nomeArquivo: 'Lucas Salvador',
+          dataCriacao: '30/09/2020'
         },
         {
-          name: 'Ice cream sandwich',
-          calories: 237,
-          fat: 9.0,
-          carbs: 37,
-          protein: 4.3,
-          iron: '1%'
-        },
-        {
-          name: 'Eclair',
-          calories: 262,
-          fat: 16.0,
-          carbs: 23,
-          protein: 6.0,
-          iron: '7%'
-        },
-        {
-          name: 'Cupcake',
-          calories: 305,
-          fat: 3.7,
-          carbs: 67,
-          protein: 4.3,
-          iron: '8%'
-        },
-        {
-          name: 'Gingerbread',
-          calories: 356,
-          fat: 16.0,
-          carbs: 49,
-          protein: 3.9,
-          iron: '16%'
-        },
-        {
-          name: 'Jelly bean',
-          calories: 375,
-          fat: 0.0,
-          carbs: 94,
-          protein: 0.0,
-          iron: '0%'
-        },
-        {
-          name: 'Lollipop',
-          calories: 392,
-          fat: 0.2,
-          carbs: 98,
-          protein: 0,
-          iron: '2%'
-        },
-        {
-          name: 'Honeycomb',
-          calories: 408,
-          fat: 3.2,
-          carbs: 87,
-          protein: 6.5,
-          iron: '45%'
-        },
-        {
-          name: 'Donut',
-          calories: 452,
-          fat: 25.0,
-          carbs: 51,
-          protein: 4.9,
-          iron: '22%'
-        },
-        {
-          name: 'KitKat',
-          calories: 518,
-          fat: 26.0,
-          carbs: 65,
-          protein: 7,
-          iron: '6%'
+          nomeArquivo: 'Mayara Brígida',
+          dataCriacao: '30/09/2020'
         }
-      ]
+      ],
+      file: {
+        nomeArquivo: null,
+        dataCriacao: null
+      }
+    }
+  },
+  methods: {
+    addFile () {
+      let newFile = {}
+      newFile = Object.assign(newFile, this.file)
+      if (newFile.nomeArquivo) {
+        newFile.dataCriacao = new Date()
+        this.desserts.push(newFile)
+        this.buttonNewFile = false
+        this.clearFile()
+      }
+    },
+    clearFile () {
+      for (const key in this.file) {
+        this.file[key] = null
+      }
+    },
+    openNewFile () {
+      this.buttonNewFile = true
     }
   }
 }
