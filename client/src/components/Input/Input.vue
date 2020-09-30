@@ -1,7 +1,7 @@
 <template>
   <v-text-field
     color="bluePi"
-    :label="label" 
+    :label="label"
     :value="value"
     @input="$emit('input', $event)"
     required
