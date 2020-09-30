@@ -7,6 +7,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import br.com.fatec.springbootpi.controller.View;
+
 @Entity
 @Table(name="tipo_usuario")
 public class TipoUsuario {
@@ -16,6 +20,7 @@ public class TipoUsuario {
     @Column(name = "id_tipo_usuario")
     private Long idTipoUsuario;
 
+    @JsonView({View.UsuarioResumo.class, View.TipoUsuarioResumo.class})
     @Column(name = "nome_tipo_usuario")
     private String nome;
 

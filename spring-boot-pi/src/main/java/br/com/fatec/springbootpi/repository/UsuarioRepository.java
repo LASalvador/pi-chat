@@ -10,4 +10,5 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long>{
     public Usuario findByIdUsuario(Long idUsuario);
 
     public Usuario findByNomeUsuario(String nomeUsuario);
+
 }

@@ -15,6 +15,13 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "conversa")
 public class Conversa {
+
+    public Conversa() {
+        super();
+        Date x = new Date();
+        this.setDataInicial(x);
+        this.setDataUltimaConversa(x);
+    }
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,7 +36,6 @@ public class Conversa {
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "conversas")
     private Set<Usuario> usuarios;
-
 
     public void setDataInicial(Date dataInicial) {
         this.dataInicial = dataInicial;

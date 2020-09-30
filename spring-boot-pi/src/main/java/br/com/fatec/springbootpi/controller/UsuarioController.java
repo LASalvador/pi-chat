@@ -13,10 +13,16 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.fatec.springbootpi.entity.Usuario;
 import br.com.fatec.springbootpi.security.ServicoService;
+import br.com.fatec.springbootpi.service.UsuarioService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponses;
 import io.swagger.annotations.ApiResponse;
+
+import com.fasterxml.jackson.annotation.JsonView;
+
+import br.com.fatec.springbootpi.controller.View;
+import br.com.fatec.springbootpi.controller.View.UsuarioResumo;
 
 @RestController
 @RequestMapping(value = "/usuario")
@@ -27,14 +33,40 @@ public class UsuarioController {
     @Autowired
     private ServicoService segService;
 
+    @Autowired
+    private UsuarioService usuarioService;
+
     @PostMapping
-	@ApiOperation(value = "Inserir um novo usuário")
-    public ResponseEntity<Usuario> cadastrarNovoUsuario(@RequestBody Usuario usuario, UriComponentsBuilder uriComponentsBuilder){
+    @ApiOperation(value = "Inserir um novo usuário")
+    public ResponseEntity<Usuario> cadastrarNovoUsuario(@RequestBody Usuario usuario,
+            UriComponentsBuilder uriComponentsBuilder) {
         Date x = new Date();
-    
+
         usuario = segService.criarUsuario(usuario.getNomeUsuario(), usuario.getCpfUsuario(), "ROLE_USER", x);
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.setLocation(uriComponentsBuilder.path("/usuario/" + usuario.getIdUsuario()).build().toUri());
         return new ResponseEntity<Usuario>(usuario, responseHeaders, HttpStatus.CREATED);
+    }
+
+    @JsonView(View.UsuarioResumo.class)
+    @GetMapping(value = "/{id}")
+    @ApiOperation(value = "Buscar todos usuários")
+    public Usuario buscarUsuarioPorID(@PathVariable("id") Long Id) {
+        return usuarioService.buscarPorId(Id);
+
+    }
+
+    @JsonView(UsuarioResumo.class)
+    @PutMapping(value="/{id}")
+    @ApiOperation(value = "Alterar usuário")
+    public Usuario atualizarUsuario(@PathVariable("id") Long id, @RequestBody Usuario usuario){
+        return usuarioService.editarUsuario(id, usuario);
+    }
+
+    @ApiOperation(value = "Deletar usuário por id")
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<String> deleteUsuario(@PathVariable("id") Long id){
+        usuarioService.apagarUsuario(id);
+        return ResponseEntity.noContent().build();
     }
 }
