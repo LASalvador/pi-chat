@@ -24,7 +24,7 @@ public class Conversa {
     }
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_conversa")
     private Long idConversa;
 
