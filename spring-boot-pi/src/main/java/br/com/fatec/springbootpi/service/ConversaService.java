@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.fatec.springbootpi.entity.Conversa;
 import br.com.fatec.springbootpi.entity.Mensagem;
@@ -29,18 +30,22 @@ public class ConversaService {
         return conversa;
     }
 
-    
-    public Conversa cadastrarConversa(ArrayList<Long> idUsuarios){
-        Conversa conversa = new Conversa();
+    @Transactional
+    public Conversa cadastrarConversa(List<Long> idUsuarios){
+        Conversa conversa = new Conversa();     
+        for (Long id : idUsuarios) { 
+            System.out.println("To aqui: "+id);  
+         }
         
-        conversa.setUsuarios(new HashSet<Usuario>());
-
         for (Long id : idUsuarios) {            
-            Usuario usuario = usuarioRepository.findByIdUsuario(id);
+            Usuario usuario = usuarioRepository.findByIdUsuario((long) id);
+
             if (usuario != null){
+                conversa.setUsuarios(new HashSet<Usuario>());
                 conversa.getUsuarios().add(usuario);
+                conversaRepository.save(conversa);                
             }            
-        }     
+        }
 
         return conversa;
     }
