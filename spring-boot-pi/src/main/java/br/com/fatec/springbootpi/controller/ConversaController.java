@@ -9,6 +9,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.fatec.springbootpi.entity.Conversa;
 import br.com.fatec.springbootpi.entity.Mensagem;
+import br.com.fatec.springbootpi.model.Form.CriarConversaForm;
 import br.com.fatec.springbootpi.service.ConversaService;
 import br.com.fatec.springbootpi.service.MensagemService;
 import io.swagger.annotations.Api;
@@ -32,10 +33,11 @@ public class ConversaController {
 
     @PostMapping
     @ApiOperation(value = "Inserir uma nova conversa")
-    public ResponseEntity<Conversa> cadastrarNovaConversa(@RequestBody List<Long> idUsuarios,
+    public ResponseEntity<Conversa> cadastrarNovaConversa(@RequestBody CriarConversaForm criarConversaForm,
             UriComponentsBuilder uriComponentsBuilder) {
+        
     
-        Conversa conversa = conversaService.cadastrarConversa(idUsuarios);        
+        Conversa conversa = conversaService.cadastrarConversa(criarConversaForm);        
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.setLocation(uriComponentsBuilder.path("/conversa/" + conversa.getIdConversa()).build().toUri());
         return new ResponseEntity<Conversa>(conversa, responseHeaders, HttpStatus.CREATED);
