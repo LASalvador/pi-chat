@@ -4,8 +4,7 @@ import { SectionList, StyleSheet, Text, View } from 'react-native';
 
 const Configuracoes = () => {
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-     <View style={styles.containerText}>
+    <View style={styles.container}>
       <Text style={styles.text}>
         ⚙ CONFIGURAÇÃO 1
       </Text>
@@ -22,14 +21,14 @@ const Configuracoes = () => {
         ⚙ CONFIGURAÇÃO 5
       </Text>
     </View>
-    </View>
   );
 }
 
 const styles = StyleSheet.create({
- containerText:{
-   margin: 55,
- }
+ container:{
+   margin: 50,
+   textAlign: 'center',
+ },
 });
 
 export default Configuracoes;
