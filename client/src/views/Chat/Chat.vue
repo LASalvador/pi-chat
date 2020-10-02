@@ -6,6 +6,17 @@
           <v-col
             cols="3"
           >
+            <v-card flat>
+              <v-card-title>
+                Conversas
+                <v-spacer></v-spacer>
+                <Button
+                  icon
+                >
+                  <v-icon>mdi-plus</v-icon>
+                </Button>
+              </v-card-title>
+            </v-card>
             <ChatList
               :items="items"
             />
@@ -28,6 +39,7 @@
                     :max-height="maxChatListSize"
                     :min-height="minChatListSize"
                     color="transparent"
+                    flat
                   >
                     <MessageCard
                       v-for = "item in messageList"
