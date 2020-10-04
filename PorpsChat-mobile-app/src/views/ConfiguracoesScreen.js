@@ -33,7 +33,8 @@ const Configuracoes = () => {
 
 const styles = StyleSheet.create({
  containerText:{
-   margin: 30,
+   justifyContent: 'left',
+   margin: 20,
    textAlign: 'center',
  }, 
  text:{
