@@ -29,7 +29,7 @@ const Configuracoes = () => {
         <Icon name="gear" size={18} color="#999" /> CONFIGURAÇÃO 5
       </Text>
 
-       <Text style={{ textAlign:'left', paddingTop:10}} 
+       <Text style={{ textAlign:'left', paddingTop:10,color: '#6E6E6E'}} 
       onPress={() => Linking.openURL('#')}>
         <Icon name="sign-out" size={18} color="#999" /> SAIR
       </Text>
@@ -46,16 +46,20 @@ const styles = StyleSheet.create({
  text:{
    padding: 10,
    textAlign: 'left',
+   color: '#6E6E6E',
  },
  texttop:{
    textAlign: 'left',
    fontWeight: 'bold',
    fontSize: 25,
+   color: '#6E6E6E',
  },
  textconf:{
    fontSize:19,
    textAlign: 'left',
    marginBottom:10,
+   fontStyle: 'italic',
+   color: '#6E6E6E',
  }
 });
 
