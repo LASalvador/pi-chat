@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.fatec.springbootpi.entity.Mensagem;
+import br.com.fatec.springbootpi.model.MensagemForm;
 import br.com.fatec.springbootpi.repository.MensagemRepository;
 import br.com.fatec.springbootpi.service.MensagemService;
 import io.swagger.annotations.Api;
@@ -30,11 +31,14 @@ public class MensagemController {
     @PostMapping
     @JsonView(View.MensagemResumo.class)
 	@ApiOperation(value = "Inserir uma nova mensagem")
-    public ResponseEntity<Mensagem> cadastrarNovaMensagem(@RequestBody Mensagem mensagem, UriComponentsBuilder uriComponentsBuilder){
 
-        mensagem = msgService.criarMensagem(mensagem.getConteudoMsg(), (long) 1, (long) 1);
+    public ResponseEntity<Mensagem> cadastrarNovaMensagem(@RequestBody MensagemForm novaMensagem, UriComponentsBuilder uriComponentsBuilder){
+
+        Mensagem mensagem = msgService.criarMensagem(novaMensagem.getConteudoMsg(),novaMensagem.getIdUsuario(), novaMensagem.getIdConversa());
+        
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.setLocation(uriComponentsBuilder.path("/mensagem/conversa/" + mensagem.getConversas().getIdConversa()).build().toUri());
+                
         return new ResponseEntity<Mensagem>(mensagem, responseHeaders, HttpStatus.CREATED);
     }
 
