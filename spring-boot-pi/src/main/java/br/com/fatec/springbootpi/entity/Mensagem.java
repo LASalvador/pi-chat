@@ -10,6 +10,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import br.com.fatec.springbootpi.controller.View;
+
 @Entity
 @Table(name = "mensagem")
 public class Mensagem {
@@ -19,12 +23,15 @@ public class Mensagem {
     @Column(name = "id_mensagem")
     private Long idMensagem;
 
+    @JsonView(View.MensagemResumo.class)
     @Column(name = "conteudo_mensagem")
     private String conteudoMsg;
     
+    @JsonView(View.MensagemResumo.class)
     @Column(name = "data_criado")
     private Date dataCriado;
 
+    @JsonView(View.MensagemResumo.class)
     @ManyToOne
     @JoinColumn(name="id_usuario")
     private Usuario usuarios;
