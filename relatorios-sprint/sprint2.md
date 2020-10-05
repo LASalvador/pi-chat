@@ -22,11 +22,11 @@ Todos as implementações dessa sprint estão disponiveis na branch **Sprint2**
 - Tela com lista de Conversas
 - Tela chat
 
-
-Tela de atividades
+## Gifs
+### Tela de atividades
 <img src="atividades1.gif" alt="Gif da Tela de atividades" />
-App
 
+### App
 <img src="app1.gif" alt="Gif do app" />
 
 ## Próximos passos
