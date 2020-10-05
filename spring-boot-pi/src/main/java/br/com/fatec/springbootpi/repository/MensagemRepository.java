@@ -9,5 +9,8 @@ import br.com.fatec.springbootpi.entity.Mensagem;
 
 public interface MensagemRepository extends JpaRepository<Mensagem,Long> {
     @Query("select m from Mensagem m inner join m.conversas c where c.idConversa = ?1")
-    public List<Mensagem> getMensagensPorConversa(Long idConversa);      
+    public List<Mensagem> getMensagensPorConversa(Long idConversa);
+    
+    public Mensagem findByIdMensagem(Long idMensagem);
+
 }

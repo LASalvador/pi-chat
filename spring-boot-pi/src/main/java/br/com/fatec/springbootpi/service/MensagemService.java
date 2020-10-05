@@ -46,4 +46,23 @@ public class MensagemService {
         return mensagem;
     }
 
+     public Mensagem buscarPorId(Long id){
+        return msgRepo.findByIdMensagem(id);
+    }
+
+    public Mensagem editarMensagem(Long id, Mensagem mensagemUp){
+        Mensagem mensagem = msgRepo.findByIdMensagem(id);
+        if (mensagem != null){
+            mensagem.setConteudoMsg(mensagemUp.getConteudoMsg());
+            msgRepo.save(mensagem);
+        }
+
+        return mensagem;
+        
+    }
+
+    public void apagarMensagem(Long id){
+        msgRepo.deleteById(id);
+    }
+
 }
