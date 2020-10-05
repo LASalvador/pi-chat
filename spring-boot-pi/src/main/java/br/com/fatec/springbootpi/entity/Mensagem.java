@@ -40,6 +40,10 @@ public class Mensagem {
     @JoinColumn(name="id_conversa")
     private Conversa conversas;
 
+    public Mensagem () {
+        this.dataCriado = new Date();
+    }
+
     public String getConteudoMsg() {
         return conteudoMsg;
     }

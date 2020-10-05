@@ -28,6 +28,7 @@ public class MensagemController {
     private MensagemRepository msgRepository;
 
     @PostMapping
+    @JsonView(View.MensagemResumo.class)
 	@ApiOperation(value = "Inserir uma nova mensagem")
     public ResponseEntity<Mensagem> cadastrarNovoUsuario(@RequestBody Mensagem mensagem, UriComponentsBuilder uriComponentsBuilder){
 
@@ -44,4 +45,26 @@ public class MensagemController {
         return msgRepository.getMensagensPorConversa(id);
 
     }
+
+    @JsonView(View.MensagemResumo.class)
+    @PutMapping(value="/{id}")
+    @ApiOperation(value = "Alterar mensagem")
+     public ResponseEntity<Mensagem> atualizarMensagem(@PathVariable("id") Long id, @RequestBody Mensagem mensagem,
+             UriComponentsBuilder uriComponentsBuilder) {
+        
+        mensagem = msgService.editarMensagem(id, mensagem);
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.setLocation(uriComponentsBuilder.path("/mensagem/" + mensagem.getIdMensagem()).build().toUri());
+        return new ResponseEntity<Mensagem>(mensagem, responseHeaders, HttpStatus.OK); 
+    }
+
+
+    @ApiOperation(value = "Deletar uma mensagem por id")
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<String> deletetarMensagem(@PathVariable("id") Long id){
+        msgService.apagarMensagem(id);
+        return ResponseEntity.noContent().build();
+    }
+
+
 }
