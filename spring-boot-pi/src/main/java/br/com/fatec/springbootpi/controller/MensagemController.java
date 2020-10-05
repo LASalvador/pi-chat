@@ -1,11 +1,16 @@
 package br.com.fatec.springbootpi.controller;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonView;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.fatec.springbootpi.entity.Mensagem;
+import br.com.fatec.springbootpi.repository.MensagemRepository;
 import br.com.fatec.springbootpi.service.MensagemService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -19,6 +24,9 @@ public class MensagemController {
     @Autowired
     private MensagemService msgService;
 
+    @Autowired
+    private MensagemRepository msgRepository;
+
     @PostMapping
 	@ApiOperation(value = "Inserir uma nova mensagem")
     public ResponseEntity<Mensagem> cadastrarNovoUsuario(@RequestBody Mensagem mensagem, UriComponentsBuilder uriComponentsBuilder){
@@ -27,5 +35,13 @@ public class MensagemController {
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.setLocation(uriComponentsBuilder.path("/mensagem/" + mensagem.getIdMensagem()).build().toUri());
         return new ResponseEntity<Mensagem>(mensagem, responseHeaders, HttpStatus.CREATED);
+    }
+
+    @JsonView(View.MensagemResumo.class)
+    @GetMapping(value = "/conversa/{id}")
+    @ApiOperation(value = "Buscar mensagens por ID da conversa")
+    public List<Mensagem> pegarMensagensPorConversa(@PathVariable("id") Long id) {
+        return msgRepository.getMensagensPorConversa(id);
+
     }
 }
