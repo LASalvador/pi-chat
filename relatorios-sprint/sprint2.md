@@ -23,16 +23,11 @@ Todos as implementações dessa sprint estão disponiveis na branch **Sprint2**
 - Tela chat
 
 
-Tela de arquivos
-<video width="600" height="800" controls>
-  <source src="atividades1.mp4" type="video/mp4">
-</video>
-
+Tela de atividades
+<img src="atividades1.gif" alt="Gif da Tela de atividades" />
 App
 
-<video width="600" height="800" controls>
-  <source src="app1.mp4" type="video/mp4">
-</video>
+<img src="app1.gif" alt="Gif do app" />
 
 ## Próximos passos
 
