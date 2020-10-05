@@ -30,11 +30,11 @@ public class MensagemController {
     @PostMapping
     @JsonView(View.MensagemResumo.class)
 	@ApiOperation(value = "Inserir uma nova mensagem")
-    public ResponseEntity<Mensagem> cadastrarNovoUsuario(@RequestBody Mensagem mensagem, UriComponentsBuilder uriComponentsBuilder){
+    public ResponseEntity<Mensagem> cadastrarNovoMensagem(@RequestBody Mensagem mensagem, UriComponentsBuilder uriComponentsBuilder){
 
         mensagem = msgService.criarMensagem(mensagem.getConteudoMsg(), (long) 1, (long) 1);
         HttpHeaders responseHeaders = new HttpHeaders();
-        responseHeaders.setLocation(uriComponentsBuilder.path("/mensagem/" + mensagem.getIdMensagem()).build().toUri());
+        responseHeaders.setLocation(uriComponentsBuilder.path("/mensagem/conversa/" + mensagem.getConversas().getIdConversa()).build().toUri());
         return new ResponseEntity<Mensagem>(mensagem, responseHeaders, HttpStatus.CREATED);
     }
 
