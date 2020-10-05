@@ -2,13 +2,11 @@
   <v-card
     color="#e4e4e4"
   >
-      <v-card-title>
-          {{author}}
-      </v-card-title>
-      <v-card-subtitle>
-          {{date}}
-      </v-card-subtitle>
       <v-card-text>
+        <div class="overline mb-4">
+          <span class="font-weight-black">{{author}}</span>
+          {{date}}
+        </div>
           {{content}}
       </v-card-text>
   </v-card>

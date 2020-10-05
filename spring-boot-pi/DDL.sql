@@ -62,4 +62,9 @@ insert into tipo_usuario (nome_tipo_usuario) values ('ROLE_USUARIO');
 
 insert into usuario (nome_usuario, cpf_usuario, id_tipo_usuario, data_criado) values ('Usuario1', '111.111.111-12',1,date(now()));
 insert into usuario (nome_usuario, cpf_usuario, id_tipo_usuario, data_criado) values ('Usuario2', '987.654.321-54',2,date(now()));
+
+
+insert into conversa (data_inicio, data_ultima_conversa) values ('2020-09-21','2020-09-21');
+insert into usuario_conversa(id_usuario,id_conversa) values (1,1);
+insert into usuario_conversa(id_usuario,id_conversa) values (2,1);
 /* INSERTS */

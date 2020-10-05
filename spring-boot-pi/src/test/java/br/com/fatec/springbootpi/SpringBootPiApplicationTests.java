@@ -45,18 +45,17 @@ class SpringBootPiApplicationTests {
     //     assertNotNull(usuario.getIdUsuario());
     // }
 
-   // @Test
-   // void testaUsuarioNomeAndCpf(){
-   //     Usuario user = userRepo.findByNomeUsuarioAndCpfUsuario("PORPETA", "162.222.010-13");
-   //     assertNotNull(user);
-   // }
+   @Test
+   void testaUsuarioNomeAndCpf(){
+       Usuario user = userRepo.findByNomeUsuarioAndCpfUsuario("Usuario1", "111.111.111-12");
+       assertNotNull(user);
+   }
 
-    // @Test
-    // void testeUsuarioConversa(){
-    //    // Usuario usuario = convRepo.
-    //     List<Usuario> usuarios = convRepo.buscarUsuariosDaConversa((long) 1);
-    //     assertFalse(usuarios.isEmpty());
-    // }
+    @Test
+    void testeUsuarioConversa(){
+        List<Usuario> usuarios = convRepo.buscarUsuariosDaConversa((long) 1);
+        assertFalse(usuarios.isEmpty());
+    }
 
     @Test
     void criaTipoUsuario(){
