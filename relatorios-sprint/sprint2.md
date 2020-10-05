@@ -29,6 +29,13 @@ Todos as implementações dessa sprint estão disponiveis na branch **Sprint2**
 ### App
 <img src="app1.gif" alt="Gif do app" />
 
+## Documentos
+
+- [BSC](https://drive.google.com/file/d/1NY7sMnPJDgk39zX2OK6Jax7ZLGcvUnEY/view?usp=sharing)
+- [CheckList](https://drive.google.com/file/d/1a5qPLrkMO7s9K3zTQXpcLjxhhqVrg0Os/view?usp=sharing)
+- [Burndown](https://drive.google.com/file/d/14-lm5uqeSYihOUIuX0v5wkQlHiZiVkDw/view?usp=sharing)
+
+
 ## Próximos passos
 
 - Telas de autentiação
