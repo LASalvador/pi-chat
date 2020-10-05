@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.fatec.springbootpi.entity.TipoUsuario;
-import br.com.fatec.springbootpi.security.ServicoService;
+import br.com.fatec.springbootpi.service.TipoUsuarioService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
@@ -23,13 +23,13 @@ import io.swagger.annotations.ApiOperation;
 public class TipoUsuarioController {
 
     @Autowired
-    private ServicoService segService;
+    private TipoUsuarioService tipoUsuarioService;
 
     @PostMapping
     @ApiOperation(value = "Inserir um novo role para usuário")
     public ResponseEntity<TipoUsuario> cadastrarTipoUsuario(@RequestBody TipoUsuario tipoUsuario, UriComponentsBuilder uriComponentsBuilder){
     
-        tipoUsuario = segService.criarTipoUsuario(tipoUsuario.getNome());
+        tipoUsuario = tipoUsuarioService.criarTipoUsuario(tipoUsuario.getNome());
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.setLocation(uriComponentsBuilder.path("/tipoUsuario/" + tipoUsuario.getIdTipoUsuario()).build().toUri());
         return new ResponseEntity<TipoUsuario>(tipoUsuario, responseHeaders, HttpStatus.CREATED);
