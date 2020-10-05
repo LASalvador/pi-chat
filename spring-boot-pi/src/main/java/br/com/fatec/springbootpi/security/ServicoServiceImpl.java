@@ -21,30 +21,30 @@ public class ServicoServiceImpl implements ServicoService{
     @Autowired
     private TipoUsuarioRepository tipoUserRepo;
     
-    @Override
-    @Transactional
-    public Usuario criarUsuario(String nomeUsuario, String cpfUsuario, String tipoUsuario, Date dataCriado) {
-        Usuario usuario = new Usuario();
+    // @Override
+    // @Transactional
+    // public Usuario criarUsuario(String nomeUsuario, String cpfUsuario, String tipoUsuario, Date dataCriado) {
+    //     Usuario usuario = new Usuario();
         
-        TipoUsuario tipoUser = tipoUserRepo.findByNome(tipoUsuario);
+    //     TipoUsuario tipoUser = tipoUserRepo.findByNome(tipoUsuario);
                 
-        if(tipoUser == null){
-            tipoUser = new TipoUsuario();
+    //     if(tipoUser == null){
+    //         tipoUser = new TipoUsuario();
             
-            tipoUser.setNome(tipoUsuario);
+    //         tipoUser.setNome(tipoUsuario);
 
-            tipoUserRepo.save(tipoUser);
-        }
+    //         tipoUserRepo.save(tipoUser);
+    //     }
 
-        usuario.setNomeUsuario(nomeUsuario);
-        usuario.setCpfUsuario(cpfUsuario);
-        usuario.setDataCriado(dataCriado);
-        usuario.setTiposUsuarios(tipoUser);
+    //     usuario.setNomeUsuario(nomeUsuario);
+    //     usuario.setCpfUsuario(cpfUsuario);
+    //     usuario.setDataCriado(dataCriado);
+    //     usuario.setTiposUsuarios(tipoUser);
     
-        userRepo.save(usuario);
+    //     userRepo.save(usuario);
 
-        return usuario;
-    }
+    //     return usuario;
+    // }
 
     @Override
     public TipoUsuario criarTipoUsuario(String nomeTipoUsuario) {
