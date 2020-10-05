@@ -1,4 +1,4 @@
- Entrega 2 (04/10)
+# Entrega 2 (04/10)
 
 Nesta Sprint o foco foi no desenvolvimento da tela de atividades,arquivos. Iniciou-se também os trabalhos do app
 Todos as implementações dessa sprint estão disponiveis na branch **Sprint2**
@@ -33,6 +33,13 @@ App
 <video width="600" height="800" controls>
   <source src="app1.mp4" type="video/mp4">
 </video>
+
+## Próximos passos
+
+- Telas de autentiação
+- Rotas para arquivos
+- Rotas para atividade
+- Rotas de atenticação
 
 ## Ferramentas Utilizadas
 

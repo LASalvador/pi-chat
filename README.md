@@ -21,11 +21,14 @@ Os requisitos do trabalho estão dividos em requisitos funcionais, descrevem fun
 ## Solução proposta
 * Chat com diferentes níveis de usuários
 * Lista de transmissão para envio de mensagens em massa
+* Controle de atividades por meio de notas
+* Manutenção de arquivos
 * Api para integração com outros sistemas
 
 ## Entregas
 
 - [Relatorio Sprint 1](https://github.com/LASalvador/pi-chat/blob/development/relatorios-sprint/sprint1.md#entrega-1-2009)
+- [Relatorio Sprint 1](https://github.com/LASalvador/pi-chat/blob/development/relatorios-sprint/sprint2.md#entrega-2-0410)
 
 
 ## Tecnologias Utilizadas
