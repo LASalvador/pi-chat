@@ -30,7 +30,7 @@ public class MensagemController {
     @PostMapping
     @JsonView(View.MensagemResumo.class)
 	@ApiOperation(value = "Inserir uma nova mensagem")
-    public ResponseEntity<Mensagem> cadastrarNovoUsuario(@RequestBody Mensagem mensagem, UriComponentsBuilder uriComponentsBuilder){
+    public ResponseEntity<Mensagem> cadastrarNovaMensagem(@RequestBody Mensagem mensagem, UriComponentsBuilder uriComponentsBuilder){
 
         mensagem = msgService.criarMensagem(mensagem.getConteudoMsg(), (long) 1, (long) 1);
         HttpHeaders responseHeaders = new HttpHeaders();
