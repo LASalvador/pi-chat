@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { SectionList, StyleSheet, Text, View } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 
 const Configuracoes = () => {
@@ -9,23 +10,28 @@ const Configuracoes = () => {
       <Text style={styles.textconf}>Configurações</Text>
       <Text style={styles.text}
       onPress={() => Linking.openURL('#')}>
-        ⚙ CONFIGURAÇÃO 1
+        <Icon name="gear" size={18} color="#999" /> CONFIGURAÇÃO 1
       </Text>
       <Text style={styles.text} 
       onPress={() => Linking.openURL('#')}>
-        ⚙ CONFIGURAÇÃO 2
+        <Icon name="gear" size={18} color="#999" /> CONFIGURAÇÃO 2
       </Text>
       <Text style={styles.text} 
       onPress={() => Linking.openURL('#')}>
-        ⚙ CONFIGURAÇÃO 3
+        <Icon name="gear" size={18} color="#999" /> CONFIGURAÇÃO 3
       </Text>
       <Text style={styles.text} 
       onPress={() => Linking.openURL('#')}>
-        ⚙ CONFIGURAÇÃO 4
+        <Icon name="gear" size={18} color="#999" /> CONFIGURAÇÃO 4
       </Text>
        <Text style={styles.text} 
       onPress={() => Linking.openURL('#')}>
-        ⚙ CONFIGURAÇÃO 5
+        <Icon name="gear" size={18} color="#999" /> CONFIGURAÇÃO 5
+      </Text>
+
+       <Text style={{ textAlign:'left', paddingTop:10,color: '#6E6E6E',fontWeight: 'bold'}} 
+      onPress={() => Linking.openURL('#')}>
+        <Icon name="sign-out" size={18} color="#999" /> SAIR
       </Text>
     </View>
   );
@@ -39,16 +45,22 @@ const styles = StyleSheet.create({
  }, 
  text:{
    padding: 10,
+   textAlign: 'left',
+   color: '#6E6E6E',
+   fontWeight: 'bold',
  },
  texttop:{
    textAlign: 'left',
    fontWeight: 'bold',
    fontSize: 25,
+   color: '#6E6E6E',
  },
  textconf:{
    fontSize:19,
    textAlign: 'left',
    marginBottom:10,
+   fontStyle: 'italic',
+   color: '#6E6E6E',
  }
 });
 
