@@ -102,7 +102,7 @@ export default {
   }),
   computed: {
     maxChatListSize: function () {
-      return window.innerHeight * 0.75
+      return window.innerHeight * 0.7
     },
     minChatListSize: function () {
       return window.innerHeight * 0.7
