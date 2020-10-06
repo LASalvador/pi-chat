@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.fatec.springbootpi.entity.TipoUsuario;
 import br.com.fatec.springbootpi.entity.Usuario;
+import br.com.fatec.springbootpi.exception.RegisterNotFound;
 import br.com.fatec.springbootpi.repository.TipoUsuarioRepository;
 import br.com.fatec.springbootpi.repository.UsuarioRepository;
 
@@ -49,6 +50,9 @@ public class UsuarioService {
 
             userRepo.save(usuario);
         }
+
+        else
+            throw new RegisterNotFound("Usuário não encontrado.");
 
         return usuario;
         
