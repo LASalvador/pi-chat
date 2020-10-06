@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.fatec.springbootpi.entity.Usuario;
+import br.com.fatec.springbootpi.model.UsuarioForm;
 import br.com.fatec.springbootpi.security.ServicoService;
 import br.com.fatec.springbootpi.service.UsuarioService;
 import io.swagger.annotations.Api;
@@ -31,18 +32,14 @@ import br.com.fatec.springbootpi.controller.View.UsuarioResumo;
 public class UsuarioController {
 
     @Autowired
-    private ServicoService segService;
-
-    @Autowired
     private UsuarioService usuarioService;
 
     @PostMapping
     @ApiOperation(value = "Inserir um novo usuário")
-    public ResponseEntity<Usuario> cadastrarNovoUsuario(@RequestBody Usuario usuario,
+    public ResponseEntity<Usuario> cadastrarNovoUsuario(@RequestBody UsuarioForm novoUsuario,
             UriComponentsBuilder uriComponentsBuilder) {
-        Date x = new Date();
 
-        usuario = segService.criarUsuario(usuario.getNomeUsuario(), usuario.getCpfUsuario(), "ROLE_USER", x);
+        Usuario usuario = usuarioService.criarUsuario(novoUsuario.getNomeUsuario(), novoUsuario.getCpfUsuario(), novoUsuario.getIdTipoUsuario());
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.setLocation(uriComponentsBuilder.path("/usuario/" + usuario.getIdUsuario()).build().toUri());
         return new ResponseEntity<Usuario>(usuario, responseHeaders, HttpStatus.CREATED);

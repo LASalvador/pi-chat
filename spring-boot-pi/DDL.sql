@@ -1,4 +1,4 @@
-create database chatbd;
+/*create database chatbd;
 use chatbd;
 
 create user 'usuario'@'localhost' identified by 'pass321';
