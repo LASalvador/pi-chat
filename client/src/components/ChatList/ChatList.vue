@@ -28,7 +28,7 @@ export default {
   name: 'ChatList',
   computed: {
     windowSize: function () {
-      return window.innerHeight
+      return window.innerHeight * 0.8
     }
   },
   props: {
