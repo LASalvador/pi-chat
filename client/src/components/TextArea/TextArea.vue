@@ -1,10 +1,10 @@
 <template>
   <v-textarea
-    no-resize
     color="bluePi"
-    rows="1"
-    label="Digite uma mensagem"
+    :rows="rows"
+    :label="label"
     :value="value"
+    auto-grow
     @input="$emit('input', $event)"
   />
 </template>
@@ -20,6 +20,10 @@ export default {
     value: {
       type: String,
       required: true
+    },
+    rows: {
+      type: Number,
+      default: 1
     }
   }
 }

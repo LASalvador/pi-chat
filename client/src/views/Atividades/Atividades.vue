@@ -58,17 +58,16 @@
             <v-row>
                 <v-col cols="12">
                   <Input
-                    label="titulo"
+                    label="Título"
                     v-model="note.title"
                   />
                 </v-col>
                 <v-col cols="12">
-                  <v-textarea
-                    solo
-                    name="input-7-4"
-                    label="comprar pao de queijo"
+                  <TextArea
+                    label="Descrição da tarefa"
+                    rows="4"
                     v-model="note.text"
-                  ></v-textarea>
+                  />
                 </v-col>
                 <v-col cols="12">
                   <span v-for="(color, index) in styles" :key="index" style="margin-left: 5px">
@@ -89,13 +88,15 @@
 import NoteCard from '../../components/NoteCard/NoteCard.vue'
 import Button from '../../components/Button/Button.vue'
 import Input from '../../components/Input/Input.vue'
+import TextArea from '../../components/TextArea/TextArea.vue'
 
 export default {
   name: 'Atividades',
   components: {
     NoteCard,
     Button,
-    Input
+    Input,
+    TextArea
   },
   data: () => ({
     buttonNewNote: false,

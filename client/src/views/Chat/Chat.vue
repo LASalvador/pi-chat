@@ -42,9 +42,9 @@
                     flat
                   >
                     <MessageCard
-                      v-for = "item in messageList"
-                      :author= "item.author"
-                      :date= "item.date"
+                      v-for="item in messageList"
+                      :author="item.author"
+                      :date="item.date"
                       :content="item.content"
                       :key="item.content"
                     />
@@ -102,7 +102,7 @@ export default {
   }),
   computed: {
     maxChatListSize: function () {
-      return window.innerHeight * 0.75
+      return window.innerHeight * 0.7
     },
     minChatListSize: function () {
       return window.innerHeight * 0.7
