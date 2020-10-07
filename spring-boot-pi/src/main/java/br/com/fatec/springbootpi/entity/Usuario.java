@@ -36,10 +36,7 @@ public class Usuario {
     @Column(name = "cpf_usuario")
     private String cpfUsuario;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "usuario_conversa",
-    joinColumns = { @JoinColumn(name = "id_usuario") },
-    inverseJoinColumns = { @JoinColumn(name = "id_conversa") })
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "usuarios")
     private Set<Conversa> conversas;
 
     @JsonView(View.UsuarioResumo.class)
