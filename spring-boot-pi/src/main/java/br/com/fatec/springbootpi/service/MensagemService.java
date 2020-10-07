@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import br.com.fatec.springbootpi.entity.Conversa;
 import br.com.fatec.springbootpi.entity.Mensagem;
 import br.com.fatec.springbootpi.entity.Usuario;
+import br.com.fatec.springbootpi.exception.RegisterNotFound;
 import br.com.fatec.springbootpi.repository.ConversaRepository;
 import br.com.fatec.springbootpi.repository.MensagemRepository;
 import br.com.fatec.springbootpi.repository.UsuarioRepository;
@@ -42,6 +43,9 @@ public class MensagemService {
             mensagem.setDataCriado(data);
             msgRepo.save(mensagem);
         }
+
+        else
+            throw new RegisterNotFound("{Mensagem} ID do usuário ou conversa não encontrado.");
         
         return mensagem;
     }
@@ -57,8 +61,11 @@ public class MensagemService {
             msgRepo.save(mensagem);
         }
 
-        return mensagem;
+        else
+            throw new RegisterNotFound("ID da mensagem não encontrado.");
+
         
+        return mensagem;
     }
 
     public void apagarMensagem(Long id){
