@@ -63,11 +63,11 @@
           <v-card-text>
             <v-row>
                 <v-col cols="12">
-                  <Input label='Nome do Arquivo' v-model="file.nomeArquivo"/>
+                  <Input label='Legenda do Arquivo' v-model="file.legenda"/>
                 </v-col>
                 <v-col cols="12">
                   <v-file-input
-                    v-model="files"
+                    v-model="file.nomeArquivo"
                     placeholder="Suba seu arquivo"
                     label="Arquivo"
                     prepend-icon="mdi-paperclip"
@@ -83,9 +83,43 @@
                     </template>
                   </v-file-input>
                 </v-col>
+                <v-col cols="12">
+                  <Button
+                    @click="sharedButton = !sharedButton"
+                  >
+                    Compartilhar Arquivo
+                  </Button>
+                </v-col>
               </v-row>
           </v-card-text>
 
+        </v-card>
+      </v-dialog>
+      <v-dialog
+        v-model="sharedButton"
+      >
+        <v-card>
+          <v-toolbar
+              dark
+              color="bluePi">
+              <v-btn
+                icon
+                dark
+                @click="sharedButton = false">
+                <v-icon>mdi-close</v-icon>
+              </v-btn>
+              <v-toolbar-title>Enviar para</v-toolbar-title>
+              <v-spacer></v-spacer>
+              <v-toolbar-items>
+                <v-btn
+                  dark
+                  text
+                  @click="addFile">
+                  Compartilhar
+                </v-btn>
+              </v-toolbar-items>
+            </v-toolbar>
+        <SharedCard />
         </v-card>
       </v-dialog>
   </v-container>
@@ -94,16 +128,19 @@
 <script>
 import Input from '../../components/Input/Input.vue'
 import Button from '../../components/Button/Button.vue'
+import SharedCard from '../../components/ShareCard/ShareCard.vue'
 
 export default {
   components: {
     Input,
-    Button
+    Button,
+    SharedCard
   },
   data () {
     return {
       search: '',
       buttonNewFile: false,
+      sharedButton: false,
       headers: [
         {
           text: 'Nome do Arquivo',
@@ -127,6 +164,7 @@ export default {
         }
       ],
       file: {
+        legenda: null,
         nomeArquivo: null,
         dataCriacao: null
       }
@@ -136,8 +174,11 @@ export default {
     addFile () {
       let newFile = {}
       newFile = Object.assign(newFile, this.file)
-      if (newFile.nomeArquivo) {
+      console.log(this.file)
+      console.log(newFile)
+      if (newFile) {
         newFile.dataCriacao = new Date()
+        newFile.nomeArquivo = this.file.nomeArquivo.name
         this.desserts.push(newFile)
         this.buttonNewFile = false
         this.clearFile()
