@@ -3,6 +3,7 @@
     color="bluePi"
     :label="label"
     :value="value"
+    :prepend-icon="prependIcon"
     @input="$emit('input', $event)"
     required
   />
@@ -19,6 +20,10 @@ export default {
     value: {
       type: String,
       required: true
+    },
+    prependIcon: {
+      type: String,
+      default: ''
     }
   }
 }
