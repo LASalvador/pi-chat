@@ -10,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -38,6 +37,9 @@ public class Usuario {
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "usuarios")
     private Set<Conversa> conversas;
+
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "usuarios")
+    private Set<Arquivo> arquivos;
 
     @JsonView(View.UsuarioResumo.class)
     @ManyToOne
@@ -71,6 +73,10 @@ public class Usuario {
         return conversas;
     }
 
+    public Set<Arquivo> getArquivos() {
+        return arquivos;
+    }
+
     public void setIdUsuario(Long idUsuario) {
         this.idUsuario = idUsuario;
     }
@@ -93,5 +99,9 @@ public class Usuario {
 
     public void setConversas(Set<Conversa> conversas) {
         this.conversas = conversas;
+    }
+
+    public void setArquivos(Set<Arquivo> arquivos) {
+        this.arquivos = arquivos;
     }
 }

@@ -1,8 +1,6 @@
 package br.com.fatec.springbootpi.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-
 import br.com.fatec.springbootpi.entity.Arquivo;
 
 public interface ArquivoRepository extends JpaRepository<Arquivo, Long> {

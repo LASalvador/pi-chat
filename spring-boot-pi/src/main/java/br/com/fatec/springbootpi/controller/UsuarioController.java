@@ -1,11 +1,5 @@
 package br.com.fatec.springbootpi.controller;
 
-import java.util.Date;
-
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
@@ -13,16 +7,10 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.fatec.springbootpi.entity.Usuario;
 import br.com.fatec.springbootpi.model.UsuarioForm;
-import br.com.fatec.springbootpi.security.ServicoService;
 import br.com.fatec.springbootpi.service.UsuarioService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponses;
-import io.swagger.annotations.ApiResponse;
-
 import com.fasterxml.jackson.annotation.JsonView;
-
-import br.com.fatec.springbootpi.controller.View;
 import br.com.fatec.springbootpi.controller.View.UsuarioResumo;
 
 @RestController
