@@ -1,17 +1,17 @@
 <template>
-  <v-textarea
+  <v-text-field
     color="bluePi"
-    :rows="rows"
     :label="label"
     :value="value"
-    auto-grow
+    :prepend-icon="prependIcon"
     @input="$emit('input', $event)"
+    required
   />
 </template>
 
 <script>
 export default {
-  name: 'TextArea',
+  name: 'Input',
   props: {
     label: {
       type: String,
@@ -21,9 +21,9 @@ export default {
       type: String,
       required: true
     },
-    rows: {
-      type: Number,
-      default: 1
+    prependIcon: {
+      type: String,
+      default: ''
     }
   }
 }

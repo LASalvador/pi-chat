@@ -6,6 +6,17 @@
           <v-col
             cols="3"
           >
+            <v-card flat>
+              <v-card-title>
+                Conversas
+                <v-spacer></v-spacer>
+                <Button
+                  icon
+                >
+                  <v-icon>mdi-plus</v-icon>
+                </Button>
+              </v-card-title>
+            </v-card>
             <ChatList
               :items="items"
             />
@@ -28,11 +39,12 @@
                     :max-height="maxChatListSize"
                     :min-height="minChatListSize"
                     color="transparent"
+                    flat
                   >
                     <MessageCard
-                      v-for = "item in messageList"
-                      :author= "item.author"
-                      :date= "item.date"
+                      v-for="item in messageList"
+                      :author="item.author"
+                      :date="item.date"
                       :content="item.content"
                       :key="item.content"
                     />
@@ -90,7 +102,7 @@ export default {
   }),
   computed: {
     maxChatListSize: function () {
-      return window.innerHeight * 0.75
+      return window.innerHeight * 0.7
     },
     minChatListSize: function () {
       return window.innerHeight * 0.7

@@ -9,15 +9,24 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "conversa")
 public class Conversa {
+
+    public Conversa() {
+        super();
+        Date x = new Date();
+        this.setDataInicial(x);
+        this.setDataUltimaConversa(x);
+    }
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_conversa")
     private Long idConversa;
 
@@ -27,9 +36,11 @@ public class Conversa {
     @Column(name = "data_ultima_conversa")
     private Date dataUltimaConversa;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "conversas")
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "usuario_conversa",
+    joinColumns = { @JoinColumn(name = "id_conversa") },
+    inverseJoinColumns = { @JoinColumn(name = "id_usuario") })
     private Set<Usuario> usuarios;
-
 
     public void setDataInicial(Date dataInicial) {
         this.dataInicial = dataInicial;
