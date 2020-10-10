@@ -76,9 +76,42 @@
                     </v-btn>
                   </span>
                 </v-col>
+                <v-col>
+                  <Button
+                    @click="sharedButton = !sharedButton"
+                  >
+                    Compartilhar Atividade
+                  </Button>
+                </v-col>
               </v-row>
           </v-card-text>
-
+        </v-card>
+      </v-dialog>
+      <v-dialog
+        v-model="sharedButton"
+      >
+        <v-card>
+          <v-toolbar
+              dark
+              color="bluePi">
+              <v-btn
+                icon
+                dark
+                @click="sharedButton = false">
+                <v-icon>mdi-close</v-icon>
+              </v-btn>
+              <v-toolbar-title>Enviar para</v-toolbar-title>
+              <v-spacer></v-spacer>
+              <v-toolbar-items>
+                <v-btn
+                  dark
+                  text
+                  @click="addFile">
+                  Compartilhar
+                </v-btn>
+              </v-toolbar-items>
+            </v-toolbar>
+        <SharedCard />
         </v-card>
       </v-dialog>
   </v-container>
@@ -89,6 +122,7 @@ import NoteCard from '../../components/NoteCard/NoteCard.vue'
 import Button from '../../components/Button/Button.vue'
 import Input from '../../components/Input/Input.vue'
 import TextArea from '../../components/TextArea/TextArea.vue'
+import SharedCard from '../../components/ShareCard/ShareCard.vue'
 
 export default {
   name: 'Atividades',
@@ -96,10 +130,12 @@ export default {
     NoteCard,
     Button,
     Input,
-    TextArea
+    TextArea,
+    SharedCard
   },
   data: () => ({
     buttonNewNote: false,
+    sharedButton: false,
     notes: [
       {
         title: 'Lista de compras',
