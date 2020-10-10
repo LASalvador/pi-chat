@@ -23,8 +23,4 @@ public class RegisterNotFound extends RuntimeException{
     public RegisterNotFound(String message, Throwable cause) {
         super(message, cause);
     }
-<<<<<<< HEAD
-
-=======
->>>>>>> 8a39a4b7550dd4443eb753d2a5a736bc27880914
 }
