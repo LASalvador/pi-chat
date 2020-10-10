@@ -17,14 +17,34 @@
                 </Button>
               </v-card-title>
             </v-card>
-            <ChatList
-              :items="items"
-            />
+            <v-list
+            two-line
+            class="overflow-y-auto"
+            :max-height="windowSize"
+            >
+            <v-list-item
+              v-for="(item,key) in items"
+              :key="key"
+              @click="idConversa = key"
+            >
+              <v-list-item-content>
+                  <v-list-item-title>
+                    <span class="heading-6">{{item.author}}</span>
+                  </v-list-item-title>
+                  <v-list-item-subtitle class="body-2">
+                    <span class="indigo--text text--darken-2">{{item.role}}</span>
+                  </v-list-item-subtitle>
+                </v-list-item-content>
+                <v-list-item-action class="body-2">
+                  {{item.date}}
+                </v-list-item-action>
+            </v-list-item>
+          </v-list>
           </v-col>
           <v-col
             cols="9"
           >
-            <MessageHeader title="Joao"/>
+            <MessageHeader :title="items[idConversa].author"/>
             <v-container>
               <v-row
                 no-gutters
@@ -67,15 +87,14 @@
 </template>
 
 <script>
-import ChatList from '../../components/ChatList/ChatList.vue'
 import MessageCard from '../../components/MessageCard/MessageCard.vue'
 import MessageHeader from '../../components/MessageHeader/MessageHeader.vue'
 import TextArea from '../../components/TextArea/TextArea.vue'
 import Button from '../../components/Button/Button.vue'
+import ApiMensagem from '../../services/api'
 
 export default {
   components: {
-    ChatList,
     MessageCard,
     MessageHeader,
     TextArea,
@@ -98,7 +117,8 @@ export default {
       { author: 'Maria', date: 'Jan 28, 2014', role: 'Diretor' }
     ],
     message: '',
-    messageList: []
+    messageList: [],
+    idConversa: 0
   }),
   computed: {
     maxChatListSize: function () {
@@ -106,11 +126,16 @@ export default {
     },
     minChatListSize: function () {
       return window.innerHeight * 0.7
+    },
+    windowSize: function () {
+      return window.innerHeight * 0.8
     }
   },
   methods: {
-    addmessage () {
-      this.messageList.push({ author: 'Mayara', content: this.message, date: '23/09/2020' })
+    async addmessage () {
+      const resposta = await ApiMensagem.mensagem.enviarMensagem(this.message, 1, 1)
+      const mensagem = resposta.data
+      this.messageList.push({ author: 'Mayara', content: mensagem.conteudoMsg, date: '23/09/2020' })
       this.message = ''
     }
   }
