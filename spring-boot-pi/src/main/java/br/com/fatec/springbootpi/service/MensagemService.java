@@ -45,7 +45,7 @@ public class MensagemService {
         }
 
         else
-            throw new RegisterNotFound("Conversa e/ou usuário não encontrado.");
+            throw new RegisterNotFound("{Mensagem} ID do usuário ou conversa não encontrado.");
         
         return mensagem;
     }
@@ -62,10 +62,16 @@ public class MensagemService {
         }
 
         else
+<<<<<<< HEAD
             throw new RegisterNotFound("Mensagem não encontrada.");
 
         return mensagem;
+=======
+            throw new RegisterNotFound("ID da mensagem não encontrado.");
+
+>>>>>>> 8a39a4b7550dd4443eb753d2a5a736bc27880914
         
+        return mensagem;
     }
 
     public void apagarMensagem(Long id){

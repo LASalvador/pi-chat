@@ -1,17 +1,13 @@
 package br.com.fatec.springbootpi.service;
 
-import java.util.ArrayList;
+
 import java.util.HashSet;
 import java.util.List;
-
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import br.com.fatec.springbootpi.entity.Conversa;
-import br.com.fatec.springbootpi.entity.Mensagem;
 import br.com.fatec.springbootpi.entity.Usuario;
 import br.com.fatec.springbootpi.model.Form.CriarConversaForm;
 import br.com.fatec.springbootpi.repository.ConversaRepository;
@@ -43,15 +39,6 @@ public class ConversaService {
         conversa.getUsuarios().add(usuario1);                
         conversa.getUsuarios().add(usuario2);                
                 
-        
-        /*for (Long id : idUsuarios) {            
-            Usuario usuario = usuarioRepository.findByIdUsuario((long) id);
-
-            if (usuario != null){                
-                conversa.getUsuarios().add(usuario);                
-            }               
-        }*/
-
         conversaRepository.save(conversa);                         
 
         return conversa;

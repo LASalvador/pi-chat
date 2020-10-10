@@ -8,13 +8,8 @@ import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
-import springfox.documentation.service.VendorExtension;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
-
-
-import static springfox.documentation.builders.PathSelectors.regex;
-
 import java.util.ArrayList;
 
 @Configuration
@@ -39,7 +34,7 @@ public class SwaggerConfig {
                 "Terms of Service",
                 new Contact("GitHub Projeto (Grupo 2)", "https://github.com/LASalvador/pi-chat/","fatec1b.adm@gmail.com"),
                 "Apache License Version 2.0",
-                "https://www.apache.org/licesen.html", new ArrayList<VendorExtension>()
+                "https://www.apache.org/licesen.html", new ArrayList<>()
         );
 
         return apiInfo;

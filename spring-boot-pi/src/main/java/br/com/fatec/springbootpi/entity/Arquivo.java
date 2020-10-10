@@ -1,16 +1,21 @@
 package br.com.fatec.springbootpi.entity;
 
+import java.util.Date;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "arquivos")
+@Table(name = "arquivo")
 public class Arquivo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,9 +25,17 @@ public class Arquivo {
     @Column(name = "nome_arquivo")
     private String nomeArquivo;
 
-    @ManyToOne
-    @JoinColumn(name="id_usuario")
-    private Usuario usuarios;
+    @Column(name = "desc_arquivo")
+    private String descArquivo;
+
+    @Column(name = "data_criado")
+    private Date dataCriado;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "usuario_arquivo",
+    joinColumns = { @JoinColumn(name = "id_arquivo") },
+    inverseJoinColumns = { @JoinColumn(name = "id_usuario") })
+    private Set<Usuario> usuarios;
 
     public Long getIdArquivo() {
         return idArquivo;
@@ -32,7 +45,15 @@ public class Arquivo {
         return nomeArquivo;
     }
 
-    public Usuario getUsuarios() {
+    public String getDescArquivo() {
+        return descArquivo;
+    }
+
+    public Date getDataCriado() {
+        return dataCriado;
+    }
+
+    public Set<Usuario> getUsuarios() {
         return usuarios;
     }
 
@@ -44,7 +65,15 @@ public class Arquivo {
         this.nomeArquivo = nomeArquivo;
     }
 
-    public void setUsuarios(Usuario usuarios) {
+    public void setDataCriado(Date dataCriado) {
+        this.dataCriado = dataCriado;
+    }
+
+    public void setDescArquivo(String descArquivo) {
+        this.descArquivo = descArquivo;
+    }
+
+    public void setUsuarios(Set<Usuario> usuarios) {
         this.usuarios = usuarios;
     }
 }
