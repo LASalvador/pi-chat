@@ -43,11 +43,11 @@ public class MensagemService {
             mensagem.setDataCriado(data);
             msgRepo.save(mensagem);
         }
-
-        else
+        else{
             throw new RegisterNotFound("{Mensagem} ID do usuário ou conversa não encontrado.");
-        
+        }
         return mensagem;
+        
     }
 
      public Mensagem buscarPorId(Long id){
@@ -61,16 +61,10 @@ public class MensagemService {
             msgRepo.save(mensagem);
         }
 
-        else
-<<<<<<< HEAD
-            throw new RegisterNotFound("Mensagem não encontrada.");
-
-        return mensagem;
-=======
+        else {
             throw new RegisterNotFound("ID da mensagem não encontrado.");
+        }
 
->>>>>>> 8a39a4b7550dd4443eb753d2a5a736bc27880914
-        
         return mensagem;
     }
 
