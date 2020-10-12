@@ -28,7 +28,32 @@ const Documentos = () => {
   );
 }
 
-
+const styles = StyleSheet.create({
+ containerText:{
+   justifyContent: 'left',
+   margin: 20,
+   textAlign: 'center',
+ }, 
+ text:{
+   padding: 10,
+   textAlign: 'left',
+   color: '#6E6E6E',
+   fontWeight: 'bold',
+ },
+ texttop:{
+   textAlign: 'left',
+   fontWeight: 'bold',
+   fontSize: 25,
+   color: '#6E6E6E',
+ },
+ textconf:{
+   fontSize:19,
+   textAlign: 'left',
+   marginBottom:10,
+   fontStyle: 'italic',
+   color: '#6E6E6E',
+ }
+});
 
 export default Documentos;
  
