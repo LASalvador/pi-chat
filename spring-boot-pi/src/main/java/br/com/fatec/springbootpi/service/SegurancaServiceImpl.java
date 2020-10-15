@@ -1,14 +1,11 @@
 package br.com.fatec.springbootpi.service;
 
-import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import br.com.fatec.springbootpi.entity.TipoUsuario;
 import br.com.fatec.springbootpi.entity.Usuario;
 import br.com.fatec.springbootpi.repository.UsuarioRepository;
 
@@ -30,9 +27,7 @@ public class SegurancaServiceImpl implements SegurancaService {
         return User.builder()
             .username(usuario.getNomeUsuario())
             .password(usuario.getSenha())
-            .authorities(((Object) usuario.getTiposUsuarios()).stream()
-                .map(TipoUsuario::getNome).collect(Collectors.toList())
-                .toArray(new String[usuario.getTiposUsuarios().size()]))
+            .authorities(usuario.getTiposUsuarios().getNome())
             .build();
     }
     

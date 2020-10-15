@@ -118,7 +118,6 @@ public class Usuario {
     public void setAtividades(Set<Atividade> atividades) {
         this.atividades = atividades;
     }
-<<<<<<< HEAD
 
     public String getSenha(){
         return senha;
@@ -128,6 +127,5 @@ public class Usuario {
         this.senha = senha;
     }
 
-=======
->>>>>>> 399369d7749f5985a1ba7e660f17103bc08cca2e
+
 }
