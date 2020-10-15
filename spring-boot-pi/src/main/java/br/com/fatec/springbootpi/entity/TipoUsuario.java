@@ -9,19 +9,11 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-import org.springframework.security.core.GrantedAuthority;
-
 import br.com.fatec.springbootpi.controller.View;
 
 @Entity
 @Table(name="tipo_usuario")
-public class TipoUsuario implements GrantedAuthority{
-
-
-    /**
-     *
-     */
-    private static final long serialVersionUID = 7035472984552717505L;
+public class TipoUsuario{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,10 +38,5 @@ public class TipoUsuario implements GrantedAuthority{
 
     public String getNome() {
         return nome;
-    }
-
-    @Override
-    public String getAuthority() {
-        return this.nome;
     }
 }

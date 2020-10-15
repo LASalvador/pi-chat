@@ -8,8 +8,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import br.com.fatec.springbootpi.model.Form.LoginForm;
 import io.jsonwebtoken.Jwts;
@@ -41,7 +43,7 @@ public class JwtUtils {
             .compact();
     }
 
-    public static User parseToken(String token) throws JsonParseException, JsonMappingException, IOException {
+    public static Authentication parseToken(String token) throws JsonParseException, JsonMappingException, IOException {
         
         ObjectMapper mapper = new ObjectMapper();
 
@@ -53,10 +55,16 @@ public class JwtUtils {
 
         LoginForm usuario = mapper.readValue(credentialsJson, LoginForm.class);
 
-        return (User) User.builder().username(usuario.getDocument())
-        .password("secret")
-        .authorities(usuario.getAutorizacao())
-        .build();
+       UserDetails userDetails = User.builder()
+            .username(usuario.getDocument())
+            .password("secret")
+            .authorities(usuario.getAutorizacao())
+            .build();
+
+        return new UsernamePasswordAuthenticationToken(
+            usuario.getDocument(), 
+            usuario.getPassword(),
+            userDetails.getAuthorities());
     }
 
 }
