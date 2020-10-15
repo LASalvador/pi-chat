@@ -52,6 +52,9 @@ public class Usuario {
     @Column(name = "data_criado")
     private Date dataCriado;
 
+    @Column(name = "senha")
+    private String senha;
+
     public Long getIdUsuario() {
         return idUsuario;
     }
@@ -115,4 +118,14 @@ public class Usuario {
     public void setAtividades(Set<Atividade> atividades) {
         this.atividades = atividades;
     }
+
+    public String getSenha(){
+        return senha;
+    }
+
+    public void setSenha(String senha){
+        this.senha = senha;
+    }
+
+
 }

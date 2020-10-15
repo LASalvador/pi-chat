@@ -3,6 +3,8 @@ package br.com.fatec.springbootpi.service;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,8 +23,13 @@ public class UsuarioService {
     @Autowired
     private TipoUsuarioRepository tipoUserRepo;
 
+    @Autowired
+    private PasswordEncoder passEncoder;
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    //@PreAuthorize("isAuthenticated()")
     @Transactional
-    public Usuario criarUsuario(String nomeUsuario, String cpfUsuario, Long idTipoUsuario) {
+    public Usuario criarUsuario(String nomeUsuario, String cpfUsuario, Long idTipoUsuario, String senha) {
         Date dataAtual = new Date();
 
         Usuario usuario = new Usuario();
@@ -32,12 +39,14 @@ public class UsuarioService {
         usuario.setCpfUsuario(cpfUsuario);
         usuario.setTiposUsuarios(tipoUser);
         usuario.setDataCriado(dataAtual);
+        usuario.setSenha(passEncoder.encode(senha));
 
         userRepo.save(usuario);
 
         return usuario;
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public Usuario buscarPorId(Long id){
         return userRepo.findByIdUsuario(id);
     }
