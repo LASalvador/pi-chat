@@ -1,0 +1,90 @@
+package br.com.fatec.springbootpi.entity;
+
+import java.util.Date;
+import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "atividade")
+public class Atividade {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_atividade")
+    private Long idAtividade;
+
+    @Column(name = "titulo_atividade")
+    private String tituloAtividade;
+
+    @Column(name = "desc_atividade")
+    private String descAtividade;
+
+    @Column(name = "cor_atividade")
+    private String corAtividade;
+
+    @Column(name = "data_criado")
+    private Date dataCriado;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "usuario_atividade",
+    joinColumns = { @JoinColumn(name = "id_atividade") },
+    inverseJoinColumns = { @JoinColumn(name = "id_usuario") })
+    private Set<Usuario> usuarios;
+
+    public Long getIdAtividade() {
+        return idAtividade;
+    }
+
+    public void setIdAtividade(Long idAtividade) {
+        this.idAtividade = idAtividade;
+    }
+
+    public String getTituloAtividade() {
+        return tituloAtividade;
+    }
+
+    public void setTituloAtividade(String tituloAtividade) {
+        this.tituloAtividade = tituloAtividade;
+    }
+
+    public String getDescAtividade() {
+        return descAtividade;
+    }
+
+    public void setDescAtividade(String descAtividade) {
+        this.descAtividade = descAtividade;
+    }
+
+    public String getCorAtividade() {
+        return corAtividade;
+    }
+
+    public void setCorAtividade(String corAtividade) {
+        this.corAtividade = corAtividade;
+    }
+
+    public Date getDataCriado() {
+        return dataCriado;
+    }
+
+    public void setDataCriado(Date dataCriado) {
+        this.dataCriado = dataCriado;
+    }
+
+    public Set<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(Set<Usuario> usuarios) {
+        this.usuarios = usuarios;
+    }
+}

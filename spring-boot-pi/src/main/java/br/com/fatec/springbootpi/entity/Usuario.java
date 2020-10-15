@@ -41,6 +41,9 @@ public class Usuario {
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "usuarios")
     private Set<Arquivo> arquivos;
 
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "usuarios")
+    private Set<Atividade> atividades;
+
     @JsonView(View.UsuarioResumo.class)
     @ManyToOne
     @JoinColumn(name="id_tipo_usuario")
@@ -48,6 +51,9 @@ public class Usuario {
 
     @Column(name = "data_criado")
     private Date dataCriado;
+
+    @Column(name = "senha")
+    private String senha;
 
     public Long getIdUsuario() {
         return idUsuario;
@@ -104,4 +110,21 @@ public class Usuario {
     public void setArquivos(Set<Arquivo> arquivos) {
         this.arquivos = arquivos;
     }
+
+    public Set<Atividade> getAtividades() {
+        return atividades;
+    }
+
+    public void setAtividades(Set<Atividade> atividades) {
+        this.atividades = atividades;
+    }
+
+    public String getSenha(){
+        return senha;
+    }
+
+    public void setSenha(String senha){
+        this.senha = senha;
+    }
+
 }

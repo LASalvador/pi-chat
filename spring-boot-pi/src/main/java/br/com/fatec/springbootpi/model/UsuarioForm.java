@@ -8,6 +8,8 @@ public class UsuarioForm {
 
     private String cpfUsuario;
 
+    private String senha;
+
     public Long getIdTipoUsuario() {
         return idTipoUsuario;
     }
@@ -20,6 +22,10 @@ public class UsuarioForm {
         return cpfUsuario;
     }
 
+    public String getSenha() {
+        return senha;
+    }
+
     public void setIdTipoUsuario(Long idTipoUsuario) {
         this.idTipoUsuario = idTipoUsuario;
     }
@@ -30,5 +36,9 @@ public class UsuarioForm {
 
     public void setCpfUsuario(String cpfUsuario) {
         this.cpfUsuario = cpfUsuario;
+    }
+
+    public void setSenha(String senha){
+        this.senha = senha;
     }
 }
