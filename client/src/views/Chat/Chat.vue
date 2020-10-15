@@ -12,6 +12,7 @@
                 <v-spacer></v-spacer>
                 <Button
                   icon
+                  @click="modalConversa = true"
                 >
                   <v-icon>mdi-plus</v-icon>
                 </Button>
@@ -82,6 +83,32 @@
               </v-row>
             </v-container>
           </v-col>
+          <v-dialog
+          v-model="modalConversa"
+        >
+          <v-card>
+            <v-toolbar
+                dark
+                color="bluePi">
+                <v-btn
+                  icon
+                  dark
+                  @click="modalConversa = false">
+                  <v-icon>mdi-close</v-icon>
+                </v-btn>
+                <v-toolbar-title>Conversar Com</v-toolbar-title>
+                <v-spacer></v-spacer>
+                <v-toolbar-items>
+                  <v-btn
+                    dark
+                    text>
+                    Iniciar Conversa
+                  </v-btn>
+                </v-toolbar-items>
+              </v-toolbar>
+          <ShareCard />
+          </v-card>
+        </v-dialog>
       </v-row>
   </v-container>
 </template>
@@ -91,6 +118,7 @@ import MessageCard from '../../components/MessageCard/MessageCard.vue'
 import MessageHeader from '../../components/MessageHeader/MessageHeader.vue'
 import TextArea from '../../components/TextArea/TextArea.vue'
 import Button from '../../components/Button/Button.vue'
+import ShareCard from '../../components/ShareCard/ShareCard.vue'
 import ApiMensagem from '../../services/api'
 
 export default {
@@ -98,7 +126,8 @@ export default {
     MessageCard,
     MessageHeader,
     TextArea,
-    Button
+    Button,
+    ShareCard
   },
   data: () => ({
     items: [
@@ -118,7 +147,8 @@ export default {
     ],
     message: '',
     messageList: [],
-    idConversa: 0
+    idConversa: 0,
+    modalConversa: false
   }),
   computed: {
     maxChatListSize: function () {
