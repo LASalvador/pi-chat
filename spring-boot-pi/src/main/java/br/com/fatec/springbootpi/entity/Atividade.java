@@ -41,7 +41,7 @@ public class Atividade {
     @Column(name = "data_criado")
     private Date dataCriado;
 
-    //@JsonView(View.AtividadeResumo.class)
+    @JsonView(View.AtividadeResumo.class)
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "usuario_atividade",
     joinColumns = { @JoinColumn(name = "id_atividade") },
