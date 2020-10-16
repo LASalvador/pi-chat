@@ -27,7 +27,6 @@ public class UsuarioService {
     private PasswordEncoder passEncoder;
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    //@PreAuthorize("isAuthenticated()")
     @Transactional
     public Usuario criarUsuario(String nomeUsuario, String cpfUsuario, Long idTipoUsuario, String senha) {
         Date dataAtual = new Date();
