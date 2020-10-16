@@ -14,7 +14,7 @@ public class AtividadeForm {
         return tituloAtividade;
     }
 
-    public String corAtividade(){
+    public String getCorAtividade(){
         return corAtividade;
     }
 

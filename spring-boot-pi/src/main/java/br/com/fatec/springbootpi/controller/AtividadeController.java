@@ -1,5 +1,7 @@
 package br.com.fatec.springbootpi.controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +21,7 @@ public class AtividadeController {
     @Autowired
     private AtividadeService atividadeService;
 
+    @JsonView(View.AtividadeResumo.class)
     @PostMapping
     @ApiOperation(value = "Inserir uma nova atividade")
     public ResponseEntity<Atividade> cadastrarNovaAtividade(@RequestBody AtividadeForm novaAtividade,

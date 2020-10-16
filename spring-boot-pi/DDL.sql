@@ -67,4 +67,8 @@ insert into usuario (nome_usuario, cpf_usuario, id_tipo_usuario, data_criado) va
 insert into conversa (data_inicio, data_ultima_conversa) values ('2020-09-21','2020-09-21');
 insert into usuario_conversa(id_usuario,id_conversa) values (1,1);
 insert into usuario_conversa(id_usuario,id_conversa) values (2,1);
+
+mysql -u porps -pfatec2020* -h porpschat.mysql.uhserver.com
+
 /* INSERTS */
+

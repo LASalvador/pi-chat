@@ -34,6 +34,7 @@ public class AtividadeService {
         atividade.setDataCriado(dataCriado);
         atividade.setDescAtividade(novaAtividade.getDescricaoAtividade());
         atividade.setTituloAtividade(novaAtividade.getTituloAtividade());
+        atividade.setCorAtividade(novaAtividade.getCorAtividade());
 
         for (Long ids : novaAtividade.getIdUsuarios()) {
             Usuario usuario = usuarioRepository.findByIdUsuario(ids);

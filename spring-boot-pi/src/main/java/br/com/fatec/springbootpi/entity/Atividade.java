@@ -14,6 +14,10 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import br.com.fatec.springbootpi.controller.View;
+
 @Entity
 @Table(name = "atividade")
 public class Atividade {
@@ -22,18 +26,22 @@ public class Atividade {
     @Column(name = "id_atividade")
     private Long idAtividade;
 
+    @JsonView(View.AtividadeResumo.class)
     @Column(name = "titulo_atividade")
     private String tituloAtividade;
 
+    @JsonView(View.AtividadeResumo.class)
     @Column(name = "desc_atividade")
     private String descAtividade;
 
+    @JsonView(View.AtividadeResumo.class)
     @Column(name = "cor_atividade")
     private String corAtividade;
 
     @Column(name = "data_criado")
     private Date dataCriado;
 
+    //@JsonView(View.AtividadeResumo.class)
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "usuario_atividade",
     joinColumns = { @JoinColumn(name = "id_atividade") },
