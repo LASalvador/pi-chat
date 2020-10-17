@@ -50,6 +50,7 @@ public class UsuarioService {
         return userRepo.findByIdUsuario(id);
     }
 
+    @PreAuthorize("isAuthenticated()")
     public Usuario editarUsuario(Long id, Usuario userUpdate){
         Usuario usuario = userRepo.findByIdUsuario(id);
         if (usuario != null){
