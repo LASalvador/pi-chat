@@ -55,7 +55,7 @@ function App() {
           />
           <Tab.Screen
             options={{
-              tabBarLabel: "Documentos",
+              tabBarLabel: "Arquivos",
               tabBarIcon: ({ color, size }) => (
                 <MaterialCommunityIcons
                   name="file-document"

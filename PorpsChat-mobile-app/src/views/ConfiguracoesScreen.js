@@ -7,19 +7,19 @@ export default function ConfiguracoesScreen({ navigation }) {
     <View style={styles.containerText}>
       <Text style={styles.texttop}>Chat Porps</Text>
       <Text style={styles.textconf}>Configurações</Text>
-      <Text style={styles.text} onPress={() => Linking.openURL("#")}>
+      <Text style={styles.text} onPress={() => {}}>
         <Icon name="gear" size={18} color="#999" /> CONFIGURAÇÃO 1
       </Text>
-      <Text style={styles.text} onPress={() => Linking.openURL("#")}>
+      <Text style={styles.text} onPress={() => {}}>
         <Icon name="gear" size={18} color="#999" /> CONFIGURAÇÃO 2
       </Text>
-      <Text style={styles.text} onPress={() => Linking.openURL("#")}>
+      <Text style={styles.text} onPress={() => {}}>
         <Icon name="gear" size={18} color="#999" /> CONFIGURAÇÃO 3
       </Text>
-      <Text style={styles.text} onPress={() => Linking.openURL("#")}>
+      <Text style={styles.text} onPress={() => {}}>
         <Icon name="gear" size={18} color="#999" /> CONFIGURAÇÃO 4
       </Text>
-      <Text style={styles.text} onPress={() => Linking.openURL("#")}>
+      <Text style={styles.text} onPress={() => {}}>
         <Icon name="gear" size={18} color="#999" /> CONFIGURAÇÃO 5
       </Text>
 
@@ -30,7 +30,7 @@ export default function ConfiguracoesScreen({ navigation }) {
           color: "#6E6E6E",
           fontWeight: "bold",
         }}
-        onPress={() => Linking.openURL("#")}
+        onPress={() => {}}
       >
         <Icon name="sign-out" size={18} color="#999" /> SAIR
       </Text>
@@ -40,7 +40,7 @@ export default function ConfiguracoesScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   containerText: {
-    justifyContent: "left",
+    justifyContent: "flex-start",
     margin: 20,
     textAlign: "center",
   },
