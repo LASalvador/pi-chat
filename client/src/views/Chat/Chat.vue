@@ -7,7 +7,7 @@
             cols="3"
           >
             <v-card flat>
-              <v-card-title>
+              <v-card-title class="bluePi--text">
                 Conversas
                 <v-spacer></v-spacer>
                 <Button
