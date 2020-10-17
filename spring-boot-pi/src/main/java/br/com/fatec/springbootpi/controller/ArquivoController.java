@@ -24,7 +24,7 @@ public class ArquivoController {
     public ResponseEntity<Arquivo> cadastrarNovoArquivo(@RequestBody ArquivoForm novoArquivo,
             UriComponentsBuilder uriComponentsBuilder) {
 
-        Arquivo arquivo = arquivoService.criarArquivo(novoArquivo.getNome(), novoArquivo.getDescricao());
+        Arquivo arquivo = arquivoService.criarArquivo(novoArquivo);
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.setLocation(uriComponentsBuilder.path("/arquivo/" + arquivo.getIdArquivo()).build().toUri());
         return new ResponseEntity<Arquivo>(arquivo, responseHeaders, HttpStatus.CREATED);

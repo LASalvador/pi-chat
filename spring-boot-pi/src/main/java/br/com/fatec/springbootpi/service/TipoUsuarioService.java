@@ -1,6 +1,7 @@
 package br.com.fatec.springbootpi.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,6 +15,7 @@ public class TipoUsuarioService {
     TipoUsuarioRepository tipoUserRepo;
 
     @Transactional
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public TipoUsuario criarTipoUsuario(String nomeTipoUsuario) {
         TipoUsuario tipoUsuario = new TipoUsuario();
         tipoUsuario.setNome(nomeTipoUsuario);
@@ -23,7 +25,6 @@ public class TipoUsuarioService {
             tipoUserRepo.save(tipoUsuario);
         }
     
-
         return tipoUsuario;
     }
 

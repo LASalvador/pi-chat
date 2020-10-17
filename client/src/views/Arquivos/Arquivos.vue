@@ -3,7 +3,7 @@
     <v-row>
       <v-col cols="12">
         <v-card>
-          <v-card-title>
+          <v-card-title class="bluePi--text">
             Arquivos
             <v-spacer></v-spacer>
             <v-text-field

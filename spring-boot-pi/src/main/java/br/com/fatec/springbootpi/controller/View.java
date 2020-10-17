@@ -9,4 +9,6 @@ public class View {
     public static class UsuarioCompleto extends UsuarioResumo {}
 
     public static class TipoUsuarioResumo {}
+
+    public static class AtividadeResumo {}
 }

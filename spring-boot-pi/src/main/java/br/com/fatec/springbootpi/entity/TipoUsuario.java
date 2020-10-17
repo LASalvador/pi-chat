@@ -13,8 +13,8 @@ import br.com.fatec.springbootpi.controller.View;
 
 @Entity
 @Table(name="tipo_usuario")
-public class TipoUsuario {
-    
+public class TipoUsuario{
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_tipo_usuario")
