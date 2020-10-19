@@ -6,14 +6,46 @@
           <v-col
             cols="3"
           >
-            <ChatList
-              :items="items"
-            />
+            <v-card flat>
+              <v-card-title class="bluePi--text">
+                Conversas
+                <v-spacer></v-spacer>
+                <Button
+                  icon
+                  @click="modalConversa = true"
+                >
+                  <v-icon>mdi-plus</v-icon>
+                </Button>
+              </v-card-title>
+            </v-card>
+            <v-list
+            two-line
+            class="overflow-y-auto"
+            :max-height="windowSize"
+            >
+            <v-list-item
+              v-for="(item,key) in items"
+              :key="key"
+              @click="idConversa = key"
+            >
+              <v-list-item-content>
+                  <v-list-item-title>
+                    <span class="heading-6">{{item.author}}</span>
+                  </v-list-item-title>
+                  <v-list-item-subtitle class="body-2">
+                    <span class="indigo--text text--darken-2">{{item.role}}</span>
+                  </v-list-item-subtitle>
+                </v-list-item-content>
+                <v-list-item-action class="body-2">
+                  {{item.date}}
+                </v-list-item-action>
+            </v-list-item>
+          </v-list>
           </v-col>
           <v-col
             cols="9"
           >
-            <MessageHeader title="Joao"/>
+            <MessageHeader :title="items[idConversa].author"/>
             <v-container>
               <v-row
                 no-gutters
@@ -28,11 +60,12 @@
                     :max-height="maxChatListSize"
                     :min-height="minChatListSize"
                     color="transparent"
+                    flat
                   >
                     <MessageCard
-                      v-for = "item in messageList"
-                      :author= "item.author"
-                      :date= "item.date"
+                      v-for="item in messageList"
+                      :author="item.author"
+                      :date="item.date"
                       :content="item.content"
                       :key="item.content"
                     />
@@ -50,24 +83,51 @@
               </v-row>
             </v-container>
           </v-col>
+          <v-dialog
+          v-model="modalConversa"
+        >
+          <v-card>
+            <v-toolbar
+                dark
+                color="bluePi">
+                <v-btn
+                  icon
+                  dark
+                  @click="modalConversa = false">
+                  <v-icon>mdi-close</v-icon>
+                </v-btn>
+                <v-toolbar-title>Conversar Com</v-toolbar-title>
+                <v-spacer></v-spacer>
+                <v-toolbar-items>
+                  <v-btn
+                    dark
+                    text>
+                    Iniciar Conversa
+                  </v-btn>
+                </v-toolbar-items>
+              </v-toolbar>
+          <ShareCard />
+          </v-card>
+        </v-dialog>
       </v-row>
   </v-container>
 </template>
 
 <script>
-import ChatList from '../../components/ChatList/ChatList.vue'
 import MessageCard from '../../components/MessageCard/MessageCard.vue'
 import MessageHeader from '../../components/MessageHeader/MessageHeader.vue'
 import TextArea from '../../components/TextArea/TextArea.vue'
 import Button from '../../components/Button/Button.vue'
+import ShareCard from '../../components/ShareCard/ShareCard.vue'
+import ApiMensagem from '../../services/api'
 
 export default {
   components: {
-    ChatList,
     MessageCard,
     MessageHeader,
     TextArea,
-    Button
+    Button,
+    ShareCard
   },
   data: () => ({
     items: [
@@ -86,19 +146,26 @@ export default {
       { author: 'Maria', date: 'Jan 28, 2014', role: 'Diretor' }
     ],
     message: '',
-    messageList: []
+    messageList: [],
+    idConversa: 0,
+    modalConversa: false
   }),
   computed: {
     maxChatListSize: function () {
-      return window.innerHeight * 0.75
+      return window.innerHeight * 0.7
     },
     minChatListSize: function () {
       return window.innerHeight * 0.7
+    },
+    windowSize: function () {
+      return window.innerHeight * 0.8
     }
   },
   methods: {
-    addmessage () {
-      this.messageList.push({ author: 'Mayara', content: this.message, date: '23/09/2020' })
+    async addmessage () {
+      const resposta = await ApiMensagem.mensagem.enviarMensagem(this.message, 1, 1)
+      const mensagem = resposta.data
+      this.messageList.push({ author: 'Mayara', content: mensagem.conteudoMsg, date: '23/09/2020' })
       this.message = ''
     }
   }

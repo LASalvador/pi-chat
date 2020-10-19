@@ -10,6 +10,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import br.com.fatec.springbootpi.controller.View;
+
 @Entity
 @Table(name = "mensagem")
 public class Mensagem {
@@ -17,14 +21,18 @@ public class Mensagem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_mensagem")
+    @JsonView(View.MensagemResumo.class)
     private Long idMensagem;
 
+    @JsonView(View.MensagemResumo.class)
     @Column(name = "conteudo_mensagem")
     private String conteudoMsg;
     
+    @JsonView(View.MensagemResumo.class)
     @Column(name = "data_criado")
     private Date dataCriado;
 
+    @JsonView(View.MensagemResumo.class)
     @ManyToOne
     @JoinColumn(name="id_usuario")
     private Usuario usuarios;
@@ -32,6 +40,10 @@ public class Mensagem {
     @ManyToOne
     @JoinColumn(name="id_conversa")
     private Conversa conversas;
+
+    public Mensagem () {
+        this.dataCriado = new Date();
+    }
 
     public String getConteudoMsg() {
         return conteudoMsg;

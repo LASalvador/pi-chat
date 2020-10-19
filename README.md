@@ -24,11 +24,18 @@ Os requisitos do trabalho estão dividos em requisitos funcionais, descrevem fun
 * Controle de atividades por meio de notas
 * Manutenção de arquivos
 * Api para integração com outros sistemas
+* Aplicativo para praticidade dos usuários
 
-## Entregas
+## Plano de Ação
 
-- [Relatorio Sprint 1](https://github.com/LASalvador/pi-chat/blob/development/relatorios-sprint/sprint1.md#entrega-1-2009)
+![Plano de ação parte 1](image/SprintCards_page-0001.jpg)
+![Plano de ação parte 2](image/SprintCards_page-0002.jpg)
+
+## Relatório de Entregas
+
+- [Relatorio Sprint 1](https://github.com/LASalvador/pi-chat/blob/master/relatorios-sprint/sprint1.md#entrega-1-2009)
 - [Relatorio Sprint 2](https://github.com/LASalvador/pi-chat/blob/master/relatorios-sprint/sprint2.md#entrega-2-0410)
+- [Relatorio Sprint 3](https://github.com/LASalvador/pi-chat/blob/development/relatorios-sprint/sprint3.md#entrega-3-1810)
 
 
 ## Tecnologias Utilizadas

@@ -1,19 +1,13 @@
 package br.com.fatec.springbootpi;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-
-import java.util.Date;
 import java.util.List;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
-
-import br.com.fatec.springbootpi.entity.Conversa;
 import br.com.fatec.springbootpi.entity.TipoUsuario;
 import br.com.fatec.springbootpi.entity.Usuario;
 import br.com.fatec.springbootpi.repository.ConversaRepository;

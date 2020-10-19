@@ -58,17 +58,16 @@
             <v-row>
                 <v-col cols="12">
                   <Input
-                    label="titulo"
+                    label="Título"
                     v-model="note.title"
                   />
                 </v-col>
                 <v-col cols="12">
-                  <v-textarea
-                    solo
-                    name="input-7-4"
-                    label="comprar pao de queijo"
+                  <TextArea
+                    label="Descrição da tarefa"
+                    rows="4"
                     v-model="note.text"
-                  ></v-textarea>
+                  />
                 </v-col>
                 <v-col cols="12">
                   <span v-for="(color, index) in styles" :key="index" style="margin-left: 5px">
@@ -77,9 +76,42 @@
                     </v-btn>
                   </span>
                 </v-col>
+                <v-col>
+                  <Button
+                    @click="sharedButton = !sharedButton"
+                  >
+                    Compartilhar Atividade
+                  </Button>
+                </v-col>
               </v-row>
           </v-card-text>
-
+        </v-card>
+      </v-dialog>
+      <v-dialog
+        v-model="sharedButton"
+      >
+        <v-card>
+          <v-toolbar
+              dark
+              color="bluePi">
+              <v-btn
+                icon
+                dark
+                @click="sharedButton = false">
+                <v-icon>mdi-close</v-icon>
+              </v-btn>
+              <v-toolbar-title>Enviar para</v-toolbar-title>
+              <v-spacer></v-spacer>
+              <v-toolbar-items>
+                <v-btn
+                  dark
+                  text
+                  @click="addFile">
+                  Compartilhar
+                </v-btn>
+              </v-toolbar-items>
+            </v-toolbar>
+        <SharedCard />
         </v-card>
       </v-dialog>
   </v-container>
@@ -89,16 +121,21 @@
 import NoteCard from '../../components/NoteCard/NoteCard.vue'
 import Button from '../../components/Button/Button.vue'
 import Input from '../../components/Input/Input.vue'
+import TextArea from '../../components/TextArea/TextArea.vue'
+import SharedCard from '../../components/ShareCard/ShareCard.vue'
 
 export default {
   name: 'Atividades',
   components: {
     NoteCard,
     Button,
-    Input
+    Input,
+    TextArea,
+    SharedCard
   },
   data: () => ({
     buttonNewNote: false,
+    sharedButton: false,
     notes: [
       {
         title: 'Lista de compras',
