@@ -1,4 +1,4 @@
-# Entrega 3 (04/10)
+# Entrega 3 (18/10)
 
 Nesta Sprint o foco foi no desenvolvimento da tela de atividades,arquivos no aplicativo. No web o foco foi o desenvolvimento do componente de selecionar Pessoas. Houve também atualização na tela de chat e adição da tela de login. No back end houve mapeamente de novas entidades e atualização de alguns endpoints para tratamento de erros. 
 Todos as implementações dessa sprint estão disponiveis na branch **Sprint3**
