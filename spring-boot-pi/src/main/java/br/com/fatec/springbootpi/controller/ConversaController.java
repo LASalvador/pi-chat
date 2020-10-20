@@ -1,6 +1,9 @@
 package br.com.fatec.springbootpi.controller;
 
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonView;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +23,7 @@ public class ConversaController {
     @Autowired
     private ConversaService conversaService;
 
+    @JsonView(View.ConversaResumo.class)
     @GetMapping(value = "/{id}")
     @ApiOperation(value = "Buscar conversa pelo id do usuario")
     public ResponseEntity<List<Conversa>> listById(@PathVariable final Long id) {
@@ -27,6 +31,8 @@ public class ConversaController {
         return ResponseEntity.ok(c);
     }
 
+
+    @JsonView(View.ConversaResumo.class)
     @PostMapping
     @ApiOperation(value = "Inserir uma nova conversa")
     public ResponseEntity<Conversa> cadastrarNovaConversa(@RequestBody CriarConversaForm criarConversaForm,

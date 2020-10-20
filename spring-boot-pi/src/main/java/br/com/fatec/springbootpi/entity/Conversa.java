@@ -14,6 +14,10 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import br.com.fatec.springbootpi.controller.View;
+
 @Entity
 @Table(name = "conversa")
 public class Conversa {
@@ -28,14 +32,17 @@ public class Conversa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_conversa")
+    @JsonView(View.ConversaResumo.class)
     private Long idConversa;
 
+    @JsonView(View.ConversaResumo.class)
     @Column(name = "data_inicio")
     private Date dataInicial;
 
     @Column(name = "data_ultima_conversa")
     private Date dataUltimaConversa;
 
+    @JsonView(View.ConversaResumo.class)
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "usuario_conversa",
     joinColumns = { @JoinColumn(name = "id_conversa") },
