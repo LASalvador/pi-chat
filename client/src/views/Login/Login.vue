@@ -18,14 +18,20 @@
           <p class="text-center bluePi--text headline font-weight-bold">Entrar</p>
           <v-row justify="center">
             <v-col cols="8">
-              <Input label="CPF"/>
+              <Input
+                label="CPF"
+                v-model="cpf"
+              />
             </v-col>
             <v-col cols="8">
-              <Input label="Senha"/>
+              <Input
+                label="Senha"
+                v-model="senha"
+              />
             </v-col>
             <v-col cols="8">
               <div class="d-flex flex-column">
-                <Button>
+                <Button @click="logar">
                   Entrar
                 </Button>
               </div>
@@ -40,16 +46,32 @@
 <script>
 import Input from '../../components/Input/Input.vue'
 import Button from '../../components/Button/Button.vue'
+import api from '../../services/api'
+import { mapMutations } from 'vuex'
 
 export default {
   name: 'Login',
   data () {
     return {
+      cpf: '',
+      senha: ''
     }
   },
   components: {
     Input,
     Button
+  },
+  methods: {
+    logar () {
+      api.auth.autenticar(this.cpf, this.senha)
+        .then(res => {
+          this.setToken(res.data.token)
+        })
+        .catch(err => console.log(err))
+    },
+    ...mapMutations([
+      'setToken'
+    ])
   }
 }
 </script>
