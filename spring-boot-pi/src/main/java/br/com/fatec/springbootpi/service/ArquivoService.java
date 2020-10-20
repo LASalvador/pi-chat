@@ -6,6 +6,7 @@ import java.util.HashSet;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import br.com.fatec.springbootpi.entity.Arquivo;
@@ -24,6 +25,7 @@ public class ArquivoService {
     private UsuarioRepository usuarioRepository;
 
     @Transactional
+    @PreAuthorize("hasAnyRole('ATENDENTE, ADMIN')")
     public Arquivo criarArquivo(ArquivoForm novoArquivo) {
 
         Date dataCriado = new Date();

@@ -1,4 +1,9 @@
-/*create database chatbd;
+/*
+mysql -u porps -pfatec2020* -h porpschat.mysql.uhserver.com porpschat
+
+
+
+create database chatbd;
 use chatbd;
 
 create user 'usuario'@'localhost' identified by 'pass321';

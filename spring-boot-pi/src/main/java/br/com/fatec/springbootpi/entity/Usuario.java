@@ -27,7 +27,11 @@ public class Usuario {
     @Column(name = "id_usuario")
     private Long idUsuario;
 
-    @JsonView({View.UsuarioResumo.class, View.MensagemResumo.class, View.AtividadeResumo.class})
+    @JsonView({View.UsuarioResumo.class, 
+               View.MensagemResumo.class, 
+               View.AtividadeResumo.class, 
+               View.ArquivoResumo.class,
+               View.ConversaResumo.class})
     @Column(name = "nome_usuario")
     private String nomeUsuario;
 

@@ -1,5 +1,7 @@
 package br.com.fatec.springbootpi.controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +22,7 @@ public class ArquivoController {
     private ArquivoService arquivoService;
 
     @PostMapping
+    @JsonView(View.ArquivoResumo.class)
     @ApiOperation(value = "Inserir um novo arquivo")
     public ResponseEntity<Arquivo> cadastrarNovoArquivo(@RequestBody ArquivoForm novoArquivo,
             UriComponentsBuilder uriComponentsBuilder) {
