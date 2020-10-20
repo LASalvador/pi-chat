@@ -13,4 +13,6 @@ public class View {
     public static class TipoUsuarioResumo {}
 
     public static class AtividadeResumo {}
+
+    public static class ArquivoResumo {}
 }
