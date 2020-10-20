@@ -1,5 +1,5 @@
 /*
-mysql -u porps -pfatec2020* -h porpschat.mysql.uhserver.com
+mysql -u porps -pfatec2020* -h porpschat.mysql.uhserver.com porpschat
 
 
 
