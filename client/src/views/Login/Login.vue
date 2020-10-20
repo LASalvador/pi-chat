@@ -18,7 +18,7 @@
           <p class="text-center bluePi--text headline font-weight-bold">Entrar</p>
           <v-row justify="center">
             <v-col cols="8">
-              <Input label="Email"/>
+              <Input label="CPF"/>
             </v-col>
             <v-col cols="8">
               <Input label="Senha"/>
