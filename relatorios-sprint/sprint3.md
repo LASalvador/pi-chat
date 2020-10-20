@@ -22,13 +22,6 @@ Todos as implementações dessa sprint estão disponiveis na branch **Sprint3**
 - Adição tela de arquivos
 - Adição tela de Atividades
 
-## Gifs
-### Tela de atividades
-<img src="atividades1.gif" alt="Gif da Tela de atividades" />
-
-### App
-<img src="app1.gif" alt="Gif do app" />
-
 ## Documentos
 
 - [CheckList](https://drive.google.com/file/d/1f1VaF3AyBDdZfDbSbJjDIOPtw1ggvbHM/view?usp=sharing)
@@ -37,12 +30,18 @@ Todos as implementações dessa sprint estão disponiveis na branch **Sprint3**
 - [Matriz Comunicação](https://drive.google.com/file/d/17wN9k7ovAQHJzKbErLM1wc1aZUbPGm6w/view?usp=sharing)
 - [Portfólio de serviço](https://drive.google.com/file/d/1XlE7-h5xuJhxYkxVZT1x1KfPpBq5v-Z7/view?usp=sharing)
 
+## Gifs
+### Tela de atividades
+<img src="web2.gif" alt="Gif da Tela de atividades" />
+
+### App
+<img src="app2.gif" alt="Gif do app" />
 
 
 ## Próximos passos
 
 - Consumo de API p autenticação
-- Adição de libs para gerenciamento de estado
+- Adição de libs para gerenciamento de estado(Vuex)
 - Estudos sobre implementação de I.A
 - Estudos sobre chats flutuantes
 
