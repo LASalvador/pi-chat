@@ -106,7 +106,7 @@
                 <v-btn
                   dark
                   text
-                  @click="addFile">
+                >
                   Compartilhar
                 </v-btn>
               </v-toolbar-items>
