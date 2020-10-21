@@ -26,6 +26,7 @@
             <v-col cols="8">
               <Input
                 label="Senha"
+                type="password"
                 v-model="senha"
               />
             </v-col>
