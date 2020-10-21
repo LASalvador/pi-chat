@@ -4,6 +4,7 @@
     :label="label"
     :value="value"
     :prepend-icon="prependIcon"
+    :type="type"
     @input="$emit('input', $event)"
     required
   />
@@ -24,6 +25,10 @@ export default {
     prependIcon: {
       type: String,
       default: ''
+    },
+    type: {
+      type: String,
+      default: 'text'
     }
   }
 }
