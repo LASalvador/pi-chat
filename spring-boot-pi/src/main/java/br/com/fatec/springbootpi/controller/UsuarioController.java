@@ -51,12 +51,18 @@ public class UsuarioController {
     }
 
     @JsonView(View.UsuarioResumo.class)
-    @PreAuthorize("isAuthenticated()")
     @GetMapping(value = "/{id}")
     @ApiOperation(value = "Buscar usuário por id")
     public Usuario buscarUsuarioPorID(@PathVariable("id") Long Id) {
         return usuarioService.buscarPorId(Id);
 
+    }
+
+    @JsonView(View.UsuarioResumo.class)
+    @GetMapping(value = "cpf/{cpf}")
+    @ApiOperation(value = "Buscar usuário por cpf")
+    public Usuario buscarUsuarioPorID(@PathVariable("cpf") String cpf) {
+        return usuarioService.buscarPorCpf(cpf);
     }
 
     @JsonView(UsuarioResumo.class)

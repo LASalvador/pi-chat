@@ -70,5 +70,9 @@ public class UsuarioService {
     public void apagarUsuario(Long id){
         userRepo.deleteById(id);
     }
+
+    public Usuario buscarPorCpf(String cpf) {
+        return userRepo.findByCpfUsuario(cpf);
+    }
     
 }

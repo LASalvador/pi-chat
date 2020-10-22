@@ -25,6 +25,7 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_usuario")
+    @JsonView(View.UsuarioResumo.class)
     private Long idUsuario;
 
     @JsonView({View.UsuarioResumo.class, 
