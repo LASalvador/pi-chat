@@ -32,6 +32,9 @@ export default new Vuex.Store({
   getters: {
     getToken (state) {
       return state.token
+    },
+    getUsuario (state) {
+      return state.usuario
     }
   },
   actions: {
