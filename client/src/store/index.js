@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import VuexPersist from 'vuex-persist'
+import api from '@/services/api'
 
 Vue.use(Vuex)
 
@@ -38,6 +39,15 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    getUserData (context, payload) {
+      api.usuario.buscarUsuarioPorCPF(payload.cpf)
+        .then(res => {
+          context.commit('setUsuario', res.data)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }
   },
   modules: {
   }
