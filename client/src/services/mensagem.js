@@ -1,4 +1,4 @@
-import api from './http'
+import http from './http'
 
 function enviarMensagem (conteudoMsg, idUsuario, idConversa) {
   const dadosMensagens = {
@@ -6,7 +6,7 @@ function enviarMensagem (conteudoMsg, idUsuario, idConversa) {
     idUsuario,
     idConversa
   }
-  return api.post('mensagem', dadosMensagens)
+  return http.post('mensagem', dadosMensagens)
 }
 
 export default {

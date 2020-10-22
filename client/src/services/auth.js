@@ -1,7 +1,7 @@
-import api from './http'
+import http from './http'
 
 function autenticar (documento, senha) {
-  return api.post('/login', {
+  return http.post('/login', {
     document: documento,
     password: senha
   })
