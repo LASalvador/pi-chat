@@ -25,7 +25,7 @@
             <v-list-item-icon>
               <v-icon color="bluePi">mdi-account</v-icon>
             </v-list-item-icon>
-            <v-list-item-title>John Leider</v-list-item-title>
+            <v-list-item-title>{{getUsuario.nomeUsuario}}</v-list-item-title>
 
             <v-btn
             icon
@@ -40,6 +40,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'Header',
   data () {
@@ -51,6 +53,11 @@ export default {
       ],
       mini: true
     }
+  },
+  computed: {
+    ...mapGetters([
+      'getUsuario'
+    ])
   }
 }
 </script>
