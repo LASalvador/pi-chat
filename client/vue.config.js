@@ -1,8 +1,11 @@
+const path = require("path");
+const vueSrc = "./src";
+
 module.exports = {
   configureWebpack: {
     resolve: {
       alias: {
-        '@': '/home/lucas/Projects/pi-chat/client/src'
+        '@': path.resolve(__dirname, vueSrc)
       },
       extensions: [
         '.js',
