@@ -26,7 +26,7 @@
             <v-list-item
               v-for="(item,key) in items"
               :key="key"
-              @click="idConversa = key"
+              @click="trocaConversa(item)"
             >
               <v-list-item-content>
                   <v-list-item-title>
@@ -44,8 +44,9 @@
           </v-col>
           <v-col
             cols="9"
+            v-if="idConversa"
           >
-            <MessageHeader :title="items[idConversa].author"/>
+            <MessageHeader :title="destinatario"/>
             <v-container>
               <v-row
                 no-gutters
@@ -83,6 +84,18 @@
               </v-row>
             </v-container>
           </v-col>
+          <v-col
+            cols="9"
+            v-else
+          >
+            <div class="d-flex flex-column justify-space-between align-center">
+              <span
+                class="bluePi--text headline"
+              >
+                Selecione um contato e troque mensagems
+              </span>
+            </div>
+          </v-col>
           <v-dialog
           v-model="modalConversa"
         >
@@ -119,7 +132,8 @@ import MessageHeader from '../../components/MessageHeader/MessageHeader.vue'
 import TextArea from '../../components/TextArea/TextArea.vue'
 import Button from '../../components/Button/Button.vue'
 import ShareCard from '../../components/ShareCard/ShareCard.vue'
-import ApiMensagem from '../../services/api'
+import api from '../../services/api'
+import { mapGetters } from 'vuex'
 
 export default {
   components: {
@@ -130,25 +144,12 @@ export default {
     ShareCard
   },
   data: () => ({
-    items: [
-      { author: 'Jose', date: 'Jan 9, 2014', role: 'Diretor' },
-      { author: 'Ricardo', date: 'Jan 17, 2014', role: 'Diretor' },
-      { author: 'Maria', date: 'Jan 28, 2014', role: 'Diretor' },
-      { author: 'Jose', date: 'Jan 9, 2014', role: 'Diretor' },
-      { author: 'Ricardo', date: 'Jan 17, 2014', role: 'Diretor' },
-      { author: 'Maria', date: 'Jan 28, 2014', role: 'Diretor' },
-      { author: 'Jose', date: 'Jan 9, 2014', role: 'Diretor' },
-      { author: 'Ricardo', date: 'Jan 17, 2014', role: 'Diretor' },
-      { author: 'Maria', date: 'Jan 28, 2014', role: 'Diretor' },
-      { author: 'Work', date: 'Jan 28, 2014', role: 'Diretor' },
-      { author: 'Jose', date: 'Jan 9, 2014', role: 'Diretor' },
-      { author: 'Ricardo', date: 'Jan 17, 2014', role: 'Diretor' },
-      { author: 'Maria', date: 'Jan 28, 2014', role: 'Diretor' }
-    ],
+    items: [],
     message: '',
     messageList: [],
     idConversa: 0,
-    modalConversa: false
+    modalConversa: false,
+    destinatario: ''
   }),
   computed: {
     maxChatListSize: function () {
@@ -159,14 +160,58 @@ export default {
     },
     windowSize: function () {
       return window.innerHeight * 0.8
-    }
+    },
+    ...mapGetters([
+      'getUsuario'
+    ])
+  },
+  mounted () {
+    this.pegarConversasUsuario()
   },
   methods: {
+    trocaConversa (conversa) {
+      this.idConversa = conversa.idConversa
+      this.destinatario = conversa.author
+      this.messageList = []
+      this.pegarMensagensConversa()
+    },
     async addmessage () {
-      const resposta = await ApiMensagem.mensagem.enviarMensagem(this.message, 1, 1)
-      const mensagem = resposta.data
-      this.messageList.push({ author: 'Mayara', content: mensagem.conteudoMsg, date: '23/09/2020' })
-      this.message = ''
+      api.mensagem.enviarMensagem(this.message, this.getUsuario.idUsuario, this.idConversa)
+        .then(() => {
+          this.message = ''
+          this.pegarMensagensConversa()
+        })
+        .catch(err => console.log(err))
+    },
+    pegarMensagensConversa () {
+      api.mensagem.pegarMensagensConversa(this.idConversa)
+        .then(res => {
+          const mensagens = res.data.map(mensagem => {
+            return {
+              author: mensagem.usuarios.nomeUsuario,
+              date: mensagem.dataCriado.substring(0, 10),
+              content: mensagem.conteudoMsg
+            }
+          })
+          this.messageList = mensagens
+        })
+        .catch(err => console.log(err))
+    },
+    pegarConversasUsuario () {
+      api.conversa.pegarConversasUsuario(this.getUsuario.idUsuario)
+        .then(res => {
+          const conversas = res.data.map(conversa => {
+            const author = conversa.usuarios[0].nomeUsuario === this.getUsuario.nomeUsuario ? conversa.usuarios[1].nomeUsuario : conversa.usuarios[0].nomeUsuario
+            return {
+              idConversa: conversa.idConversa,
+              author: author,
+              date: conversa.dataInicial.substring(0, 10),
+              role: conversa.usuarios[0].tiposUsuarios.nome.substring(5)
+            }
+          })
+          this.items = conversas
+        })
+        .catch(err => console.log(err))
     }
   }
 }
