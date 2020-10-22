@@ -67,6 +67,10 @@ export default {
       api.auth.autenticar(this.cpf, this.senha)
         .then(res => {
           this.setToken(res.data.token)
+          this.$store.dispatch('getUserData', {
+            cpf: res.data.document
+          })
+          this.$router.replace('chat')
         })
         .catch(err => console.log(err))
     },
