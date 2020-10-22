@@ -9,6 +9,11 @@ function enviarMensagem (conteudoMsg, idUsuario, idConversa) {
   return http.post('mensagem', dadosMensagens)
 }
 
+function pegarMensagensConversa (idConversa) {
+  return http.get(`mensagem/conversa/${idConversa}`)
+}
+
 export default {
-  enviarMensagem
+  enviarMensagem,
+  pegarMensagensConversa
 }
