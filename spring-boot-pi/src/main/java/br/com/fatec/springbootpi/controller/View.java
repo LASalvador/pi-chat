@@ -15,4 +15,5 @@ public class View {
     public static class AtividadeResumo {}
 
     public static class ArquivoResumo {}
+
 }
