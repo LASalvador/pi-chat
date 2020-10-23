@@ -1,6 +1,9 @@
 /*
 mysql -u porps -pfatec2020* -h porpschat.mysql.uhserver.com porpschat
 
+Admin -> {"document":"58478548858","password":"senha123"}
+Padrao -> {"document":"98654321541","password":"senha123"}
+
 
 
 create database chatbd;
