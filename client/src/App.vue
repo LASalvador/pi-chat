@@ -35,7 +35,7 @@
 </template>
 <script>
 import SideBar from './components/SideBar/SideBar.vue'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 
 export default {
   components: {
@@ -43,7 +43,13 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'getToken'
+      'getToken',
+      'getRequest'
+    ])
+  },
+  methods: {
+    ...mapMutations([
+      'closeSnackbar'
     ])
   }
 }
