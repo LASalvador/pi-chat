@@ -31,6 +31,9 @@ export default new Vuex.Store({
     setToken (state, token) {
       state.token = token
     },
+    setIdUsuario (state, idUsuario) {
+      state.usuario.idUsuario = idUsuario
+    },
     logout (state) {
       state.token = null
       state.usuario = {}
