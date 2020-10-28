@@ -34,13 +34,19 @@
             <v-icon>mdi-chevron-left</v-icon>
             </v-btn>
           </v-list-item>
+        <v-list-item class="px-2" @click="sair">
+            <v-list-item-icon>
+              <v-icon color="bluePi">mdi-logout</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>Sair</v-list-item-title>
+          </v-list-item>
       </v-list>
 
     </v-navigation-drawer>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 
 export default {
   name: 'Header',
@@ -58,6 +64,15 @@ export default {
     ...mapGetters([
       'getUsuario'
     ])
+  },
+  methods: {
+    ...mapMutations([
+      'logout'
+    ]),
+    sair () {
+      this.logout()
+      this.$router.replace('login')
+    }
   }
 }
 </script>
