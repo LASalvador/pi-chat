@@ -67,6 +67,7 @@ export default {
       api.auth.autenticar(this.cpf, this.senha)
         .then(res => {
           this.setToken(res.data.token)
+          this.setIdUsuario(res.data.idUsuario)
           this.$store.dispatch('getUserData', {
             cpf: res.data.document
           })
@@ -75,7 +76,8 @@ export default {
         .catch(err => console.log(err))
     },
     ...mapMutations([
-      'setToken'
+      'setToken',
+      'setIdUsuario'
     ])
   }
 }
