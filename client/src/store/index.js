@@ -16,7 +16,13 @@ export default new Vuex.Store({
   ],
   state: {
     token: null,
-    usuario: null
+    usuario: {},
+    request: {
+      loading: false,
+      mensagem: '',
+      cor: '',
+      snackbar: ''
+    }
   },
   mutations: {
     setUsuario (state, usuario) {
@@ -27,7 +33,19 @@ export default new Vuex.Store({
     },
     logout (state) {
       state.token = null
-      state.usuario = null
+      state.usuario = {}
+    },
+    beforeRequest (state) {
+      state.request.loading = true
+    },
+    afterRequest (state, payload) {
+      state.request.loading = false
+      state.request.mensagem = payload.mensagem
+      state.request.cor = payload.cor
+      state.request.snackbar = true
+    },
+    closeSnackbar (state) {
+      state.request.snackbar = false
     }
   },
   getters: {
@@ -36,6 +54,9 @@ export default new Vuex.Store({
     },
     getUsuario (state) {
       return state.usuario
+    },
+    getRequest (state) {
+      return state.request
     }
   },
   actions: {
