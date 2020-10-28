@@ -5,6 +5,31 @@
     />
     <v-main>
       <router-view/>
+      <v-overlay :value="getRequest.loading">
+        <v-progress-circular
+          indeterminate
+          size="64"
+        />
+      </v-overlay>
+      <v-snackbar
+        v-model="getRequest.snackbar"
+        :color="getRequest.cor"
+        bottom
+        left
+      >
+        {{ getRequest.mensagem }}
+
+        <template v-slot:action="{ attrs }">
+          <v-btn
+            dark
+            v-bind="attrs"
+            icon
+            @click="closeSnackbar"
+          >
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
+        </template>
+      </v-snackbar>
     </v-main>
   </v-app>
 </template>
