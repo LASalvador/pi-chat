@@ -2,6 +2,8 @@ package br.com.fatec.springbootpi.model.Form;
 
 public class LoginForm {
 
+    private Long idUsuario;
+
     private String document;
 
     private String password;
@@ -9,6 +11,14 @@ public class LoginForm {
     private String autorizacao;
 
     private String token;
+
+    public Long getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(Long idUsuario) {
+        this.idUsuario = idUsuario;
+    }
 
     public String getDocument() {
         return document;
