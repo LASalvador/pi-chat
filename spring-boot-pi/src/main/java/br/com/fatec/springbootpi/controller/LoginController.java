@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.fatec.springbootpi.entity.Usuario;
 import br.com.fatec.springbootpi.model.Form.LoginForm;
 import br.com.fatec.springbootpi.security.JwtUtils;
+import br.com.fatec.springbootpi.service.UsuarioService;
 
 @RestController
 @CrossOrigin
@@ -23,12 +25,17 @@ public class LoginController {
     @Autowired
     private AuthenticationManager authManager;
 
+    @Autowired
+    private UsuarioService usuarioService;
+
     @PostMapping
     public LoginForm autenticar(@RequestBody LoginForm loginForm) throws JsonProcessingException {
         
         Authentication auth = new UsernamePasswordAuthenticationToken(loginForm.getDocument(), loginForm.getPassword());
+        Usuario user = usuarioService.buscarPorCpf(loginForm.getDocument());
         auth = authManager.authenticate(auth);
         loginForm.setPassword(null);
+        loginForm.setIdUsuario(user.getIdUsuario());
         loginForm.setToken(JwtUtils.generateToken(auth));
         return loginForm;
     }
