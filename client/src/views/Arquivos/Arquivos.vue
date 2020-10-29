@@ -183,14 +183,15 @@ export default {
     addFile () {
       let newFile = {}
       newFile = Object.assign(newFile, this.file)
-      console.log(this.file)
-      console.log(newFile)
       if (newFile) {
-        newFile.dataCriacao = new Date()
         newFile.nomeArquivo = this.file.nomeArquivo.name
-        this.desserts.push(newFile)
-        this.buttonNewFile = false
-        this.clearFile()
+        api.arquivos.enviarArquivo(newFile.nomeArquivo, newFile.legenda, [this.getUsuario.idUsuario])
+          .then(() => {
+            this.buttonNewFile = false
+            this.clearFile()
+            this.pegarArquivos()
+          })
+          .catch(err => console.log(err))
       }
     },
     clearFile () {
