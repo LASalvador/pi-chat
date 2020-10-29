@@ -2,7 +2,7 @@ import axios from 'axios'
 import store from '../store/index'
 
 const api = axios.create({
-  baseURL: 'https://8080-cb3ebcac-3f98-4b5f-a7a4-96c75698d793.ws-us02.gitpod.io/spring-app/'
+  baseURL: 'https://8080-dfd7e438-d8fc-4248-b2eb-848c04beb4e9.ws-us02.gitpod.io/spring-app/'
 })
 
 function _beforeRequest (request) {
