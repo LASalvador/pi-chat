@@ -16,7 +16,7 @@
           </v-card-title>
           <v-data-table
             :headers="headers"
-            :items="desserts"
+            :items="arquivos"
             :search="search"
           ></v-data-table>
         </v-card>
@@ -129,6 +129,8 @@
 import Input from '../../components/Input/Input.vue'
 import Button from '../../components/Button/Button.vue'
 import SharedCard from '../../components/ShareCard/ShareCard.vue'
+import api from '../../services/api'
+import { mapGetters } from 'vuex'
 
 export default {
   components: {
@@ -144,31 +146,38 @@ export default {
       headers: [
         {
           text: 'Nome do Arquivo',
-          align: 'start',
           value: 'nomeArquivo'
         },
         {
-          text: 'Data de Criação',
-          value: 'dataCriacao',
-          sortable: false
-        }
-      ],
-      desserts: [
-        {
-          nomeArquivo: 'Lucas Salvador',
-          dataCriacao: '30/09/2020'
+          text: 'Legenda',
+          sortable: false,
+          value: 'legenda'
         },
         {
-          nomeArquivo: 'Mayara Brígida',
-          dataCriacao: '30/09/2020'
+          text: 'Usuarios',
+          sortable: false,
+          value: 'usuarios'
+        },
+        {
+          text: 'Data de Criação',
+          value: 'dataCriacao'
         }
       ],
+      arquivos: [],
       file: {
         legenda: null,
         nomeArquivo: null,
         dataCriacao: null
       }
     }
+  },
+  computed: {
+    ...mapGetters([
+      'getUsuario'
+    ])
+  },
+  mounted () {
+    this.pegarArquivos()
   },
   methods: {
     addFile () {
@@ -191,6 +200,28 @@ export default {
     },
     openNewFile () {
       this.buttonNewFile = true
+    },
+    pegarArquivos () {
+      api.arquivos.pegarArquivosPorUsuario(this.getUsuario.idUsuario)
+        .then(response => {
+          const arquivos = response.data.map(arquivo => {
+            var usuarios = arquivo.usuarios.reduce((total, usuario, index, arr) => {
+              if (index === arr.length - 1) {
+                return total + usuario.nomeUsuario
+              } else {
+                return total + usuario.nomeUsuario + ', '
+              }
+            }, '')
+            return {
+              legenda: arquivo.descArquivo,
+              nomeArquivo: arquivo.nomeArquivo,
+              dataCriacao: arquivo.dataCriado.substring(0, 10),
+              usuarios: usuarios
+            }
+          })
+          this.arquivos = arquivos
+        })
+        .catch(error => console.log(error))
     }
   }
 }
