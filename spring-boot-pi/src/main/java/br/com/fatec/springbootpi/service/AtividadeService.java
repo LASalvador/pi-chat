@@ -34,6 +34,9 @@ public class AtividadeService {
         
         atividade.setUsuarios(new HashSet<Usuario>());
         atividade.setDataCriado(dataCriado);
+        atividade.setDataFechamento(novaAtividade.getDataFechamento());
+        atividade.setDataPrevista(novaAtividade.getDataPrevista());
+        atividade.setAtividadeAberta(novaAtividade.getAtividadeAberta());
         atividade.setDescAtividade(novaAtividade.getDescricaoAtividade());
         atividade.setTituloAtividade(novaAtividade.getTituloAtividade());
         atividade.setCorAtividade(novaAtividade.getCorAtividade());
