@@ -42,6 +42,18 @@ public class Atividade {
     private Date dataCriado;
 
     @JsonView(View.AtividadeResumo.class)
+    @Column(name = "data_prevista")
+    private Date dataPrevista;
+
+    @JsonView(View.AtividadeResumo.class)
+    @Column(name = "data_fechamento")
+    private Date dataFechamento;
+
+    @JsonView(View.AtividadeResumo.class)
+    @Column(name = "atividade_aberta")
+    private Boolean atividadeAberta;
+
+    @JsonView(View.AtividadeResumo.class)
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "usuario_atividade",
     joinColumns = { @JoinColumn(name = "id_atividade") },
@@ -94,5 +106,29 @@ public class Atividade {
 
     public void setUsuarios(Set<Usuario> usuarios) {
         this.usuarios = usuarios;
+    }
+
+	public Date getDataPrevista() {
+		return dataPrevista;
+	}
+
+	public void setDataPrevista(Date dataPrevista) {
+		this.dataPrevista = dataPrevista;
+	}
+
+    public Date getDataFechamento() {
+        return dataFechamento;
+    }
+
+    public void setDataFechamento(Date dataFechamento) {
+        this.dataFechamento = dataFechamento;
+    }
+
+    public Boolean getAtividadeAberta() {
+        return atividadeAberta;
+    }
+
+    public void setAtividadeAberta(Boolean atividadeAberta) {
+        this.atividadeAberta = atividadeAberta;
     }
 }
