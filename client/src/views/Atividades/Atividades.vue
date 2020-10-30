@@ -123,6 +123,8 @@ import Button from '../../components/Button/Button.vue'
 import Input from '../../components/Input/Input.vue'
 import TextArea from '../../components/TextArea/TextArea.vue'
 import SharedCard from '../../components/ShareCard/ShareCard.vue'
+import api from '../../services/api'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'Atividades',
@@ -195,15 +197,28 @@ export default {
       }
     ]
   }),
+  computed: {
+    ...mapGetters([
+      'getUsuario'
+    ])
+  },
+  mounted () {
+    this.pegarAtividades()
+  },
   methods: {
     addNote () {
       let newNote = {}
       newNote = Object.assign(newNote, this.note)
       if (newNote.title && newNote.text) {
-        newNote.created = new Date()
-        this.notes.push(newNote)
-        this.buttonNewNote = false
-        this.clearNote()
+        api.enviarAtividade(newNote.text, newNote.title, newNote.style.bg, [this.getUsuario.idUsuario])
+          .then(resposta => {
+            this.buttonNewNote = false
+            this.clearNote()
+            this.pegarAtividades()
+          })
+          .catch(erro => {
+            console.log(erro)
+          })
       }
     },
     selectColor (index) {
@@ -224,6 +239,26 @@ export default {
     openNewNote () {
       this.buttonNewNote = true
       this.selectColor(0)
+    },
+    pegarAtividades () {
+      api.atividades.pegarAtividades(this.getUsuario.idUsuario)
+        .then(resposta => {
+          const atividades = resposta.data.map(atividade => {
+            return {
+              title: atividade.tituloAtividade,
+              text: atividade.descAtividade,
+              style: {
+                bg: atividade.corAtividade,
+                darken: true,
+                selected: false
+              }
+            }
+          })
+          this.notes = atividades
+        })
+        .catch(erro => {
+          console.log(erro)
+        })
     }
   }
 }
