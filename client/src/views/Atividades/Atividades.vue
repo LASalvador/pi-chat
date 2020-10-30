@@ -138,31 +138,12 @@ export default {
   data: () => ({
     buttonNewNote: false,
     sharedButton: false,
-    notes: [
-      {
-        title: 'Lista de compras',
-        text: 'Mussum Ipsum, cacilds vidis litro abertis. Diuretics paradis num copo é motivis de denguis. Nec orci ornare consequat. Praesent lacinia ultrices consectetur. Sed non ipsum felis. Casamentiss faiz malandris se pirulitá. Cevadis im ampola pa arma uma pindureta. Mais vale um bebadis conhecidiss, que um alcoolatra anonimis. Si num tem leite então bota uma pinga aí cumpadi! Interagi no mé, cursus quis, vehicula ac nisi. Não sou faixa preta cumpadi, sou preto inteiris, inteiris.',
-        style: {
-          bg: 'red',
-          darken: true,
-          selected: false
-        }
-      },
-      {
-        title: 'Notas da aula',
-        text: 'Mussum Ipsum, cacilds vidis litro abertis. Quem manda na minha terra sou euzis! Si u mundo tá muito paradis? Toma um mé que o mundo vai girarzis! Posuere libero varius. Nullam a nisl ut ante blandit hendrerit. Aenean sit amet nisi. In elementis mé pra quem é amistosis quis leo.',
-        style: {
-          bg: '#385F73',
-          darken: true,
-          selected: false
-        }
-      }
-    ],
+    notes: [],
     note: {
-      title: null,
-      text: null,
-      created: null,
-      style: null
+      title: '',
+      text: '',
+      created: '',
+      style: ''
     },
     styles: [
       {
@@ -210,7 +191,7 @@ export default {
       let newNote = {}
       newNote = Object.assign(newNote, this.note)
       if (newNote.title && newNote.text) {
-        api.enviarAtividade(newNote.text, newNote.title, newNote.style.bg, [this.getUsuario.idUsuario])
+        api.atividades.enviarAtividades(newNote.text, newNote.title, newNote.style.bg, [this.getUsuario.idUsuario], '2020-10-30')
           .then(resposta => {
             this.buttonNewNote = false
             this.clearNote()
@@ -230,7 +211,7 @@ export default {
     },
     clearNote () {
       for (const key in this.note) {
-        this.note[key] = null
+        this.note[key] = ''
       }
       this.styles.map(e => {
         e.selected = false
