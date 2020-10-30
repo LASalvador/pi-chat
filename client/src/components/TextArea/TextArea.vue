@@ -22,8 +22,8 @@ export default {
       required: true
     },
     rows: {
-      type: Number,
-      default: 1
+      type: String,
+      default: '1'
     }
   }
 }
