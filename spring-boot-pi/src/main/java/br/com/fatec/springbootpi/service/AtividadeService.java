@@ -59,4 +59,8 @@ public class AtividadeService {
         return atividadeRepository.getAtividadesAbertas(idUsuario);
     }
 
+    public List<Atividade> getCloseAtividade(Long idUsuario){
+        return atividadeRepository.getAtividadesFechadas(idUsuario);
+    }
+
 }

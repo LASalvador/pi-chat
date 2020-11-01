@@ -50,6 +50,13 @@ public class AtividadeController {
     @GetMapping(value = "/open/usuario/{id}")
     @ApiOperation(value = "Buscar atividades abertas de um usuário")
     public List<Atividade> openAtividades(@PathVariable("id") Long id) {
-        return atividadeRepository.getAtividadesAbertas(id);
+        return atividadeService.getOpenAtividade(id);
+    }
+
+    @JsonView(View.AtividadeResumo.class)
+    @GetMapping(value = "/close/usuario/{id}")
+    @ApiOperation(value = "Buscar atividades fechadas de um usuário")
+    public List<Atividade> closeAtividades(@PathVariable("id") Long id) {
+        return atividadeService.getCloseAtividade(id);
     }
 }
