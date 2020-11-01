@@ -59,4 +59,11 @@ public class AtividadeController {
     public List<Atividade> closeAtividades(@PathVariable("id") Long id) {
         return atividadeService.getCloseAtividade(id);
     }
+
+    @JsonView(View.AtividadeResumo.class)
+    @PutMapping(value="/{id}")
+    @ApiOperation(value = "Atualizar data fechamento da atividade")
+    public Atividade atualizarUsuario(@PathVariable("id") Long id){
+        return atividadeService.atualizarDataFechamento(id);
+    }
 }

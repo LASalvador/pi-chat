@@ -63,4 +63,19 @@ public class AtividadeService {
         return atividadeRepository.getAtividadesFechadas(idUsuario);
     }
 
+    @PreAuthorize("isAuthenticated()")
+    public Atividade atualizarDataFechamento(Long idAtividade){
+        Atividade atividade = atividadeRepository.findByIdAtividade(idAtividade);
+
+        
+        if (atividade != null){
+            Date x = new Date();
+            atividade.setDataFechamento(x);            
+
+            atividadeRepository.save(atividade);
+        }
+
+        return atividade;
+    }
+
 }
