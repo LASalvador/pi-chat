@@ -45,4 +45,11 @@ public class AtividadeController {
     public List<Atividade> pegarMensagensPorConversa(@PathVariable("id") Long id) {
         return atividadeRepository.getAtividadesPorUsuario(id);
     }
+
+    @JsonView(View.AtividadeResumo.class)
+    @GetMapping(value = "/open/usuario/{id}")
+    @ApiOperation(value = "Buscar atividades abertas de um usuário")
+    public List<Atividade> openAtividades(@PathVariable("id") Long id) {
+        return atividadeRepository.getAtividadesAbertas(id);
+    }
 }

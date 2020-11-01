@@ -2,6 +2,7 @@ package br.com.fatec.springbootpi.service;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -53,4 +54,9 @@ public class AtividadeService {
 
         return atividade;
     }
+
+    public List<Atividade> getOpenAtividade(Long idUsuario){
+        return atividadeRepository.getAtividadesAbertas(idUsuario);
+    }
+
 }
