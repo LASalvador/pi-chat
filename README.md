@@ -36,6 +36,7 @@ Os requisitos do trabalho estão dividos em requisitos funcionais, descrevem fun
 - [Relatorio Sprint 1](https://github.com/LASalvador/pi-chat/blob/master/relatorios-sprint/sprint1.md#entrega-1-2009)
 - [Relatorio Sprint 2](https://github.com/LASalvador/pi-chat/blob/master/relatorios-sprint/sprint2.md#entrega-2-0410)
 - [Relatorio Sprint 3](https://github.com/LASalvador/pi-chat/blob/development/relatorios-sprint/sprint3.md#entrega-3-1810)
+- [Relatorio Sprint 4](https://github.com/LASalvador/pi-chat/blob/development/relatorios-sprint/sprint4.md#entrega-4-0111)
 
 
 ## Tecnologias Utilizadas
