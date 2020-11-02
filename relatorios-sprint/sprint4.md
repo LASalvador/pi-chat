@@ -50,11 +50,21 @@ No back-end houve mapeamente de novos JSonView, adição de novas rotas e altera
 - <a href="https://drive.google.com/file/d/14-lm5uqeSYihOUIuX0v5wkQlHiZiVkDw/view?usp=sharing" target="_blank"> Planejado X Realizado(tempo & custo) </a>
 
 ## Gifs
-### Tela de atividades
-<img src="web2.gif" alt="Gif da Tela de atividades" />
+### Aplicação web
+#### tela de login
+<img src="login4.gif" alt="Gif da tela de login" />
 
-### App
-<img src="app2.gif" alt="Gif do app" />
+#### tela de chat
+<img src="chat4.gif" alt="Gif da tela de chat" />
+
+#### tela de arquivos
+<img src="arquivos4.gif" alt="Gif da tela de arquivos" />
+
+#### tela de atividades
+<img src="atividades4.gif" alt="Gif da tela de atividades" />
+
+<!-- ### App
+<img src="app2.gif" alt="Gif do app" /> -->
 
 
 ## Próximos passos
