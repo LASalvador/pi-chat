@@ -63,8 +63,8 @@ No back-end houve mapeamente de novos JSonView, adição de novas rotas e altera
 #### tela de atividades
 <img src="atividades4.gif" alt="Gif da tela de atividades" />
 
-<!-- ### App
-<img src="app2.gif" alt="Gif do app" /> -->
+### App
+<img src="app4.gif" alt="Gif do app" />
 
 
 ## Próximos passos
