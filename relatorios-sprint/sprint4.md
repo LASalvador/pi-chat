@@ -69,10 +69,11 @@ No back-end houve mapeamente de novos JSonView, adição de novas rotas e altera
 
 ## Próximos passos
 
-- Consumo de API p autenticação
-- Adição de libs para gerenciamento de estado(Vuex)
-- Estudos sobre implementação de I.A
-- Estudos sobre chats flutuantes
+- Implementação de websocket
+- Início Implementação IA
+- Início Chat flutuante
+- Adição de botão para fechar atividades
+- Adição de botão para ver atividades fechadas
 
 ## Ferramentas Utilizadas
 
