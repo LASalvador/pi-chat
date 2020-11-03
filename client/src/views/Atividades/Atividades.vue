@@ -2,7 +2,11 @@
   <v-container fluid>
     <v-row>
       <v-col cols="12">
-        <h1 class="bluePi--text">Atividades</h1>
+        <v-row>
+          <h1 class="bluePi--text">Atividades</h1>
+          <v-spacer></v-spacer>
+          <span class="blue-grey--text text--lighten-2 text-decoration-underline">ver atividades fechadas</span>
+        </v-row>
         <v-row>
           <v-col
             v-for="(note, index) in notes"
