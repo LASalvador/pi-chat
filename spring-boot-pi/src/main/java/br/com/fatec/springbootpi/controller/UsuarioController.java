@@ -1,5 +1,7 @@
 package br.com.fatec.springbootpi.controller;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonView;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +50,15 @@ public class UsuarioController {
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.setLocation(uriComponentsBuilder.path("/usuario/" + usuario.getIdUsuario()).build().toUri());
         return new ResponseEntity<Usuario>(usuario, responseHeaders, HttpStatus.CREATED);
+    }
+
+    
+    @JsonView(View.UsuarioResumo.class)
+    @GetMapping
+    @ApiOperation(value = "Lista todos os usuarios")
+    public List<Usuario> buscarUsuarios() {
+        return usuarioService.buscarUsuarios();
+
     }
 
     @JsonView(View.UsuarioResumo.class)

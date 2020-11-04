@@ -1,6 +1,7 @@
 package br.com.fatec.springbootpi.service;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -73,6 +74,10 @@ public class UsuarioService {
 
     public Usuario buscarPorCpf(String cpf) {
         return userRepo.findByCpfUsuario(cpf);
+    }
+
+    public List<Usuario> buscarUsuarios() {
+        return userRepo.findAll();
     }
     
 }
