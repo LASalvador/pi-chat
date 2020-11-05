@@ -32,13 +32,14 @@ public class ConversaService {
     public Conversa cadastrarConversa(CriarConversaForm criarConversaForm){
         Conversa conversa = new Conversa();     
         conversa.setUsuarios(new HashSet<Usuario>());
-        Long ida = criarConversaForm.getIdUsuario1();
-        Long idb = criarConversaForm.getIdUsuario2();
+                
+        for (Long ids : criarConversaForm.getIdUsuarios()) {
+            Usuario usuario = usuarioRepository.findByIdUsuario(ids);
 
-        Usuario usuario1 = usuarioRepository.findByIdUsuario(ida);
-        Usuario usuario2 = usuarioRepository.findByIdUsuario(idb);
-        conversa.getUsuarios().add(usuario1);                
-        conversa.getUsuarios().add(usuario2);                
+            if(usuario != null){
+                conversa.getUsuarios().add(usuario);
+            }
+        }               
                 
         conversaRepository.save(conversa);                         
 
