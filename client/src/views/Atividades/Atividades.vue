@@ -5,7 +5,7 @@
         <v-row>
           <h1 class="bluePi--text">Atividades</h1>
           <v-spacer></v-spacer>
-          <span class="blue-grey--text text--lighten-2 text-decoration-underline">ver atividades fechadas</span>
+          <span class="blue-grey--text text--lighten-2 text-decoration-underline" @click="botaoAtividadesFechadas = true">ver atividades fechadas</span>
         </v-row>
         <v-row>
           <v-col
@@ -118,6 +118,30 @@
         <SharedCard />
         </v-card>
       </v-dialog>
+      <v-dialog
+        v-model="botaoAtividadesFechadas"
+      >
+      <v-card>
+      <v-toolbar
+          dark
+          color="bluePi">
+          <v-btn
+            icon
+            dark
+            @click="botaoAtividadesFechadas = false">
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
+          <v-toolbar-title>Atividades Fechadas</v-toolbar-title>
+          <v-spacer></v-spacer>
+        </v-toolbar>
+        <v-list-item  two-line v-for="atividade in atividadesFechadas" :key="atividade.title">
+          <v-list-item-content>
+            <v-list-item-title>{{ atividade.title }}</v-list-item-title>
+            <v-list-item-subtitle>{{ atividade.text }}</v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+        </v-card>
+      </v-dialog>
   </v-container>
 </template>
 
@@ -142,7 +166,9 @@ export default {
   data: () => ({
     buttonNewNote: false,
     sharedButton: false,
+    botaoAtividadesFechadas: false,
     notes: [],
+    atividadesFechadas: [],
     note: {
       title: '',
       text: '',
@@ -189,6 +215,7 @@ export default {
   },
   mounted () {
     this.pegarAtividades()
+    this.pegarAtividadesFechadas()
   },
   methods: {
     addNote () {
@@ -240,6 +267,21 @@ export default {
             }
           })
           this.notes = atividades
+        })
+        .catch(erro => {
+          console.log(erro)
+        })
+    },
+    pegarAtividadesFechadas () {
+      api.atividades.pegarAtividadesFechadas(this.getUsuario.idUsuario)
+        .then(resposta => {
+          const atividades = resposta.data.map(atividade => {
+            return {
+              title: atividade.tituloAtividade,
+              text: atividade.descAtividade.substring(0, 30) + '...'
+            }
+          })
+          this.atividadesFechadas = atividades
         })
         .catch(erro => {
           console.log(erro)

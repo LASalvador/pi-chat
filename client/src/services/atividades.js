@@ -15,4 +15,8 @@ function enviarAtividades (descricaoAtividade, tituloAtividade, corAtividade, id
   })
 }
 
-export default { pegarAtividades, enviarAtividades }
+function pegarAtividadesFechadas (idUsuarios) {
+  return http.get(`atividade/close/usuario/${idUsuarios}`)
+}
+
+export default { pegarAtividades, enviarAtividades, pegarAtividadesFechadas }
