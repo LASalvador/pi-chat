@@ -115,7 +115,7 @@
                 </v-btn>
               </v-toolbar-items>
             </v-toolbar>
-        <SharedCard />
+        <SharedCard @selectUser="idUsuarios = $event"/>
         </v-card>
       </v-dialog>
       <v-dialog
@@ -168,6 +168,7 @@ export default {
     sharedButton: false,
     botaoAtividadesFechadas: false,
     notes: [],
+    idUsuarios: [],
     atividadesFechadas: [],
     note: {
       title: '',
@@ -222,9 +223,10 @@ export default {
       let newNote = {}
       newNote = Object.assign(newNote, this.note)
       if (newNote.title && newNote.text) {
-        api.atividades.enviarAtividades(newNote.text, newNote.title, newNote.style.bg, [this.getUsuario.idUsuario], '2020-10-30')
+        api.atividades.enviarAtividades(newNote.text, newNote.title, newNote.style.bg, [this.getUsuario.idUsuario, ...this.idUsuarios], '2020-10-30')
           .then(resposta => {
             this.buttonNewNote = false
+            this.sharedButton = false
             this.clearNote()
             this.pegarAtividades()
           })

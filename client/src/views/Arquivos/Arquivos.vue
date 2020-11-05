@@ -119,7 +119,7 @@
                 </v-btn>
               </v-toolbar-items>
             </v-toolbar>
-        <SharedCard />
+        <SharedCard @selectUser="idUsuarios = $event" />
         </v-card>
       </v-dialog>
   </v-container>
@@ -168,7 +168,8 @@ export default {
         legenda: null,
         nomeArquivo: null,
         dataCriacao: null
-      }
+      },
+      idUsuarios: []
     }
   },
   computed: {
@@ -185,9 +186,10 @@ export default {
       newFile = Object.assign(newFile, this.file)
       if (newFile) {
         newFile.nomeArquivo = this.file.nomeArquivo.name
-        api.arquivos.enviarArquivo(newFile.nomeArquivo, newFile.legenda, [this.getUsuario.idUsuario])
+        api.arquivos.enviarArquivo(newFile.nomeArquivo, newFile.legenda, [this.getUsuario.idUsuario, ...this.idUsuarios])
           .then(() => {
             this.buttonNewFile = false
+            this.sharedButton = false
             this.clearFile()
             this.pegarArquivos()
           })
