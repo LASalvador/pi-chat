@@ -114,12 +114,16 @@
                 <v-toolbar-items>
                   <v-btn
                     dark
-                    text>
+                    text
+                    @click="criarConversa"
+                  >
                     Iniciar Conversa
                   </v-btn>
                 </v-toolbar-items>
               </v-toolbar>
-          <ShareCard />
+          <ShareCard
+            @selectUser="pegarUsuarios($event)"
+          />
           </v-card>
         </v-dialog>
       </v-row>
@@ -149,7 +153,8 @@ export default {
     messageList: [],
     idConversa: 0,
     modalConversa: false,
-    destinatario: ''
+    destinatario: '',
+    idUsuarios: []
   }),
   computed: {
     maxChatListSize: function () {
@@ -175,7 +180,7 @@ export default {
       this.messageList = []
       this.pegarMensagensConversa()
     },
-    async addmessage () {
+    addmessage () {
       api.mensagem.enviarMensagem(this.message, this.getUsuario.idUsuario, this.idConversa)
         .then(() => {
           this.message = ''
@@ -210,6 +215,17 @@ export default {
             }
           })
           this.items = conversas
+        })
+        .catch(err => console.log(err))
+    },
+    pegarUsuarios (listaIdUsuarios) {
+      this.idUsuarios = listaIdUsuarios
+    },
+    criarConversa () {
+      this.modalConversa = false
+      api.conversa.criarConversa([this.getUsuario.idUsuario, ...this.idUsuarios])
+        .then(() => {
+          this.pegarConversasUsuario()
         })
         .catch(err => console.log(err))
     }
