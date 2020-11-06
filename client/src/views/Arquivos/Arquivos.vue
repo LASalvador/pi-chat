@@ -26,7 +26,9 @@
         right
         bottom
         fixed
-        @click="openNewFile()">
+        @click="openNewFile()"
+        v-if="getUsuario.tiposUsuarios.nome === 'ROLE_ADMIN'"
+        >
         <v-icon v-if="buttonNewFile">mdi-close</v-icon>
         <v-icon v-else>mdi-plus</v-icon>
       </Button>

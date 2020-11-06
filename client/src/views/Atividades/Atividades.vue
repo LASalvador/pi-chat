@@ -24,7 +24,9 @@
         right
         bottom
         fixed
-        @click="openNewNote()">
+        @click="openNewNote()"
+        v-if="getUsuario.tiposUsuarios.nome === 'ROLE_ADMIN'"
+        >
         <v-icon v-if="buttonNewNote">mdi-close</v-icon>
         <v-icon v-else>mdi-plus</v-icon>
       </Button>
