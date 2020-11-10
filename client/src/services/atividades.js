@@ -19,4 +19,8 @@ function pegarAtividadesFechadas (idUsuarios) {
   return http.get(`atividade/close/usuario/${idUsuarios}`)
 }
 
-export default { pegarAtividades, enviarAtividades, pegarAtividadesFechadas }
+function fecharAtividades (idAtividade) {
+  return http.put(`atividade/${idAtividade}`)
+}
+
+export default { pegarAtividades, enviarAtividades, pegarAtividadesFechadas, fecharAtividades }
