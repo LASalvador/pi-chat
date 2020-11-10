@@ -11,6 +11,15 @@
           <p class="white--text"><span class="font-weight-bold">Usuarios: </span>{{note.users}}</p>
           <p class="white--text">{{ noteText }} </p>
         </v-card-text>
+        <v-card-actions>
+      <v-btn
+        color="white lighten-2"
+        text
+        @click="$emit('click')"
+      >
+        Fechar Atividade
+      </v-btn>
+    </v-card-actions>
     </v-card>
 </template>
 
