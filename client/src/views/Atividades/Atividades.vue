@@ -15,7 +15,7 @@
             sm="12"
             md="3"
           >
-            <NoteCard :note="note" />
+            <NoteCard :note="note" @click="fecharAtividades(note.id)"/>
           </v-col>
         </v-row>
       </v-col>
@@ -307,6 +307,7 @@ export default {
             }, '')
             return {
               title: atividade.tituloAtividade,
+              id: atividade.idAtividade,
               text: atividade.descAtividade,
               style: {
                 bg: atividade.corAtividade,
@@ -333,6 +334,16 @@ export default {
             }
           })
           this.atividadesFechadas = atividades
+        })
+        .catch(erro => {
+          console.log(erro)
+        })
+    },
+    fecharAtividades (idAtividade) {
+      api.atividades.fecharAtividades(idAtividade)
+        .then(resposta => {
+          this.pegarAtividades()
+          this.pegarAtividadesFechadas()
         })
         .catch(erro => {
           console.log(erro)
