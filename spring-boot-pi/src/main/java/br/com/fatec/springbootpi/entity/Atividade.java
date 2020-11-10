@@ -24,6 +24,7 @@ public class Atividade {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_atividade")
+    @JsonView(View.AtividadeResumo.class)
     private Long idAtividade;
 
     @JsonView(View.AtividadeResumo.class)
