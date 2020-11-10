@@ -298,6 +298,13 @@ export default {
       api.atividades.pegarAtividades(this.getUsuario.idUsuario)
         .then(resposta => {
           const atividades = resposta.data.map(atividade => {
+            var usuarios = atividade.usuarios.reduce((total, usuario, index, arr) => {
+              if (index === arr.length - 1) {
+                return total + usuario.nomeUsuario
+              } else {
+                return total + usuario.nomeUsuario + ', '
+              }
+            }, '')
             return {
               title: atividade.tituloAtividade,
               text: atividade.descAtividade,
@@ -305,7 +312,9 @@ export default {
                 bg: atividade.corAtividade,
                 darken: true,
                 selected: false
-              }
+              },
+              date: this.formatDate(atividade.dataPrevista.substring(0, 10)),
+              users: usuarios
             }
           })
           this.notes = atividades
