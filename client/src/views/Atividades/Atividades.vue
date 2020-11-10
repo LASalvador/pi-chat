@@ -82,6 +82,34 @@
                     </v-btn>
                   </span>
                 </v-col>
+                <v-col cols="12">
+                  <v-menu
+                    v-model="menu"
+                    :close-on-content-click="false"
+                    transition="scale-transition"
+                    offset-y
+                    max-width="290px"
+                    min-width="290px"
+                  >
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-text-field
+                        v-model="dataFormatada"
+                        label="Data Conclusão"
+                        hint="DD/MM/AAAA"
+                        persistent-hint
+                        prepend-icon="mdi-calendar"
+                        readonly
+                        v-bind="attrs"
+                        v-on="on"
+                      ></v-text-field>
+                    </template>
+                    <v-date-picker
+                      v-model="dataConclusao"
+                      no-title
+                      @input="menu = false"
+                    ></v-date-picker>
+                  </v-menu>
+                </v-col>
                 <v-col>
                   <Button
                     @click="sharedButton = !sharedButton"
@@ -209,23 +237,33 @@ export default {
         darken: true,
         selected: false
       }
-    ]
+    ],
+    dataConclusao: '',
+    menu: false
   }),
   computed: {
     ...mapGetters([
       'getUsuario'
-    ])
+    ]),
+    dataFormatada () {
+      return this.formatDate(this.dataConclusao)
+    }
   },
   mounted () {
     this.pegarAtividades()
     this.pegarAtividadesFechadas()
   },
   methods: {
+    formatDate (date) {
+      if (!date) return null
+      const [year, month, day] = date.split('-')
+      return `${day}/${month}/${year}`
+    },
     addNote () {
       let newNote = {}
       newNote = Object.assign(newNote, this.note)
       if (newNote.title && newNote.text) {
-        api.atividades.enviarAtividades(newNote.text, newNote.title, newNote.style.bg, [this.getUsuario.idUsuario, ...this.idUsuarios], '2020-10-30')
+        api.atividades.enviarAtividades(newNote.text, newNote.title, newNote.style.bg, [this.getUsuario.idUsuario, ...this.idUsuarios], this.dataConclusao)
           .then(resposta => {
             this.buttonNewNote = false
             this.sharedButton = false
