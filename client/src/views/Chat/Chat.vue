@@ -95,6 +95,11 @@
                 Selecione um contato e troque mensagems
               </span>
             </div>
+            <div>
+              <span v-for="(msg,i) in messages" :key="i">
+                {{msg}}
+              </span>
+            </div>
           </v-col>
           <v-dialog
           v-model="modalConversa"
@@ -138,6 +143,8 @@ import Button from '../../components/Button/Button.vue'
 import ShareCard from '../../components/ShareCard/ShareCard.vue'
 import api from '../../services/api'
 import { mapGetters } from 'vuex'
+import SockJS from 'sockjs-client'
+import Stomp from 'webstomp-client'
 
 export default {
   components: {
@@ -154,7 +161,9 @@ export default {
     idConversa: 0,
     modalConversa: false,
     destinatario: '',
-    idUsuarios: []
+    idUsuarios: [],
+    stompClient: null,
+    messages: []
   }),
   computed: {
     maxChatListSize: function () {
@@ -172,8 +181,46 @@ export default {
   },
   mounted () {
     this.pegarConversasUsuario()
+    this.connect()
+  },
+  beforeDestroy () {
+    this.disconnect()
   },
   methods: {
+    connect () {
+      var socket = new SockJS('https://8080-b8540bad-0949-4f93-9165-c7bc3c626d36.ws-us02.gitpod.io/spring-app/connect')
+      this.stompClient = Stomp.over(socket)
+      var that = this
+      this.stompClient.connect({}, function (frame) {
+        that.handleMessageReceipt('Connected')
+        that.stompClient.subscribe('/topic/messages', function (messageOutput) {
+          that.handleMessageReceipt(messageOutput.body)
+        })
+      })
+    },
+    disconnect () {
+      if (this.stompClient != null) {
+        this.stompClient.disconnect()
+      }
+      this.handleMessageReceipt('Disconnected')
+    },
+    startTask () {
+      if (this.stompClient != null) {
+        this.stompClient.send('ws/start')
+      } else {
+        alert('Please connect first')
+      }
+    },
+    stopTask () {
+      if (this.stompClient != null) {
+        this.stompClient.send('ws/stop')
+      } else {
+        alert('Please connect first')
+      }
+    },
+    handleMessageReceipt (messageOutput) {
+      this.messages.push(messageOutput)
+    },
     trocaConversa (conversa) {
       this.idConversa = conversa.idConversa
       this.destinatario = conversa.author
