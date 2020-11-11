@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home/Home.vue'
 import Chat from '../views/Chat/Chat.vue'
 import Atividades from '../views/Atividades/Atividades.vue'
 import Arquivos from '../views/Arquivos/Arquivos.vue'
@@ -10,11 +9,6 @@ import store from '../store/index'
 Vue.use(VueRouter)
 
 const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
   {
     path: '/arquivos',
     name: 'arquivos',
@@ -44,6 +38,10 @@ const routes = [
     path: '/login',
     name: 'login',
     component: Login
+  },
+  {
+    path: '/',
+    redirect: '/login'
   }
 ]
 
