@@ -68,7 +68,7 @@
                       :author="item.author"
                       :date="item.date"
                       :content="item.content"
-                      :key="item.content"
+                      :key="item.id"
                     />
                   </v-card>
                 </v-col>
@@ -79,7 +79,7 @@
                   />
                 </v-col>
                 <v-col cols="2">
-                  <Button @click="addmessage"> Enviar </Button>
+                  <Button @click="sendMsg"> Enviar </Button>
                 </v-col>
               </v-row>
             </v-container>
@@ -93,11 +93,6 @@
                 class="bluePi--text headline"
               >
                 Selecione um contato e troque mensagems
-              </span>
-            </div>
-            <div>
-              <span v-for="(msg,i) in messages" :key="i">
-                {{msg}}
               </span>
             </div>
           </v-col>
@@ -163,7 +158,8 @@ export default {
     destinatario: '',
     idUsuarios: [],
     stompClient: null,
-    messages: []
+    messages: [],
+    url_socket: process.env.VUE_APP_URL_GITPOD + 'spring-app/chat'
   }),
   computed: {
     maxChatListSize: function () {
@@ -176,52 +172,52 @@ export default {
       return window.innerHeight * 0.8
     },
     ...mapGetters([
-      'getUsuario'
+      'getUsuario',
+      'getToken'
     ])
   },
   mounted () {
     this.pegarConversasUsuario()
-    this.connect()
   },
   beforeDestroy () {
     this.disconnect()
   },
   methods: {
     connect () {
-      var socket = new SockJS('https://8080-b8540bad-0949-4f93-9165-c7bc3c626d36.ws-us02.gitpod.io/spring-app/connect')
+      var socket = new SockJS(this.url_socket)
       this.stompClient = Stomp.over(socket)
-      var that = this
-      this.stompClient.connect({}, function (frame) {
-        that.handleMessageReceipt('Connected')
-        that.stompClient.subscribe('/topic/messages', function (messageOutput) {
-          that.handleMessageReceipt(messageOutput.body)
+      const that = this
+      this.stompClient.connect(
+        { Authorization: 'Bearer ' + this.getToken },
+        function (frame) {
+          console.log('connected to: ' + frame)
+          that.stompClient.subscribe('/topic/greetings', function (response) {
+            const data = JSON.parse(response.body)
+            that.messageList.push({
+              id: data.idMensagem,
+              author: data.nomeUsuario,
+              date: data.dataCriado.substring(0, 10),
+              content: data.conteudoMsg
+            })
+          })
         })
-      })
+    },
+    sendMsg () {
+      this.stompClient.send('/app/hello', JSON.stringify({
+        conteudoMsg: this.message,
+        idUsuario: this.getUsuario.idUsuario,
+        idConversa: this.idConversa
+      }), { Authorization: 'Bearer ' + this.getToken })
     },
     disconnect () {
       if (this.stompClient != null) {
         this.stompClient.disconnect()
       }
-      this.handleMessageReceipt('Disconnected')
-    },
-    startTask () {
-      if (this.stompClient != null) {
-        this.stompClient.send('ws/start')
-      } else {
-        alert('Please connect first')
-      }
-    },
-    stopTask () {
-      if (this.stompClient != null) {
-        this.stompClient.send('ws/stop')
-      } else {
-        alert('Please connect first')
-      }
-    },
-    handleMessageReceipt (messageOutput) {
-      this.messages.push(messageOutput)
+      console.log('Disconnect')
     },
     trocaConversa (conversa) {
+      this.disconnect()
+      this.connect()
       this.idConversa = conversa.idConversa
       this.destinatario = conversa.author
       this.messageList = []
@@ -240,6 +236,7 @@ export default {
         .then(res => {
           const mensagens = res.data.map(mensagem => {
             return {
+              id: mensagem.idMensagem,
               author: mensagem.usuarios.nomeUsuario,
               date: mensagem.dataCriado.substring(0, 10),
               content: mensagem.conteudoMsg
