@@ -1,52 +1,43 @@
 package br.com.fatec.springbootpi.controller;
 
-import java.time.LocalDateTime;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 
+import br.com.fatec.springbootpi.entity.Mensagem;
+import br.com.fatec.springbootpi.entity.Usuario;
+import br.com.fatec.springbootpi.model.MensagemForm;
+import br.com.fatec.springbootpi.service.MensagemService;
+import br.com.fatec.springbootpi.websocket.MensagemSocket;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 @Controller
+@Api(value = "WebSocket")
 public class WebSocketController {
 
     @Autowired
-    SimpMessagingTemplate simpMessagingTemplate;
-    String destination = "/topic/messages";
+    private SimpMessagingTemplate simpMessagingTemplate;
 
-    ExecutorService executorService = Executors.newFixedThreadPool(1);
-    Future<?> submittedTask;
+    @Autowired
+    private MensagemService msgService;
 
-    @MessageMapping("/start")
-    public void startTask() {
-        if (submittedTask != null) {
-            simpMessagingTemplate.convertAndSend(destination, "Task already started");
-            return;
-        }
-        simpMessagingTemplate.convertAndSend(destination, "Started task");
-        submittedTask = executorService.submit(() -> {
-            while (true) {
-                simpMessagingTemplate.convertAndSend(destination, LocalDateTime.now().toString() + ": doing some work");
-                Thread.sleep(10000);
-            }
-        });
-    }
+    @ApiOperation(value = "Rota para chat flutuante utilizando websocket")
+    @MessageMapping("/hello")
+	@SendTo("/topic/greetings")
+    public MensagemSocket sendMessage(MensagemForm novaMensagem) {
+        
+        Mensagem mensagem = msgService.criarMensagem(novaMensagem.getConteudoMsg(),novaMensagem.getIdUsuario(), novaMensagem.getIdConversa());
+        
+        MensagemSocket mSocket = new MensagemSocket();
+        mSocket.setConteudoMsg(mensagem.getConteudoMsg());
+        mSocket.setIdMensagem(mensagem.getIdMensagem());
+        mSocket.setDataCriado(mensagem.getDataCriado());
+        mSocket.setNomeUsuario(mensagem.getUsuarios().getNomeUsuario());
 
-    @MessageMapping("/stop")
-    @SendTo("/topic/messages")
-    public String stopTask() {
-        if (submittedTask == null) {
-            return "Task not running";
-        }
-        try {
-            submittedTask.cancel(true);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            return "Error occurred while stopping task due to: " + ex.getMessage();
-        }
-        return "Stopped task";
+        return mSocket;
+        // simpMessagingTemplate.convertAndSend("/topic/messages/" + novaMensagem.getIdConversa(), novaMensagem);
     }
 }

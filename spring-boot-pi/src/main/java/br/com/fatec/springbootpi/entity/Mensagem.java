@@ -3,6 +3,7 @@ package br.com.fatec.springbootpi.entity;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -33,11 +34,11 @@ public class Mensagem {
     private Date dataCriado;
 
     @JsonView(View.MensagemResumo.class)
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="id_usuario")
     private Usuario usuarios;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="id_conversa")
     private Conversa conversas;
 
