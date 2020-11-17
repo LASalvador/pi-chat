@@ -140,12 +140,13 @@
                 <v-btn
                   dark
                   text
+                  @click="sharedButton = false"
                 >
-                  Compartilhar
+                  Selecionar usuários
                 </v-btn>
               </v-toolbar-items>
             </v-toolbar>
-        <SharedCard @selectUser="idUsuarios = $event"/>
+        <SharedCard @selectUser="pegarUsuarios($event)"/>
         </v-card>
       </v-dialog>
       <v-dialog
@@ -259,10 +260,14 @@ export default {
       const [year, month, day] = date.split('-')
       return `${day}/${month}/${year}`
     },
+    pegarUsuarios (listaIdUsuarios) {
+      console.log(listaIdUsuarios)
+    },
     addNote () {
       let newNote = {}
       newNote = Object.assign(newNote, this.note)
       if (newNote.title && newNote.text) {
+        console.log(this.idUsuarios)
         api.atividades.enviarAtividades(newNote.text, newNote.title, newNote.style.bg, [this.getUsuario.idUsuario, ...this.idUsuarios], this.dataConclusao)
           .then(resposta => {
             this.buttonNewNote = false

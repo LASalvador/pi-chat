@@ -190,8 +190,7 @@ export default {
       this.stompClient.connect(
         { Authorization: 'Bearer ' + this.getToken },
         function (frame) {
-          console.log('connected to: ' + frame)
-          that.stompClient.subscribe('/topic/greetings', function (response) {
+          that.stompClient.subscribe('/topic/message/' + that.idConversa, function (response) {
             const data = JSON.parse(response.body)
             that.messageList.push({
               id: data.idMensagem,
@@ -203,17 +202,17 @@ export default {
         })
     },
     sendMsg () {
-      this.stompClient.send('/app/hello', JSON.stringify({
+      this.stompClient.send('/app/conversa/' + this.idConversa, JSON.stringify({
         conteudoMsg: this.message,
         idUsuario: this.getUsuario.idUsuario,
         idConversa: this.idConversa
       }), { Authorization: 'Bearer ' + this.getToken })
+      this.message = ''
     },
     disconnect () {
       if (this.stompClient != null) {
         this.stompClient.disconnect()
       }
-      console.log('Disconnect')
     },
     trocaConversa (conversa) {
       this.disconnect()

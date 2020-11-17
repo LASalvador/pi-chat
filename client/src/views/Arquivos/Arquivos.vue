@@ -89,7 +89,7 @@
                   <Button
                     @click="sharedButton = !sharedButton"
                   >
-                    Compartilhar Arquivo
+                    Selecionar usuários
                   </Button>
                 </v-col>
               </v-row>
@@ -121,7 +121,7 @@
                 </v-btn>
               </v-toolbar-items>
             </v-toolbar>
-        <SharedCard @selectUser="idUsuarios = $event" />
+        <SharedCard @selectUser="pegarUsuarios($event)" />
         </v-card>
       </v-dialog>
   </v-container>
@@ -183,6 +183,11 @@ export default {
     this.pegarArquivos()
   },
   methods: {
+    pegarUsuarios (listaIdUsuarios) {
+      if (listaIdUsuarios) {
+        this.idUsuarios = listaIdUsuarios
+      }
+    },
     addFile () {
       let newFile = {}
       newFile = Object.assign(newFile, this.file)
