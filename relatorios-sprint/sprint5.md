@@ -42,7 +42,7 @@ Além disso trabalhou-se na adição de websocket e chat flutuante.
 ## Gifs
 ### Aplicação web
 #### tela de chat com websocket
-<img src="login4.gif" alt="Gif da tela de login" />
+<img src="websocket5.gif" alt="Gif da tela de login" />
 
 #### tela de atividades
 <img src="atividades5.gif" alt="Gif da tela de login" />
