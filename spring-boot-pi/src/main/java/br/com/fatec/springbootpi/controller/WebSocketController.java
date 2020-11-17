@@ -1,6 +1,7 @@
 package br.com.fatec.springbootpi.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
@@ -25,9 +26,8 @@ public class WebSocketController {
     private MensagemService msgService;
 
     @ApiOperation(value = "Rota para chat flutuante utilizando websocket")
-    @MessageMapping("/hello")
-	@SendTo("/topic/greetings")
-    public MensagemSocket sendMessage(MensagemForm novaMensagem) {
+    @MessageMapping("/conversa/{conversa}")
+    public void sendMessage(@DestinationVariable String conversa, MensagemForm novaMensagem) {
         
         Mensagem mensagem = msgService.criarMensagem(novaMensagem.getConteudoMsg(),novaMensagem.getIdUsuario(), novaMensagem.getIdConversa());
         
@@ -37,7 +37,6 @@ public class WebSocketController {
         mSocket.setDataCriado(mensagem.getDataCriado());
         mSocket.setNomeUsuario(mensagem.getUsuarios().getNomeUsuario());
 
-        return mSocket;
-        // simpMessagingTemplate.convertAndSend("/topic/messages/" + novaMensagem.getIdConversa(), novaMensagem);
+        simpMessagingTemplate.convertAndSend("/topic/message/" + novaMensagem.getIdConversa(), mSocket);
     }
 }
