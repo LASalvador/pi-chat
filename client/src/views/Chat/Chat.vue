@@ -68,7 +68,7 @@
                       :author="item.author"
                       :date="item.date"
                       :content="item.content"
-                      :key="item.content"
+                      :key="item.id"
                     />
                   </v-card>
                 </v-col>
@@ -79,7 +79,7 @@
                   />
                 </v-col>
                 <v-col cols="2">
-                  <Button @click="addmessage"> Enviar </Button>
+                  <Button @click="sendMsg"> Enviar </Button>
                 </v-col>
               </v-row>
             </v-container>
@@ -138,6 +138,8 @@ import Button from '../../components/Button/Button.vue'
 import ShareCard from '../../components/ShareCard/ShareCard.vue'
 import api from '../../services/api'
 import { mapGetters } from 'vuex'
+import SockJS from 'sockjs-client'
+import Stomp from 'webstomp-client'
 
 export default {
   components: {
@@ -154,7 +156,10 @@ export default {
     idConversa: 0,
     modalConversa: false,
     destinatario: '',
-    idUsuarios: []
+    idUsuarios: [],
+    stompClient: null,
+    messages: [],
+    url_socket: process.env.VUE_APP_URL_GITPOD + 'spring-app/chat'
   }),
   computed: {
     maxChatListSize: function () {
@@ -167,14 +172,52 @@ export default {
       return window.innerHeight * 0.8
     },
     ...mapGetters([
-      'getUsuario'
+      'getUsuario',
+      'getToken'
     ])
   },
   mounted () {
     this.pegarConversasUsuario()
   },
+  beforeDestroy () {
+    this.disconnect()
+  },
   methods: {
+    connect () {
+      var socket = new SockJS(this.url_socket)
+      this.stompClient = Stomp.over(socket)
+      const that = this
+      this.stompClient.connect(
+        { Authorization: 'Bearer ' + this.getToken },
+        function (frame) {
+          console.log('connected to: ' + frame)
+          that.stompClient.subscribe('/topic/greetings', function (response) {
+            const data = JSON.parse(response.body)
+            that.messageList.push({
+              id: data.idMensagem,
+              author: data.nomeUsuario,
+              date: data.dataCriado.substring(0, 10),
+              content: data.conteudoMsg
+            })
+          })
+        })
+    },
+    sendMsg () {
+      this.stompClient.send('/app/hello', JSON.stringify({
+        conteudoMsg: this.message,
+        idUsuario: this.getUsuario.idUsuario,
+        idConversa: this.idConversa
+      }), { Authorization: 'Bearer ' + this.getToken })
+    },
+    disconnect () {
+      if (this.stompClient != null) {
+        this.stompClient.disconnect()
+      }
+      console.log('Disconnect')
+    },
     trocaConversa (conversa) {
+      this.disconnect()
+      this.connect()
       this.idConversa = conversa.idConversa
       this.destinatario = conversa.author
       this.messageList = []
@@ -193,6 +236,7 @@ export default {
         .then(res => {
           const mensagens = res.data.map(mensagem => {
             return {
+              id: mensagem.idMensagem,
               author: mensagem.usuarios.nomeUsuario,
               date: mensagem.dataCriado.substring(0, 10),
               content: mensagem.conteudoMsg
