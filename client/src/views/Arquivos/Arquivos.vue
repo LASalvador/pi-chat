@@ -167,9 +167,9 @@ export default {
       ],
       arquivos: [],
       file: {
-        legenda: null,
-        nomeArquivo: null,
-        dataCriacao: null
+        legenda: '',
+        nomeArquivo: '',
+        dataCriacao: ''
       },
       idUsuarios: []
     }
@@ -184,9 +184,7 @@ export default {
   },
   methods: {
     pegarUsuarios (listaIdUsuarios) {
-      if (listaIdUsuarios) {
-        this.idUsuarios = listaIdUsuarios
-      }
+      this.idUsuarios = listaIdUsuarios
     },
     addFile () {
       let newFile = {}

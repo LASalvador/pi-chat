@@ -5,7 +5,7 @@
         <v-row>
           <h1 class="bluePi--text">Atividades</h1>
           <v-spacer></v-spacer>
-          <span class="blue-grey--text text--lighten-2 text-decoration-underline" @click="botaoAtividadesFechadas = true">ver atividades fechadas</span>
+          <span class="blue-grey--text text--lighten-2 text-decoration-underline" @click="mostrarAtividadesFechadas">ver atividades fechadas</span>
         </v-row>
         <v-row>
           <v-col
@@ -252,16 +252,19 @@ export default {
   },
   mounted () {
     this.pegarAtividades()
-    this.pegarAtividadesFechadas()
   },
   methods: {
+    mostrarAtividadesFechadas () {
+      this.pegarAtividadesFechadas()
+      this.botaoAtividadesFechadas = true
+    },
     formatDate (date) {
       if (!date) return null
       const [year, month, day] = date.split('-')
       return `${day}/${month}/${year}`
     },
     pegarUsuarios (listaIdUsuarios) {
-      console.log(listaIdUsuarios)
+      this.idUsuarios = listaIdUsuarios
     },
     addNote () {
       let newNote = {}
