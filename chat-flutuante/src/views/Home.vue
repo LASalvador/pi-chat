@@ -9,7 +9,7 @@
         bottom
         fixed
         dark
-        color="primary"
+        color="#005796"
         @click="active = !active"
       >
         <v-icon dark>
