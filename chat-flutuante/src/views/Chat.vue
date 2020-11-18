@@ -4,7 +4,7 @@
     <v-toolbar dense color="#005796">
       <v-toolbar-title class="white--text">PorpsChat</v-toolbar-title>
     </v-toolbar>
-    <v-card height="380" flat class="overflow-y-auto">
+    <v-card height="380" flat class="overflow-y-auto overflow-x-hidden">
       <div class="d-flex flex-row">
         <v-icon large color="red lighten-1">mdi-comment-arrow-right</v-icon>
         <v-card color="#e4e4e4" class="ma-1" rounded>
