@@ -47,6 +47,8 @@ Além disso trabalhou-se na adição de websocket e chat flutuante.
 #### tela de atividades
 <img src="atividades5.gif" alt="Gif da tela de login" />
 
+#### chat flutuante
+<img src="flutuante5.gif" alt="Gif da tela de login" />
 
 ## Próximos passos
 
