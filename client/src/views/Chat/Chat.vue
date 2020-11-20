@@ -250,7 +250,9 @@ export default {
         .then(res => {
           const conversas = res.data.map(conversa => {
             var usuarios = conversa.usuarios.reduce((total, usuario, index, arr) => {
-              if (index === arr.length - 1) {
+              if (this.getUsuario.nomeUsuario === usuario.nomeUsuario) {
+                return total + ''
+              } else if (index === arr.length - 1) {
                 return total + usuario.nomeUsuario
               } else {
                 return total + usuario.nomeUsuario + ', '
@@ -260,7 +262,15 @@ export default {
               idConversa: conversa.idConversa,
               author: usuarios,
               date: conversa.dataInicial.substring(0, 10),
-              role: conversa.usuarios[0].tiposUsuarios.nome.substring(5)
+              role: conversa.usuarios.reduce((total, usuario, index, arr) => {
+                if (this.getUsuario.nomeUsuario === usuario.nomeUsuario) {
+                  return total + ''
+                } else if (index === arr.length - 1) {
+                  return total + usuario.tiposUsuarios.nome.substring(5)
+                } else {
+                  return total + usuario.tiposUsuarios.nome.substring(5) + ', '
+                }
+              }, '')
             }
           })
           this.items = conversas
