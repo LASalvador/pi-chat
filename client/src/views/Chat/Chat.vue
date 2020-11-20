@@ -249,10 +249,16 @@ export default {
       api.conversa.pegarConversasUsuario(this.getUsuario.idUsuario)
         .then(res => {
           const conversas = res.data.map(conversa => {
-            const author = conversa.usuarios[0].nomeUsuario === this.getUsuario.nomeUsuario ? conversa.usuarios[1].nomeUsuario : conversa.usuarios[0].nomeUsuario
+            var usuarios = conversa.usuarios.reduce((total, usuario, index, arr) => {
+              if (index === arr.length - 1) {
+                return total + usuario.nomeUsuario
+              } else {
+                return total + usuario.nomeUsuario + ', '
+              }
+            }, '')
             return {
               idConversa: conversa.idConversa,
-              author: author,
+              author: usuarios,
               date: conversa.dataInicial.substring(0, 10),
               role: conversa.usuarios[0].tiposUsuarios.nome.substring(5)
             }
