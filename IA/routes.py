@@ -1,7 +1,7 @@
 from flask import request
 from flask_restful import Resource
 
-from .bot import Bot
+from bot import Bot
 
 
 class Response:

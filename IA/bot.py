@@ -6,7 +6,7 @@ from nltk.stem import SnowballStemmer
 
 from random import randint
 
-from .data import RESPONSES
+from data import RESPONSES
 
 
 class Bot:
