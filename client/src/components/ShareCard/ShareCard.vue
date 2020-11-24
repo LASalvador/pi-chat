@@ -35,8 +35,8 @@
           v-for="(user, key) in filteredList"
           :key="key"
         >
-          <template v-slot:default="{ active }">
-            <v-list-item-content>
+          <template v-slot:default="{ }">
+            <v-list-item-content @click="selecionarUsuario(user)">
               <v-list-item-title>
                 {{user.name}}
                 -
@@ -45,7 +45,7 @@
             </v-list-item-content>
             <v-list-item-action>
               <v-checkbox
-              :input-value="active"
+              :input-value="user.selected"
               @click="selecionarUsuario(user)">
               </v-checkbox>
             </v-list-item-action>
@@ -132,7 +132,7 @@ export default {
         .catch(error => console.log(error))
     },
     selecionarUsuario (user) {
-      if (user.selected) {
+      if (user.selected === true) {
         const index = this.idUsuarios.indexOf(user.id)
         if (index > -1) {
           this.idUsuarios.splice(index, 1)
