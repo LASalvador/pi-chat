@@ -18,7 +18,7 @@
           class="black--text"
           @click="$emit('click')"
         >
-          Fechar Atividade
+          Concluir
         </v-btn>
         </v-card-actions>
     </v-card>
