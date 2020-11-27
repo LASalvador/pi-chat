@@ -28,7 +28,6 @@ public class ConversaService {
     }
 
     @Transactional
-    @PreAuthorize("isAuthenticated()")
     public Conversa cadastrarConversa(CriarConversaForm criarConversaForm){
         Conversa conversa = new Conversa();     
         conversa.setUsuarios(new HashSet<Usuario>());
