@@ -27,6 +27,7 @@
               <Input
                 label="Senha"
                 type="password"
+                @keydown.enter="logar"
                 v-model="senha"
               />
             </v-col>

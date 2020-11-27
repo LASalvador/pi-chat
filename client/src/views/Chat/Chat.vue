@@ -33,7 +33,7 @@
                     <span class="heading-6">{{item.author}}</span>
                   </v-list-item-title>
                   <v-list-item-subtitle class="body-2">
-                    <span class="indigo--text text--darken-2">{{item.role}}</span>
+                    <span class="bluePi--text">{{item.role}}</span>
                   </v-list-item-subtitle>
                 </v-list-item-content>
                 <v-list-item-action class="body-2">
@@ -76,6 +76,7 @@
                   <TextArea
                     label="digite aqui sua mensagem"
                     v-model="message"
+                    @keydown.enter="sendMsg"
                   />
                 </v-col>
                 <v-col cols="2">
