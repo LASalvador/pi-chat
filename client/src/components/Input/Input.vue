@@ -6,6 +6,7 @@
     :prepend-icon="prependIcon"
     :type="type"
     @input="$emit('input', $event)"
+    @keydown="$emit('keydown', $event)"
     required
   />
 </template>

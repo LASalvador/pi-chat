@@ -6,6 +6,7 @@
     :value="value"
     auto-grow
     @input="$emit('input', $event)"
+    @keydown="$emit('keydown', $event)"
   />
 </template>
 
