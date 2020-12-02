@@ -38,7 +38,8 @@ public class Atividade {
     @JsonView(View.AtividadeResumo.class)
     @Column(name = "cor_atividade")
     private String corAtividade;
-
+    
+    @JsonView(View.AtividadeResumo.class)
     @Column(name = "data_criado")
     private Date dataCriado;
 
