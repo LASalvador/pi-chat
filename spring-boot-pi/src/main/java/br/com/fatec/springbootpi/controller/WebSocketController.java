@@ -3,12 +3,10 @@ package br.com.fatec.springbootpi.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 
 import br.com.fatec.springbootpi.entity.Mensagem;
-import br.com.fatec.springbootpi.entity.Usuario;
 import br.com.fatec.springbootpi.model.MensagemForm;
 import br.com.fatec.springbootpi.service.MensagemService;
 import br.com.fatec.springbootpi.websocket.MensagemSocket;

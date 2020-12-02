@@ -64,14 +64,18 @@ public class AtividadeService {
     }
 
     @PreAuthorize("isAuthenticated()")
-    public Atividade fecharAtividade(Long idAtividade){
+    public Atividade atualizarAtividade(Long idAtividade, Boolean fecharAtividade){
         Atividade atividade = atividadeRepository.findByIdAtividade(idAtividade);
 
         
-        if (atividade != null){
+        if (atividade != null && fecharAtividade == false){
             Date x = new Date();
             atividade.setDataFechamento(x);     
             atividade.setAtividadeAberta(false);
+            atividadeRepository.save(atividade);
+        } else {
+            atividade.setDataFechamento(null);
+            atividade.setAtividadeAberta(true);
             atividadeRepository.save(atividade);
         }
 

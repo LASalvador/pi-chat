@@ -28,7 +28,6 @@ public class MensagemService {
     private UsuarioRepository userRepo;
 
     @Transactional
-    @PreAuthorize("isAuthenticated()")
     public Mensagem criarMensagem(String conteudo, Long idUsuario, Long idConversa) {
         Date data = new Date();
 
