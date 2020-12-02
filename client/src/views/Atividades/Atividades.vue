@@ -2,22 +2,59 @@
   <v-container fluid>
     <v-row>
       <v-col cols="12">
-        <v-row>
           <h1 class="bluePi--text">Atividades</h1>
-          <v-spacer></v-spacer>
-          <span class="blue-grey--text text--lighten-2 text-decoration-underline" @click="mostrarAtividadesFechadas">ver atividades fechadas</span>
-        </v-row>
-        <v-row>
-          <v-col
-            v-for="(note, index) in notes"
-            :key="index"
-            cols="12"
-            sm="12"
-            md="3"
-          >
-            <NoteCard :note="note" @click="fecharAtividades(note.id)"/>
-          </v-col>
-        </v-row>
+      </v-col>
+    </v-row>
+    <v-row align="start" justify="center">
+      <v-col cols="4" md="4" sm="12" xs="12" class="elevation-1 pa-3 ma-2">
+        <v-list
+          two-line
+          class="overflow-y-auto"
+          :max-height="windowSize"
+        >
+          <v-subheader>
+              Atividades Abertas
+          </v-subheader>
+          <draggable v-model="atividadesAbertas" :options="{group:'people'}" @add="abrirAtividade" style="min-height: 10px">
+            <template v-for="(item, index) in atividadesAbertas">
+              <v-list-item
+                :key="index"
+                @click="visualizarAtividade(item)"
+              >
+                <v-btn :color="item.style.bg" fab small depressed="" :dark="item.style.darken" class="text-white mr-2">
+                </v-btn>
+                <v-list-item-content>
+                  <v-list-item-title v-html="item.title"></v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </template>
+          </draggable>
+        </v-list>
+      </v-col>
+      <v-col cols="4" md="4" sm="12" xs="12" class="elevation-1 pa-3 ma-2">
+        <v-list
+          two-line
+          class="overflow-y-auto"
+          :max-height="windowSize"
+        >
+          <v-subheader>
+              Atividades Concluídas
+          </v-subheader>
+          <draggable v-model="atividadesFechadas" :options="{group:'people'}" @add="fecharAtividade" style="min-height: 10px">
+            <template v-for="(item, index) in atividadesFechadas">
+              <v-list-item
+                :key="index"
+                @click="visualizarAtividade(item)"
+              >
+                <v-btn :color="item.style.bg" fab small depressed="" :dark="item.style.darken" class="text-white mr-2">
+                </v-btn>
+                <v-list-item-content>
+                  <v-list-item-title v-html="item.title"></v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </template>
+          </draggable>
+        </v-list>
       </v-col>
       <Button
         fab
@@ -150,28 +187,11 @@
         </v-card>
       </v-dialog>
       <v-dialog
-        v-model="botaoAtividadesFechadas"
+        hide-overlay
+        transition="dialog-bottom-transition"
+        v-model="verAtividade"
       >
-      <v-card>
-      <v-toolbar
-          dark
-          color="bluePi">
-          <v-btn
-            icon
-            dark
-            @click="botaoAtividadesFechadas = false">
-            <v-icon>mdi-close</v-icon>
-          </v-btn>
-          <v-toolbar-title>Atividades Fechadas</v-toolbar-title>
-          <v-spacer></v-spacer>
-        </v-toolbar>
-        <v-list-item  two-line v-for="atividade in atividadesFechadas" :key="atividade.title">
-          <v-list-item-content>
-            <v-list-item-title>{{ atividade.title }}</v-list-item-title>
-            <v-list-item-subtitle>{{ atividade.text }}</v-list-item-subtitle>
-          </v-list-item-content>
-        </v-list-item>
-        </v-card>
+        <NoteCard :note="atividadeVisualizada" @click="atualizarAtividade(atividadeVisualizada.id, false)"/>
       </v-dialog>
   </v-container>
 </template>
@@ -182,6 +202,7 @@ import Button from '../../components/Button/Button.vue'
 import Input from '../../components/Input/Input.vue'
 import TextArea from '../../components/TextArea/TextArea.vue'
 import SharedCard from '../../components/ShareCard/ShareCard.vue'
+import draggable from 'vuedraggable'
 import api from '../../services/api'
 import { mapGetters } from 'vuex'
 
@@ -192,15 +213,17 @@ export default {
     Button,
     Input,
     TextArea,
-    SharedCard
+    SharedCard,
+    draggable
   },
   data: () => ({
     buttonNewNote: false,
     sharedButton: false,
-    botaoAtividadesFechadas: false,
-    notes: [],
-    idUsuarios: [],
+    verAtividade: false,
+    atividadeVisualizada: {},
     atividadesFechadas: [],
+    atividadesAbertas: [],
+    idUsuarios: [],
     note: {
       title: '',
       text: '',
@@ -248,15 +271,23 @@ export default {
     ]),
     dataFormatada () {
       return this.formatDate(this.dataConclusao)
+    },
+    windowSize: function () {
+      return window.innerHeight * 0.8
     }
   },
   mounted () {
     this.pegarAtividades()
+    this.pegarAtividadesFechadas()
   },
   methods: {
-    mostrarAtividadesFechadas () {
-      this.pegarAtividadesFechadas()
-      this.botaoAtividadesFechadas = true
+    fecharAtividade (event) {
+      const idAtividade = this.atividadesFechadas[event.newIndex].id
+      this.atualizarAtividade(idAtividade, false)
+    },
+    abrirAtividade (event) {
+      const idAtividade = this.atividadesAbertas[event.newIndex].id
+      this.atualizarAtividade(idAtividade, true)
     },
     formatDate (date) {
       if (!date) return null
@@ -323,10 +354,11 @@ export default {
                 selected: false
               },
               date: this.formatDate(atividade.dataPrevista.substring(0, 10)),
-              users: usuarios
+              users: usuarios,
+              created: this.formatDate(atividade.dataCriado.substring(0, 10))
             }
           })
-          this.notes = atividades
+          this.atividadesAbertas = atividades
         })
         .catch(erro => {
           console.log(erro)
@@ -336,9 +368,26 @@ export default {
       api.atividades.pegarAtividadesFechadas(this.getUsuario.idUsuario)
         .then(resposta => {
           const atividades = resposta.data.map(atividade => {
+            var usuarios = atividade.usuarios.reduce((total, usuario, index, arr) => {
+              if (index === arr.length - 1) {
+                return total + usuario.nomeUsuario
+              } else {
+                return total + usuario.nomeUsuario + ', '
+              }
+            }, '')
             return {
               title: atividade.tituloAtividade,
-              text: atividade.descAtividade.substring(0, 30) + '...'
+              id: atividade.idAtividade,
+              text: atividade.descAtividade,
+              style: {
+                bg: atividade.corAtividade,
+                darken: true,
+                selected: false
+              },
+              date: this.formatDate(atividade.dataPrevista.substring(0, 10)),
+              users: usuarios,
+              created: this.formatDate(atividade.dataCriado.substring(0, 10)),
+              closed: this.formatDate(atividade.dataFechamento.substring(0, 10))
             }
           })
           this.atividadesFechadas = atividades
@@ -347,8 +396,8 @@ export default {
           console.log(erro)
         })
     },
-    fecharAtividades (idAtividade) {
-      api.atividades.fecharAtividades(idAtividade)
+    atualizarAtividade (idAtividade, status) {
+      api.atividades.atualizarAtividade(idAtividade, status)
         .then(resposta => {
           this.pegarAtividades()
           this.pegarAtividadesFechadas()
@@ -356,6 +405,10 @@ export default {
         .catch(erro => {
           console.log(erro)
         })
+    },
+    visualizarAtividade (atividade) {
+      this.verAtividade = true
+      this.atividadeVisualizada = atividade
     }
   }
 }
